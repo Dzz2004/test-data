@@ -1,91 +1,100 @@
-# Plan: LLM-Driven Planner 改造
+# 多轮轨迹生成改造记录
 
-## 问题
+## 背景
 
-当前纯模板方案的局限：
-1. 6 个模板 → 最多 6 种节点序列，多样性差
-2. 模板外的任务组合无法覆盖
-3. 画像特征与模板不匹配时缺乏适应性
+原始系统只能生成**单轮**轨迹（一次用户输入 → agent 处理 → 最终回复），节点平铺为一个列表。  
+本次改造将其升级为**多轮对话**轨迹，具备真实交互性：用户的后续输入会对 agent 上一轮输出产生反应。
 
-## 方案：模板作为 few-shot + LLM 自由规划 + 约束校验
+---
 
-### 核心设计
+## 核心变化
+
+### 数据结构
 
 ```
-输入: 用户画像 + 任务 + skill池 + tool池 + 模板(作为参考)
-         │
-         ▼
-┌──────────────────────────────┐
-│  LLM Plan Generation         │
-│  - 接收完整上下文             │
-│  - 输出节点序列 (JSON)        │
-│  - 可参考模板但不受限于模板    │
-└──────────────┬───────────────┘
-               │
-               ▼
-┌──────────────────────────────┐
-│  Constraint Validator         │
-│  - 前置条件检查               │
-│  - 输入输出连通性验证         │
-│  - 必要节点存在性检查         │
-│  - 冗余/循环检测              │
-└──────────────┬───────────────┘
-               │ 不通过 → 修复/重试
-               ▼
-┌──────────────────────────────┐
-│  Plan Output (same interface)│
-└──────────────────────────────┘
+旧：trajectory → nodes: [user_input, skill, tool, ..., agent_response]
+
+新：trajectory → turns: [
+      turn1: { user_message, processing_nodes[], agent_response },
+      turn2: { user_message(↑响应 turn1 输出), processing_nodes[], agent_response },
+      ...
+    ]
 ```
 
-### 改造点
+### 新增 Blueprint（替换 task dict）
 
-1. **新增 `plan_with_llm()`** — 主路径，用 LLM 生成节点序列
-2. **新增 `validate_plan()`** — 对 LLM 输出做结构/逻辑校验
-3. **保留 `select_template()` + `plan_trajectory()`** — 作为 fallback 和 few-shot 素材
-4. **输出接口不变** — generator.py 不需要修改
-
-### LLM Prompt 设计
-
-给 LLM 的信息：
-- Skill 池完整列表（id + description + preconditions + possible_next）
-- Tool 池完整列表（id + description + 输入输出）
-- 用户画像摘要
-- 任务描述
-- 2 个相关模板作为 few-shot 示例
-- 约束规则（必须以 user_input 开头、final_response 结尾、不重复调用同一 tool 等）
-
-### 校验规则
-
-1. **结构约束**: 必须以 user_input 开头，以 final_response 结尾
-2. **前置条件**: 每个 skill 的 preconditions 必须被前序节点的 postconditions 覆盖
-3. **工具输入**: tool_call 的 input 必须能从前序节点的 output 获得
-4. **不冗余**: 同一 skill/tool 不应连续出现（除非有明确理由如二次分析）
-5. **节点数合理**: 通常 6-15 个节点，过少可能缺分析，过多可能冗余
-
-### 修复策略
-
-校验不通过时：
-- 缺少前置 skill → 自动插入
-- 缺 user_input/final_response → 自动补上
-- 节点数 < 4 → 重试一次
-- 重试 2 次仍失败 → fallback 到模板方案
-
-### 文件变更
-
-- `src/planner.py` — 重写，新增 `plan_with_llm()` 和 `validate_plan()`
-- `generate.py` — 调用入口改为 `plan_with_llm()`，保留 fallback
-- 其他文件不动
-
-### 接口兼容
-
-输出格式保持不变：
-```python
+```json
 {
-    "trajectory_id": "...",
-    "template_id": "llm_generated",  # 标记为 LLM 生成
-    "template_name": "LLM 自由规划",
-    "planned_nodes": [...],           # 同样的 node_plan 结构
-    "task": {...},
-    "user_profile": {...},
+  "task_id": "...",
+  "initial_user_query": "...",
+  "interaction_style": "偏好强烈型",
+  "goal": "用户经过 N 轮交互，最终获得...",
+  "conversation_arc": [
+    { "turn": 1, "trigger": "initial_request",   "description": "用户发起请求" },
+    { "turn": 2, "trigger": "constraint_update",  "description": "用户将时间从 15h 改为 8h" },
+    { "turn": 3, "trigger": "clarification",      "description": "用户追问系统设计练习方式" }
+  ]
 }
 ```
+
+Trigger 类型：`initial_request` / `constraint_update` / `clarification` / `plan_revision` / `pushback`
+
+---
+
+## 模块改动
+
+| 模块 | 操作 | 说明 |
+|------|------|------|
+| `src/schema.py` | 新增 | ArcTurn、Blueprint、ConversationTurn、MultiTurnTrajectory |
+| `src/conversation_state.py` | 新增 | 跨轮状态：history、established_facts、last_agent_response |
+| `src/task_generator.py` | 重构 | `generate_blueprint()` 生成含 conversation_arc 的蓝图 |
+| `src/planner.py` | 增加 | `plan_multi_turn()` 按轮次分别规划节点序列 |
+| `src/generator.py` | 增加 | `generate_multi_turn_trajectory()` 多轮生成主函数 |
+| `src/mock_tools.py` | 增强 | 输出随 seniority/category/difficulty/technology 参数变化 |
+| `generate.py` | 改造 | 主流程改为 blueprint → plan_multi_turn → generate_multi_turn_trajectory |
+
+---
+
+## 生成流程
+
+```
+1. generate_blueprint(domain, persona)
+   → LLM 生成 initial_user_query + conversation_arc
+
+2. plan_multi_turn(domain, blueprint, profile)
+   → 按每个 arc_turn 的 trigger 类型，规划该轮的 processing_nodes 序列
+   → use_llm=True: LLM 规划；use_llm=False: 静态 trigger→template 映射（用于测试）
+
+3. generate_multi_turn_trajectory(plan, domain)
+   → Turn 1: user_message = initial_user_query
+   → Turn N>1: LLM 根据上一轮 agent_response + trigger 生成 user_message
+   → 每轮逐节点执行（skill_call 用 LLM，tool_call 用参数敏感 mock）
+   → 每轮结束生成 agent_response，更新 ConversationState
+```
+
+---
+
+## 测试覆盖
+
+```
+tests/
+├── conftest.py                   # fixtures
+├── test_schema.py                # 12 cases — 数据结构约束
+├── test_mock_tools.py            # 10 cases — 参数敏感性
+├── test_blueprint.py             # 11 cases — Blueprint 生成（6 结构 + 5 LLM）
+├── test_planner_multi.py         # 10 cases — 多轮规划（8 结构 + 2 LLM）
+├── test_conversation_state.py    # 9 cases  — 状态追踪
+└── test_generator_multi.py       # 12 cases — 多轮生成（9 结构 + 3 LLM）
+```
+
+非 LLM 测试（54 个）可随时运行：`pytest tests/ -m "not llm"`  
+LLM 测试需要 API key：`pytest tests/ -m llm`
+
+---
+
+## 待完成
+
+- [ ] 评估模块（节点级 / 边级 / 轨迹级评估 + 错误标签）
+- [ ] 多 domain 扩展（目前只有 code_development）
+- [ ] 真实工具接入（目前全部 mock）
+- [ ] 数据质量筛选与导出管线

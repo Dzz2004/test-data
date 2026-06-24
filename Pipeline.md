@@ -211,32 +211,47 @@ Step 13：导出高质量轨迹数据集
 
 ## 4. 系统模块设计
 
-建议将系统拆成以下模块。
+**当前实现结构**（`trajectory_generator/`）：
 
 ```text
-agent_trajectory_synthesis/
-├── configs/
-│   └── domains/
-│       └── cs_learning_path/
-├── data/
-│   ├── raw/
-│   ├── generated/
-│   └── evaluated/
+trajectory_generator/
+├── generate.py                     # 主入口
+├── domain/
+│   └── code_development/           # 当前唯一领域
+│       ├── domain_spec.json
+│       ├── skills.json             # 12 个推理技能
+│       ├── tools.json              # 7 个外部工具
+│       ├── knowledge_base.json
+│       └── trajectory_templates.json
 ├── src/
-│   ├── domain/
-│   ├── skill/
-│   ├── tool/
-│   ├── user_simulator/
-│   ├── task_generator/
-│   ├── trajectory/
-│   ├── evaluator/
-│   ├── exporter/
-│   └── utils/
-└── scripts/
-    ├── generate_tasks.py
-    ├── generate_trajectories.py
-    ├── evaluate_trajectories.py
-    └── export_dataset.py
+│   ├── schema.py                   # 数据结构定义（新）
+│   ├── domain.py                   # Domain 加载
+│   ├── llm_client.py               # LLM 调用封装
+│   ├── mock_tools.py               # 参数敏感工具 mock
+│   ├── conversation_state.py       # 跨轮状态追踪（新）
+│   ├── task_generator.py           # Blueprint 生成
+│   ├── planner.py                  # 多轮轨迹规划
+│   └── generator.py                # 多轮轨迹生成
+└── output/
+    ├── trajectories.jsonl
+    └── individual/
+
+tests/                              # 与 trajectory_generator/ 平级
+├── conftest.py
+├── test_schema.py
+├── test_mock_tools.py
+├── test_blueprint.py
+├── test_planner_multi.py
+├── test_conversation_state.py
+└── test_generator_multi.py
+```
+
+**规划中的扩展模块**（未实现）：
+
+```text
+src/evaluator/    # 节点级/边级/轨迹级评估
+src/exporter/     # 数据筛选与多格式导出
+configs/domains/  # 更多领域配置（医疗/法律/旅行等）
 ```
 
 ---
@@ -562,29 +577,30 @@ jsonl
 
 ---
 
-### 6.5 Task
+### 6.5 Blueprint（原 Task，已扩展）
+
+增加 `conversation_arc` 字段，描述多轮对话的剧本结构。
 
 ```json
 {
   "task_id": "task_001",
-  "domain": "cs_learning_path",
-  "task_type": "job_oriented_planning",
-  "user_id": "user_001",
-  "task_description": "为用户规划 6 个月数据分析实习准备路径",
-  "initial_user_query": "我不是计算机专业，但学过一点 Python。现在想在 6 个月内准备数据分析实习，每天大概能学 1 小时。你能帮我规划一条学习路径吗？",
-  "expected_skills": [
-    "需求解析",
-    "岗位技能分析",
-    "技能缺口识别",
-    "学习路径规划",
-    "时间预算分配"
-  ],
-  "expected_tools": [
-    "岗位技能要求检索工具",
-    "课程资源检索工具"
+  "domain": "code_development",
+  "task_type": "mock-interview",
+  "user_id": "senior-backend-job-hopping",
+  "task_description": "为资深后端工程师规划面试准备",
+  "initial_user_query": "帮我规划两个月的面试准备计划，目标是后端架构师岗位...",
+  "interaction_style": "偏好强烈型",
+  "expected_skills": ["系统设计", "行为面试"],
+  "goal": "用户经过 3 轮交互，最终获得一份调整后的面试计划",
+  "conversation_arc": [
+    { "turn": 1, "trigger": "initial_request",   "description": "用户发起面试规划请求" },
+    { "turn": 2, "trigger": "constraint_update",  "description": "用户将每周时间从 15h 改为 8h" },
+    { "turn": 3, "trigger": "clarification",      "description": "用户追问系统设计练习方式" }
   ]
 }
 ```
+
+Trigger 类型：`initial_request` / `constraint_update` / `clarification` / `plan_revision` / `pushback`
 
 ---
 
@@ -624,20 +640,37 @@ jsonl
 
 ---
 
-### 6.7 Trajectory
+### 6.7 MultiTurnTrajectory（原 Trajectory，已重构）
+
+轨迹从"平铺节点列表"改为"按轮次组织"，每轮包含完整的用户消息、处理节点和 agent 回复。
 
 ```json
 {
   "trajectory_id": "traj_001",
-  "domain": "cs_learning_path",
+  "domain": "code_development",
+  "template_used": "multi_turn_llm",
   "user_profile": {},
-  "task": {},
-  "available_skills": [],
-  "available_tools": [],
-  "nodes": [],
-  "edges": [],
-  "final_response": "",
-  "evaluation": {}
+  "task": { "...Blueprint 结构，含 conversation_arc..." },
+  "turns": [
+    {
+      "turn_id": 1,
+      "trigger": "initial_request",
+      "user_message": "帮我规划两个月的面试准备计划...",
+      "processing_nodes": [
+        { "node_type": "skill_call", "skill_id": "need_analysis", "output": {}, "rationale": "..." },
+        { "node_type": "tool_call",  "tool_id": "job_requirement_search", "input": {}, "output": {} }
+      ],
+      "agent_response": "基于你的背景，建议分三个阶段准备..."
+    },
+    {
+      "turn_id": 2,
+      "trigger": "constraint_update",
+      "user_message": "第6-8周我需要加班，每周只有8小时...",
+      "processing_nodes": [ "..." ],
+      "agent_response": "没问题，第 6-8 周切换为轻量复习模式..."
+    }
+  ],
+  "evaluation": null
 }
 ```
 
@@ -699,52 +732,35 @@ Filtered High-quality Trajectory Dataset
 
 ---
 
-### 7.3 生成伪代码
+### 7.3 生成伪代码（当前实现）
 
 ```python
 def generate_dataset(domain_name: str, num_samples: int):
-    domain = DomainManager.load(domain_name)
-
+    domain = load_domain(domain_name)
     trajectories = []
 
     for _ in range(num_samples):
-        user_profile = UserSimulator.sample_profile(domain.user_profile_pool)
+        user_data = random.choice(domain.user_profiles)
 
-        task = TaskGenerator.generate(
-            domain=domain,
-            user_profile=user_profile
-        )
+        # Step 1: 生成含对话弧线的蓝图
+        blueprint = generate_blueprint(domain, user_data)
+        # blueprint.conversation_arc 定义了 2-4 轮的剧本
 
-        trajectory_template = TrajectoryPlanner.sample_template(
-            domain=domain,
-            task=task,
-            user_profile=user_profile
-        )
+        # Step 2: 按轮次规划节点序列
+        multi_plan = plan_multi_turn(domain, blueprint, user_data["profile"])
+        # 每轮根据 trigger 类型选择合适的 skill/tool 序列
 
-        trajectory_plan = TrajectoryPlanner.plan(
-            task=task,
-            user_profile=user_profile,
-            skills=domain.skill_pool,
-            tools=domain.tool_pool,
-            template=trajectory_template
-        )
+        # Step 3: 逐轮生成内容，维护跨轮对话状态
+        trajectory = generate_multi_turn_trajectory(multi_plan, domain)
+        # Turn 1: user_message = initial_user_query
+        # Turn N: user_message 由 LLM 根据上轮 agent_response + trigger 生成
+        # 每轮的 agent_response 引用本轮 processing_nodes 的分析结果
 
-        trajectory = TrajectoryGenerator.generate(
-            plan=trajectory_plan,
-            user_profile=user_profile,
-            task=task,
-            knowledge_base=domain.knowledge_base
-        )
+        # Step 4: 评估（待实现）
+        # evaluation = Evaluator.evaluate(trajectory)
+        # trajectory.evaluation = evaluation
 
-        evaluation = Evaluator.evaluate(
-            trajectory=trajectory,
-            rules=domain.evaluation_rules
-        )
-
-        trajectory["evaluation"] = evaluation
-
-        if evaluation["overall_label"] in ["reasonable", "partially_reasonable"]:
-            trajectories.append(trajectory)
+        trajectories.append(trajectory)
 
     return trajectories
 ```
