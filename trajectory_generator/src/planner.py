@@ -1,10 +1,10 @@
 """
-Trajectory Planner - LLM 驱动的轨迹规划
+Trajectory Planner - 多轮轨迹规划
 
 策略：
-1. LLM 根据用户画像、任务和 skill/tool 池自由规划节点序列
-2. 模板作为 few-shot 示例提供参考，但不限制 LLM 的输出
-3. 对 LLM 输出做约束校验，不合格则修复或 fallback 到模板
+1. plan_multi_turn: 按 conversation_arc 逐轮规划，每轮产生节点序列
+2. 每轮可选 LLM 规划或模板规划（use_llm=False 用于测试）
+3. 原有单轮 plan_with_llm 保留作内部工具
 """
 from __future__ import annotations
 
@@ -496,3 +496,217 @@ def _classify_node_type(node_name: str, skill_map: dict, tool_map: dict) -> str:
     if "clarification" in node_name:
         return "agent_reasoning"
     return "skill_call"
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Multi-turn Planner
+# ══════════════════════════════════════════════════════════════════════════════
+
+# 每种 trigger 对应的默认节点序列（不含 user_input，结尾固定 agent_response）
+_TRIGGER_TEMPLATES: dict[str, dict[str, list[dict]]] = {
+    # ── 第一轮模板（按任务类型细分）──────────────────────────────────────────
+    "initial_request": {
+        "mock-interview": [
+            {"node_type": "skill_call", "skill_id": "need_analysis",        "node_name": "need_analysis"},
+            {"node_type": "tool_call",  "tool_id":  "job_requirement_search","node_name": "job_requirement_search"},
+            {"node_type": "skill_call", "skill_id": "level_diagnosis",       "node_name": "level_diagnosis"},
+            {"node_type": "skill_call", "skill_id": "interview_prep_planning","node_name": "interview_prep_planning"},
+            {"node_type": "tool_call",  "tool_id":  "interview_question_search","node_name": "interview_question_search"},
+            {"node_type": "skill_call", "skill_id": "feasibility_check",     "node_name": "feasibility_check"},
+            {"node_type": "agent_response", "node_name": "agent_response"},
+        ],
+        "mock_interview_prep": [
+            {"node_type": "skill_call", "skill_id": "need_analysis",         "node_name": "need_analysis"},
+            {"node_type": "tool_call",  "tool_id":  "job_requirement_search", "node_name": "job_requirement_search"},
+            {"node_type": "skill_call", "skill_id": "level_diagnosis",        "node_name": "level_diagnosis"},
+            {"node_type": "skill_call", "skill_id": "interview_prep_planning","node_name": "interview_prep_planning"},
+            {"node_type": "agent_response", "node_name": "agent_response"},
+        ],
+        "learning-plan": [
+            {"node_type": "skill_call", "skill_id": "need_analysis",          "node_name": "need_analysis"},
+            {"node_type": "skill_call", "skill_id": "level_diagnosis",         "node_name": "level_diagnosis"},
+            {"node_type": "tool_call",  "tool_id":  "knowledge_graph_query",   "node_name": "knowledge_graph_query"},
+            {"node_type": "skill_call", "skill_id": "skill_gap_analysis",      "node_name": "skill_gap_analysis"},
+            {"node_type": "skill_call", "skill_id": "learning_path_planning",  "node_name": "learning_path_planning"},
+            {"node_type": "agent_response", "node_name": "agent_response"},
+        ],
+        "career-roadmap": [
+            {"node_type": "skill_call", "skill_id": "need_analysis",          "node_name": "need_analysis"},
+            {"node_type": "tool_call",  "tool_id":  "job_requirement_search",  "node_name": "job_requirement_search"},
+            {"node_type": "skill_call", "skill_id": "career_path_analysis",    "node_name": "career_path_analysis"},
+            {"node_type": "skill_call", "skill_id": "skill_gap_analysis",      "node_name": "skill_gap_analysis"},
+            {"node_type": "agent_response", "node_name": "agent_response"},
+        ],
+        "_default": [
+            {"node_type": "skill_call", "skill_id": "need_analysis",          "node_name": "need_analysis"},
+            {"node_type": "skill_call", "skill_id": "level_diagnosis",         "node_name": "level_diagnosis"},
+            {"node_type": "skill_call", "skill_id": "skill_gap_analysis",      "node_name": "skill_gap_analysis"},
+            {"node_type": "agent_response", "node_name": "agent_response"},
+        ],
+    },
+    # ── 后续轮次模板 ──────────────────────────────────────────────────────────
+    "constraint_update": {
+        "_default": [
+            {"node_type": "skill_call", "skill_id": "feasibility_check",  "node_name": "feasibility_check"},
+            {"node_type": "skill_call", "skill_id": "plan_revision",       "node_name": "plan_revision"},
+            {"node_type": "skill_call", "skill_id": "learning_path_planning","node_name": "learning_path_planning"},
+            {"node_type": "agent_response", "node_name": "agent_response"},
+        ],
+    },
+    "clarification": {
+        "_default": [
+            {"node_type": "skill_call", "skill_id": "need_analysis",       "node_name": "need_analysis"},
+            {"node_type": "skill_call", "skill_id": "resource_recommendation","node_name": "resource_recommendation"},
+            {"node_type": "agent_response", "node_name": "agent_response"},
+        ],
+    },
+    "plan_revision": {
+        "_default": [
+            {"node_type": "skill_call", "skill_id": "plan_revision",       "node_name": "plan_revision"},
+            {"node_type": "skill_call", "skill_id": "feasibility_check",   "node_name": "feasibility_check"},
+            {"node_type": "agent_response", "node_name": "agent_response"},
+        ],
+    },
+    "pushback": {
+        "_default": [
+            {"node_type": "skill_call", "skill_id": "need_analysis",       "node_name": "need_analysis"},
+            {"node_type": "skill_call", "skill_id": "career_path_analysis", "node_name": "career_path_analysis"},
+            {"node_type": "agent_response", "node_name": "agent_response"},
+        ],
+    },
+}
+
+
+def plan_multi_turn(
+    domain: "Domain",
+    blueprint: Any,
+    user_profile: dict,
+    use_llm: bool = True,
+) -> dict:
+    """
+    Plan a multi-turn trajectory from a Blueprint.
+    Returns a dict with 'turns_plan': list of per-turn planned node sequences.
+
+    Each turn_plan:
+        {"turn_id": int, "trigger": str, "planned_nodes": [node_dict, ...]}
+
+    Node dicts do NOT include user_input (handled by generator).
+    Every turn ends with an agent_response node.
+    """
+    import random as _random
+
+    turns_plan = []
+    task_type = blueprint.task_type
+
+    for arc_turn in blueprint.conversation_arc:
+        if use_llm:
+            nodes = _plan_turn_with_llm(domain, blueprint, user_profile, arc_turn, turns_plan)
+        else:
+            nodes = _plan_turn_from_template(task_type, arc_turn.trigger)
+
+        turns_plan.append({
+            "turn_id":       arc_turn.turn,
+            "trigger":       arc_turn.trigger,
+            "arc_description": arc_turn.description,
+            "planned_nodes": nodes,
+        })
+
+    return {
+        "trajectory_id": f"traj_{blueprint.task_id}_{_random.randint(100, 999)}",
+        "blueprint":     blueprint,
+        "user_profile":  user_profile,
+        "turns_plan":    turns_plan,
+    }
+
+
+def _plan_turn_from_template(task_type: str, trigger: str) -> list[dict]:
+    """Select node sequence from static templates, copy to avoid mutation."""
+    trigger_map = _TRIGGER_TEMPLATES.get(trigger, _TRIGGER_TEMPLATES.get("clarification", {}))
+    nodes = trigger_map.get(task_type) or trigger_map.get("_default", [])
+    return [dict(n) for n in nodes]
+
+
+def _plan_turn_with_llm(
+    domain: "Domain",
+    blueprint: Any,
+    user_profile: dict,
+    arc_turn: Any,
+    previous_turns: list[dict],
+) -> list[dict]:
+    """LLM plans nodes for one turn; falls back to template on failure."""
+    skill_descriptions = _format_skills_for_prompt(domain.skills)
+    tool_descriptions  = _format_tools_for_prompt(domain.tools)
+
+    prev_summary = ""
+    if previous_turns:
+        lines = []
+        for tp in previous_turns[-2:]:
+            skill_ids = [n.get("skill_id") or n.get("tool_id", "") for n in tp["planned_nodes"]]
+            lines.append(f"  Turn {tp['turn_id']} ({tp['trigger']}): {', '.join(filter(None, skill_ids))}")
+        prev_summary = "\n".join(lines)
+
+    prompt = f"""你是 Agent 轨迹规划器，正在规划多轮对话中第 {arc_turn.turn} 轮的节点序列。
+
+## 用户画像
+- 当前角色: {user_profile.get('currentRole', '')}
+- 目标角色: {user_profile.get('targetRole', '')}
+- 约束: {', '.join(user_profile.get('constraints', [])[:3])}
+
+## 任务
+- 类型: {blueprint.task_type}
+- 本轮触发: {arc_turn.trigger}
+- 本轮描述: {arc_turn.description}
+
+## 前序轮次
+{prev_summary or "（第一轮）"}
+
+## 可用 Skill 池
+{skill_descriptions}
+
+## 可用 Tool 池
+{tool_descriptions}
+
+## 规划规则
+1. 只规划本轮 agent 内部处理节点，不包含 user_input
+2. 最后一个节点必须是 agent_response
+3. 节点数量 2-6 个
+4. 不重复使用前序轮次已用过的 tool（skill 可复用）
+5. 根据本轮 trigger 类型选择合适的 skill/tool:
+   - initial_request: 完整分析流程
+   - constraint_update: 必须包含 feasibility_check 或 plan_revision
+   - clarification: 针对用户追问的具体回答
+   - plan_revision: 重新规划
+   - pushback: 解释和说明
+
+返回 JSON 数组（只包含节点，不包含 user_input）:
+[
+  {{"node_type": "skill_call", "skill_id": "need_analysis",    "node_name": "need_analysis"}},
+  {{"node_type": "tool_call",  "tool_id":  "job_requirement_search", "node_name": "job_requirement_search"}},
+  ...
+  {{"node_type": "agent_response", "node_name": "agent_response"}}
+]"""
+
+    try:
+        raw = chat_json([{"role": "user", "content": prompt}], temperature=0.6)
+        nodes = _parse_llm_plan(raw) if isinstance(raw, list) else _parse_llm_plan(raw)
+        # 确保结尾是 agent_response
+        if not nodes or nodes[-1].get("node_type") != "agent_response":
+            nodes.append({"node_type": "agent_response", "node_name": "agent_response"})
+        # 过滤掉 unknown skill/tool
+        valid_skills = {s.skill_id for s in domain.skills}
+        valid_tools  = {t.tool_id  for t in domain.tools}
+        cleaned = []
+        for n in nodes:
+            sid = n.get("skill_id")
+            tid = n.get("tool_id")
+            if sid and sid not in valid_skills:
+                continue
+            if tid and tid not in valid_tools:
+                continue
+            cleaned.append(n)
+        if not cleaned or cleaned[-1].get("node_type") != "agent_response":
+            cleaned.append({"node_type": "agent_response", "node_name": "agent_response"})
+        return [dict(n) for n in cleaned]
+    except Exception as e:
+        print(f"    LLM turn planning failed (turn {arc_turn.turn}): {e}, using template")
+        return _plan_turn_from_template(blueprint.task_type, arc_turn.trigger)
