@@ -1,0 +1,12 @@
+{
+  "name": "persona-calibrator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "calibrate": "node calibrate.js"
+  },
+  "dependencies": {
+    "openai": "^4.60.0"
+  }
+}

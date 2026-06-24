@@ -1,0 +1,134 @@
+[
+  {
+    "skill_id": "need_analysis",
+    "name": "需求解析",
+    "type": "general",
+    "description": "从用户请求中提取结构化需求：目标、基础、约束、偏好",
+    "inputs": ["user_query", "user_profile"],
+    "outputs": ["parsed_goal", "parsed_constraints", "parsed_context"],
+    "preconditions": ["用户已提供初始请求"],
+    "postconditions": ["用户需求已结构化"],
+    "possible_next_skills": ["skill_gap_analysis", "level_diagnosis", "information_sufficiency_check"]
+  },
+  {
+    "skill_id": "level_diagnosis",
+    "name": "技术水平诊断",
+    "type": "domain_specific",
+    "description": "根据用户描述的经历、项目和技术栈评估当前技术水平",
+    "inputs": ["user_profile", "parsed_context"],
+    "outputs": ["skill_levels", "experience_assessment", "strength_areas", "weak_areas"],
+    "preconditions": ["用户需求已结构化"],
+    "postconditions": ["用户技术水平已量化"],
+    "possible_next_skills": ["skill_gap_analysis", "learning_path_planning"]
+  },
+  {
+    "skill_id": "skill_gap_analysis",
+    "name": "技能缺口分析",
+    "type": "domain_specific",
+    "description": "对比用户当前技能和目标岗位要求，识别缺口",
+    "inputs": ["skill_levels", "target_role_requirements"],
+    "outputs": ["skill_gaps", "priority_ranking", "gap_severity"],
+    "preconditions": ["用户技术水平已量化", "目标岗位要求已明确"],
+    "postconditions": ["技能缺口已识别并排序"],
+    "possible_next_skills": ["learning_path_planning", "project_recommendation"]
+  },
+  {
+    "skill_id": "learning_path_planning",
+    "name": "学习路径规划",
+    "type": "domain_specific",
+    "description": "根据技能缺口、时间预算和学习偏好生成阶段化学习计划",
+    "inputs": ["skill_gaps", "time_budget", "learning_preferences"],
+    "outputs": ["learning_stages", "weekly_plan", "milestones"],
+    "preconditions": ["技能缺口已识别"],
+    "postconditions": ["可执行学习路径已生成"],
+    "possible_next_skills": ["resource_recommendation", "feasibility_check", "time_budget_allocation"]
+  },
+  {
+    "skill_id": "resource_recommendation",
+    "name": "学习资源推荐",
+    "type": "domain_specific",
+    "description": "根据学习阶段和用户偏好推荐具体资源（课程、书籍、项目）",
+    "inputs": ["learning_stages", "learning_preferences", "constraints"],
+    "outputs": ["recommended_resources", "resource_rationale"],
+    "preconditions": ["学习路径已规划"],
+    "postconditions": ["每阶段有对应学习资源"],
+    "possible_next_skills": ["feasibility_check"]
+  },
+  {
+    "skill_id": "project_recommendation",
+    "name": "项目实践推荐",
+    "type": "domain_specific",
+    "description": "基于目标岗位和技能缺口推荐实战项目",
+    "inputs": ["skill_gaps", "target_role", "current_level"],
+    "outputs": ["recommended_projects", "project_difficulty", "expected_outcomes"],
+    "preconditions": ["技能缺口已识别"],
+    "postconditions": ["实战项目已推荐"],
+    "possible_next_skills": ["feasibility_check", "learning_path_planning"]
+  },
+  {
+    "skill_id": "interview_prep_planning",
+    "name": "面试准备规划",
+    "type": "domain_specific",
+    "description": "根据目标岗位设计面试准备计划（算法、系统设计、行为面试）",
+    "inputs": ["target_role", "skill_levels", "time_budget"],
+    "outputs": ["interview_plan", "focus_areas", "practice_schedule"],
+    "preconditions": ["目标岗位已明确", "用户技术水平已量化"],
+    "postconditions": ["面试准备计划已生成"],
+    "possible_next_skills": ["resource_recommendation", "feasibility_check"]
+  },
+  {
+    "skill_id": "time_budget_allocation",
+    "name": "时间预算分配",
+    "type": "general",
+    "description": "将用户可用时间合理分配到各学习/准备阶段",
+    "inputs": ["time_budget", "learning_stages", "priority_ranking"],
+    "outputs": ["time_allocation", "schedule_breakdown"],
+    "preconditions": ["学习路径已规划", "优先级已排序"],
+    "postconditions": ["时间分配方案已生成"],
+    "possible_next_skills": ["feasibility_check"]
+  },
+  {
+    "skill_id": "feasibility_check",
+    "name": "计划可行性检查",
+    "type": "general",
+    "description": "检查生成的计划是否在用户约束范围内可执行",
+    "inputs": ["plan", "constraints", "time_budget"],
+    "outputs": ["feasibility_result", "risk_items", "adjustment_suggestions"],
+    "preconditions": ["计划已生成"],
+    "postconditions": ["计划可行性已验证"],
+    "possible_next_skills": ["plan_revision", "final_response"]
+  },
+  {
+    "skill_id": "information_sufficiency_check",
+    "name": "信息充分性检查",
+    "type": "general",
+    "description": "判断当前信息是否足以开始规划，识别缺失信息",
+    "inputs": ["parsed_goal", "parsed_context"],
+    "outputs": ["sufficiency_result", "missing_info_list", "clarification_questions"],
+    "preconditions": ["用户需求已初步解析"],
+    "postconditions": ["信息充分性已判断"],
+    "possible_next_skills": ["need_analysis", "level_diagnosis"]
+  },
+  {
+    "skill_id": "career_path_analysis",
+    "name": "职业路径分析",
+    "type": "domain_specific",
+    "description": "分析从当前角色到目标角色的可行职业路径",
+    "inputs": ["current_role", "target_role", "experience_summary"],
+    "outputs": ["career_paths", "transition_steps", "timeline_estimate"],
+    "preconditions": ["用户当前角色和目标角色已明确"],
+    "postconditions": ["职业路径选项已生成"],
+    "possible_next_skills": ["skill_gap_analysis", "learning_path_planning"]
+  },
+  {
+    "skill_id": "plan_revision",
+    "name": "计划修正",
+    "type": "general",
+    "description": "根据可行性检查结果或用户反馈修正计划",
+    "inputs": ["original_plan", "revision_reason", "new_constraints"],
+    "outputs": ["revised_plan", "changes_summary"],
+    "preconditions": ["原计划存在问题或用户提出修改"],
+    "postconditions": ["修正后的计划已生成"],
+    "possible_next_skills": ["feasibility_check", "final_response"]
+  }
+]

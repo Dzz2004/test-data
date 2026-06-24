@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "personaId": "overseas-remote-rust-engineer",
+    "archetype": "资深跳槽",
+    "careerStage": "senior",
+    "urgency": "active",
+    "expectedSkills": ["Rust", "系统编程", "WebAssembly", "英文面试", "开源贡献"],
+    "expectedPlanComplexity": "medium",
+    "testScenarios": ["mock-interview", "learning-plan", "career-roadmap"]
+  },
+  "profile": {
+    "displayName": "李骁",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "C++ 引擎开发工程师",
+    "employmentStatus": "在职，准备跳槽到海外远程岗位",
+    "experienceSummary": "六年系统级开发经验。前四年在游戏公司做 C++ 游戏引擎开发（渲染管线、物理引擎模块），后两年跳到一家做实时音视频的公司，负责音频编解码器的 C++ 实现和跨平台适配。对底层性能优化、内存管理很在行。一年前开始学 Rust，贡献了几个 PR 到 tokio 生态的一个小库，对 Rust 的异步和所有权模型已经比较熟练。",
+    "educationSummary": "985 大学计算机本科，2019 年毕业。在校期间对操作系统和编译原理很感兴趣。英语六级 580 分，日常能读英文技术文档和 RFC，但口语面试经验很少。",
+    "locationRegion": "深圳（目标远程工作，对时区有一定灵活度）",
+    "targetRole": "Rust Systems Engineer（Remote）",
+    "targetIndustries": ["区块链基础设施", "数据库/存储引擎", "WebAssembly 运行时", "开发者工具"],
+    "shortTermGoal": "三个月内拿到一个海外远程 Rust 岗位的 offer。刷 Rust 相关的系统设计题 + 准备英文面试。",
+    "longTermGoal": "成为 Rust 生态的核心贡献者之一，在某个方向（数据库或 Wasm runtime）建立技术影响力",
+    "weeklyTimeBudget": "12 小时（工作日晚上 + 周末，在职状态）",
+    "constraints": ["英文口语面试是最大短板，需要大量练习", "海外远程岗位竞争激烈，需要有开源 proof of work", "时区差异可能影响协作，美西岗位需要偶尔深夜开会", "Rust 生产经验只有个人项目 + 开源贡献，没有公司项目背书"],
+    "workPreferences": ["纯远程，async-first 的团队文化", "技术驱动而非业务驱动", "小团队（10 人以下）", "有开源文化的公司"],
+    "learningPreferences": ["通过实现小型项目学习（如自己写一个 mini Redis）", "读源码是主要学习方式", "喜欢在 Discord/Zulip 社区提问和讨论"],
+    "keyStrengths": ["系统编程基础扎实，C++ 和 Rust 双精通", "性能优化经验丰富", "已有开源贡献记录", "对底层原理的理解深度好"],
+    "riskSignals": ["英文沟通能力未经面试验证", "没有 Rust 的商业项目经验", "对 Web3/区块链的业务逻辑不熟", "社交网络（LinkedIn、Twitter）经营不足，缺乏海外圈子的 visibility"],
+    "portfolioLinks": []
+  }
+}

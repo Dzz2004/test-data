@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "personaId": "junior-frontend-graduate",
+    "archetype": "应届生",
+    "careerStage": "entry",
+    "urgency": "active",
+    "expectedSkills": ["React", "TypeScript", "CSS", "浏览器原理", "算法基础"],
+    "expectedPlanComplexity": "medium",
+    "testScenarios": ["learning-plan", "mock-interview", "coding-assessment"]
+  },
+  "profile": {
+    "displayName": "林小宇",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "计算机科学本科应届毕业生",
+    "employmentStatus": "应届求职中",
+    "experienceSummary": "大三暑期在一家中型互联网公司做过两个月前端实习，参与了内部管理系统的表单模块开发，使用 Vue 2 + Element UI。毕业设计做了一个基于 React 的校园二手交易平台，前后端分离，后端用 Express。没有大厂实习经历。",
+    "educationSummary": "某 211 大学计算机科学与技术专业，2025 年 6 月毕业。GPA 3.4/4.0，数据结构和操作系统课程成绩较好，算法竞赛没参加过。自学过 React 和 TypeScript，跟着官方文档和一些付费课程学的。",
+    "locationRegion": "上海",
+    "targetRole": "前端开发工程师",
+    "targetIndustries": ["互联网", "SaaS", "金融科技"],
+    "shortTermGoal": "三个月内拿到一线互联网公司或优质中厂的前端 offer，薪资期望 15-20K",
+    "longTermGoal": "三年内成长为能独立负责业务线的前端技术骨干，逐步向全栈方向发展",
+    "weeklyTimeBudget": "40 小时（全职求职状态）",
+    "constraints": ["没有大厂实习背景，简历竞争力偏弱", "算法刷题量不够，LeetCode 只做了约 80 题", "项目经验偏简单，缺少复杂场景实战"],
+    "workPreferences": ["偏好有技术氛围的团队", "喜欢做 C 端产品", "不排斥加班但希望有成长空间"],
+    "learningPreferences": ["边做项目边学效果最好", "喜欢看视频教程而非纯文档", "需要明确的学习路线和每日任务"],
+    "keyStrengths": ["React 基础扎实，理解 hooks 原理", "CSS 布局能力不错，能还原设计稿", "学习速度快，两个月能上手新框架"],
+    "riskSignals": ["面试经验少，容易紧张", "对工程化（CI/CD、监控、性能优化）了解很浅", "简历项目和实际大厂业务复杂度差距大"],
+    "portfolioLinks": []
+  }
+}

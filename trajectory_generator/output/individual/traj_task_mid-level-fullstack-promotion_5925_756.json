@@ -1,0 +1,904 @@
+{
+  "trajectory_id": "traj_task_mid-level-fullstack-promotion_5925_756",
+  "domain": "code_development",
+  "template_used": "llm_generated",
+  "user_profile": {
+    "displayName": "张明远",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "全栈开发工程师（P6）",
+    "employmentStatus": "在职，某中型互联网公司",
+    "experienceSummary": "四年全栈开发经验。前两年主要写 React + Node.js 的中后台系统，后两年转到核心业务组，负责用户增长相关的全链路开发（React Native 客户端 + Go 微服务）。主导过用户邀请系统的重构，DAU 从 50 万扩到 200 万时保证了服务稳定。带过一个两人小组做过一个季度的项目。",
+    "educationSummary": "985 大学软件工程本科，2021 年毕业。在校期间参加过 ACM 校赛拿过三等奖，对算法有一定基础。毕业后主要通过实际项目和技术博客学习，偶尔看架构类书籍。",
+    "locationRegion": "杭州",
+    "targetRole": "高级全栈工程师 / 技术 TL（P7）",
+    "targetIndustries": [
+      "互联网",
+      "企业服务",
+      "出海产品"
+    ],
+    "shortTermGoal": "下个晋升周期（6 个月后）冲 P7，需要补齐系统设计能力和技术影响力方面的短板",
+    "longTermGoal": "三年内成为能带 5-8 人团队的技术 TL，有能力主导中型系统的架构设计",
+    "weeklyTimeBudget": "10 小时（工作日晚上 + 周末，在职状态）",
+    "constraints": [
+      "在职时间有限，学习必须高效聚焦",
+      "公司技术栈以 Go + React 为主，新学的东西最好能用上",
+      "晋升答辩需要体现技术深度和业务价值，不能只做广度学习"
+    ],
+    "workPreferences": [
+      "喜欢有挑战的核心业务",
+      "希望有更多架构决策权",
+      "不想做纯管理，技术不能丢"
+    ],
+    "learningPreferences": [
+      "看书 + 实际项目结合",
+      "喜欢研究开源项目源码",
+      "写技术博客倒逼输出"
+    ],
+    "keyStrengths": [
+      "全栈能力均衡，前后端都能独立搞定",
+      "有高并发实战经验",
+      "代码质量意识强，CR 反馈通常一次过",
+      "沟通能力不错，跨团队协作顺畅"
+    ],
+    "riskSignals": [
+      "系统设计面试类问题回答不够结构化",
+      "缺乏从 0 到 1 的架构经验，都是在已有系统上迭代",
+      "技术影响力不足，没有内部分享或外部输出",
+      "带人经验太少，对团队管理缺乏方法论"
+    ],
+    "portfolioLinks": []
+  },
+  "task": {
+    "task_id": "task_mid-level-fullstack-promotion_5925",
+    "domain": "code_development",
+    "task_type": "mock-interview",
+    "user_id": "mid-level-fullstack-promotion",
+    "task_description": "为 全栈开发工程师（P6） 生成面试准备",
+    "initial_user_query": "我6个月后要晋升P7答辩，现在想准备系统设计面试这块。背景是4年全栈经验，目前在核心业务组做Go微服务+React Native，主导过用户邀请系统重构扛住了50万到200万DAU。每周只有10小时学习时间，帮我出一个聚焦技术深度的系统设计准备计划，最好能结合我现有的增长业务场景来练。",
+    "interaction_style": "信息充分型",
+    "expected_skills": [
+      "系统设计",
+      "微服务架构",
+      "性能优化",
+      "技术方案评审",
+      "团队协作与 mentoring"
+    ]
+  },
+  "nodes": [
+    {
+      "node_id": "node_000",
+      "node_type": "user_input",
+      "name": "user_input",
+      "content": "我6个月后要晋升P7答辩，现在想准备系统设计面试这块。背景是4年全栈经验，目前在核心业务组做Go微服务+React Native，主导过用户邀请系统重构扛住了50万到200万DAU。每周只有10小时学习时间，帮我出一个聚焦技术深度的系统设计准备计划，最好能结合我现有的增长业务场景来练。"
+    },
+    {
+      "node_id": "node_001",
+      "node_type": "skill_call",
+      "name": "need_analysis",
+      "skill_id": "need_analysis",
+      "input": {
+        "context": "- user_input: 我6个月后要晋升P7答辩，现在想准备系统设计面试这块。背景是4年全栈经验，目前在核心业务组做Go微服务+React Native，主导过用户邀请系统重构扛住了5",
+        "profile_summary": "全栈开发工程师（P6）"
+      },
+      "output": {
+        "parsed_goal": {
+          "primary": "6个月内通过P7晋升答辩",
+          "sub_goal": "系统设计面试准备",
+          "success_criteria": "在答辩中体现技术深度（系统设计能力）和业务价值（规模化增长经验），达到P7技术TL水准"
+        },
+        "parsed_constraints": {
+          "time_budget": "每周10小时，共约6个月（~240小时总投入）",
+          "tech_stack_alignment": "Go微服务 + React Native，学习内容需贴合当前技术栈以便实践验证",
+          "output_requirement": "晋升答辩导向，需同时展现技术深度和业务价值，不能只做广度覆盖",
+          "learning_mode": "在职学习，必须高效聚焦，避免发散"
+        },
+        "parsed_context": {
+          "current_level": "P6全栈开发工程师",
+          "target_level": "P7高级全栈工程师/技术TL",
+          "experience_years": 4,
+          "domain": "用户增长，核心业务组",
+          "tech_stack": [
+            "Go",
+            "React",
+            "React Native",
+            "Node.js",
+            "微服务"
+          ],
+          "highlight_project": "用户邀请系统重构，支撑DAU从50万增长到200万",
+          "strengths": [
+            "全链路开发能力",
+            "有高增长场景实战经验",
+            "已具备主导项目的经历"
+          ],
+          "gap_hypothesis": [
+            "系统设计的结构化表达和深度论证",
+            "从执行者视角升级到架构决策者视角",
+            "晋升答辩中如何将实战经验包装为技术方法论"
+          ]
+        }
+      },
+      "rationale": "从用户请求中提取出明确的目标（P7答辩+系统设计准备）、硬约束（时间、技术栈、答辩要求）和上下文（经验背景、亮点项目、潜在短板），为后续生成聚焦且可落地的学习计划提供结构化输入。"
+    },
+    {
+      "node_id": "node_002",
+      "node_type": "tool_call",
+      "name": "job_requirement_search",
+      "tool_id": "job_requirement_search",
+      "input": {
+        "job_title": "高级全栈工程师 / 技术 TL（P7）",
+        "seniority": "mid",
+        "region": "杭州"
+      },
+      "output": {
+        "result": "mock data not available",
+        "tool_id": "job_requirement_search",
+        "input": {
+          "job_title": "高级全栈工程师 / 技术 TL（P7）",
+          "seniority": "mid",
+          "region": "杭州"
+        }
+      },
+      "rationale": "根据用户的目标（高级全栈工程师 / 技术 TL（P7）），需要调用岗位技能要求检索获取相关信息。"
+    },
+    {
+      "node_id": "node_003",
+      "node_type": "skill_call",
+      "name": "level_diagnosis",
+      "skill_id": "level_diagnosis",
+      "input": {
+        "context": "- user_input: 我6个月后要晋升P7答辩，现在想准备系统设计面试这块。背景是4年全栈经验，目前在核心业务组做Go微服务+React Native，主导过用户邀请系统重构扛住了5\n- need_analysis: 技能输出: parsed_goal, parsed_constraints, parsed_context\n- job_requirement_search: 工具返回: result, tool_id, input",
+        "profile_summary": "全栈开发工程师（P6）"
+      },
+      "output": {
+        "skill_levels": {
+          "frontend_react": {
+            "level": "高级",
+            "score": 7.5,
+            "evidence": "4年React经验，含中后台系统和React Native客户端开发，能独立负责完整前端架构"
+          },
+          "backend_go": {
+            "level": "中高级",
+            "score": 7.0,
+            "evidence": "2年Go微服务开发，主导过用户邀请系统重构，支撑DAU从50万到200万的扩容"
+          },
+          "system_design": {
+            "level": "中级偏上",
+            "score": 6.5,
+            "evidence": "有实际高并发系统设计经验（邀请系统4倍流量增长），但缺乏多系统全局架构视角和方法论体系化表达"
+          },
+          "distributed_systems": {
+            "level": "中级",
+            "score": 6.0,
+            "evidence": "实践中接触过微服务拆分、扩容，但对分布式一致性、容错设计、链路追踪等深层课题的系统性掌握待验证"
+          },
+          "performance_optimization": {
+            "level": "中高级",
+            "score": 7.0,
+            "evidence": "成功扛住4倍DAU增长，说明具备性能调优和容量规划的实战能力"
+          },
+          "technical_leadership": {
+            "level": "中级",
+            "score": 5.5,
+            "evidence": "主导过单一系统重构，但P7要求的跨团队技术影响力、架构决策输出、技术规划能力尚未充分体现"
+          },
+          "mobile_development": {
+            "level": "中高级",
+            "score": 6.5,
+            "evidence": "React Native全链路开发经验，覆盖客户端到服务端的用户增长场景"
+          }
+        },
+        "experience_assessment": {
+          "years_of_experience": 4,
+          "career_trajectory": "前2年中后台打基础，后2年核心业务组承担关键系统，成长曲线健康",
+          "project_complexity": "中高。邀请系统重构属于核心增长链路，涉及高并发、全链路、业务与技术结合，复杂度达到P6上限/P7入门水平",
+          "scope_of_impact": "单系统主导，影响范围为用户增长域。P7通常要求跨多个系统或平台级影响力",
+          "p7_readiness": "70%。技术实战能力达标，差距在系统性方法论输出、技术深度的结构化表达、以及更广的架构视野"
+        },
+        "strength_areas": [
+          "全链路实战能力强：从客户端到微服务端到端Owner，闭环能力是P7 TL的核心素质",
+          "有明确的业务价值产出：50万→200万DAU是硬指标，答辩有说服力的数据支撑",
+          "高并发场景实战经验：扩容、性能优化不是纸上谈兵，有真实踩坑和解决路径",
+          "技术栈与公司主栈高度对齐：Go + React + RN，学习投入能直接转化为工作产出"
+        ],
+        "weak_areas": [
+          {
+            "area": "系统设计方法论体系化",
+            "gap": "有实战但缺乏结构化表达框架，答辩时容易讲成流水账而非架构决策推演",
+            "priority": "高",
+            "actionable": "练习用 需求分析→约束量化→方案对比→权衡取舍 的框架讲述设计过程"
+          },
+          {
+            "area": "分布式系统深度",
+            "gap": "对CAP、一致性模型、分布式事务、故障域隔离等概念缺乏系统掌握",
+            "priority": "高",
+            "actionable": "结合邀请系统实际场景深入学习，比如邀请奖励的幂等性和最终一致性如何保证"
+          },
+          {
+            "area": "技术影响力与TL视角",
+            "gap": "P7要求能做技术决策并影响他人，当前经验偏执行层，缺乏技术规划和方案评审的输出",
+            "priority": "中高",
+            "actionable": "在剩余6个月内主动输出技术方案文档、做团队内分享、参与架构评审"
+          },
+          {
+            "area": "大规模系统全局视野",
+            "gap": "经验集中在单一增长域，对跨域协作、平台化抽象、技术债治理等P7常见议题接触有限",
+            "priority": "中",
+            "actionable": "学习系统设计时有意选择跨域案例（如支付+增长联动、数据平台设计）拓宽视野"
+          }
+        ]
+      },
+      "rationale": "基于用户4年全栈经验、核心项目产出和P7晋升目标，诊断当前技术水平的长短板，为后续制定精准的6个月备战计划提供依据。"
+    },
+    {
+      "node_id": "node_004",
+      "node_type": "tool_call",
+      "name": "knowledge_graph_query",
+      "tool_id": "knowledge_graph_query",
+      "input": {
+        "target_skill": "系统设计",
+        "depth": 2
+      },
+      "output": {
+        "dependencies": [
+          {
+            "skill": "基础语法",
+            "relation": "prerequisite",
+            "is_required": true
+          },
+          {
+            "skill": "数据结构",
+            "relation": "prerequisite",
+            "is_required": true
+          },
+          {
+            "skill": "项目实践",
+            "relation": "application",
+            "is_required": false
+          }
+        ],
+        "learning_order": [
+          "基础语法",
+          "数据结构",
+          "框架入门",
+          "项目实践",
+          "进阶优化"
+        ]
+      },
+      "rationale": "根据用户的目标（高级全栈工程师 / 技术 TL（P7）），需要调用知识依赖图谱查询获取相关信息。"
+    },
+    {
+      "node_id": "node_005",
+      "node_type": "skill_call",
+      "name": "skill_gap_analysis",
+      "skill_id": "skill_gap_analysis",
+      "input": {
+        "context": "- need_analysis: 技能输出: parsed_goal, parsed_constraints, parsed_context\n- job_requirement_search: 工具返回: result, tool_id, input\n- level_diagnosis: 技能输出: skill_levels, experience_assessment, strength_areas\n- knowledge_graph_query: 工具返回: dependencies, learning_order",
+        "profile_summary": "全栈开发工程师（P6）"
+      },
+      "output": {
+        "skill_gaps": [
+          {
+            "skill": "大规模系统设计方法论",
+            "current_level": "能设计单服务/小型系统（邀请系统级别），缺乏多系统协同和全局架构视角",
+            "target_level": "能主导复杂业务域的系统设计，输出完整的架构方案并说服评委",
+            "specific_gaps": [
+              "缺少对经典分布式系统模式的体系化认知（一致性模型、分区策略、容错设计）",
+              "设计时偏重功能实现，对非功能需求（SLA、容量规划、降级策略）考虑不够系统",
+              "缺乏从 0 到 1 设计十万级 QPS 系统的完整经验，现有经验集中在扩容已有系统"
+            ]
+          },
+          {
+            "skill": "技术决策与 Trade-off 表达",
+            "current_level": "能在团队内做技术选型，但决策推导过程不够结构化",
+            "target_level": "能在答辩/面试场景中清晰陈述约束、备选方案、取舍逻辑和量化依据",
+            "specific_gaps": [
+              "缺少将隐性决策过程显性化的训练（为什么选 Go 不选 Java、为什么用消息队列不用同步调用）",
+              "对成本、延迟、一致性三角的量化分析能力不足",
+              "答辩叙事能力：如何在15分钟内讲清楚一个系统设计的核心决策链"
+            ]
+          },
+          {
+            "skill": "分布式系统深度（Go 技术栈语境）",
+            "current_level": "熟练使用 Go 写微服务，了解基本的 gRPC/消息队列/缓存模式",
+            "target_level": "深入理解分布式一致性、故障域隔离、链路治理，能设计高可用方案",
+            "specific_gaps": [
+              "对 Raft/Paxos 等共识算法只有概念了解，未深入理解工程实现",
+              "分布式事务处理经验有限（Saga、TCC 模式的实战和边界 case）",
+              "服务网格 / 链路治理（限流、熔断、灰度）停留在使用层面，缺乏设计层面的理解"
+            ]
+          },
+          {
+            "skill": "数据密集型系统设计",
+            "current_level": "熟悉 MySQL + Redis 常规用法，做过读写分离",
+            "target_level": "能针对高并发场景设计存储方案，包括分库分表、多级缓存、数据一致性保障",
+            "specific_gaps": [
+              "缺乏分库分表的完整设计经验（分片键选择、跨分片查询、数据迁移）",
+              "对 CQRS、Event Sourcing 等数据架构模式理解偏理论",
+              "缓存一致性问题的系统性解法（缓存击穿/穿透/雪崩的工程方案）需要强化"
+            ]
+          },
+          {
+            "skill": "业务价值量化与技术影响力表达",
+            "current_level": "有好的项目成果（DAU 50万→200万），但缺乏系统性包装和深度归因",
+            "target_level": "能将技术方案与业务指标强关联，量化技术决策的 ROI",
+            "specific_gaps": [
+              "邀请系统重构的价值表达停留在'扛住了流量'，缺少对转化率/成本/稳定性的多维归因",
+              "缺乏将技术优化映射到业务北极星指标的方法论",
+              "对照 P7 评审标准，需要补充'技术方案如何驱动业务增长'的叙事逻辑"
+            ]
+          }
+        ],
+        "priority_ranking": [
+          {
+            "rank": 1,
+            "skill": "大规模系统设计方法论",
+            "reason": "P7答辩核心考察项，也是系统设计面试的直接考点。投入产出比最高，且能串联其他技能点。",
+            "recommended_time_allocation": "40%（每周4小时）"
+          },
+          {
+            "rank": 2,
+            "skill": "技术决策与 Trade-off 表达",
+            "reason": "答辩通过率的关键区分因素。很多P6技术能力够但表达不过关。可结合系统设计练习同步提升。",
+            "recommended_time_allocation": "25%（每周2.5小时）"
+          },
+          {
+            "rank": 3,
+            "skill": "业务价值量化与技术影响力表达",
+            "reason": "答辩必备，且基于已有项目成果做包装，边际投入小、收益确定。",
+            "recommended_time_allocation": "15%（每周1.5小时）"
+          },
+          {
+            "rank": 4,
+            "skill": "分布式系统深度（Go 技术栈语境）",
+            "reason": "为系统设计提供技术纵深，直接服务于公司技术栈，答辩中可作为技术深度的证明点。",
+            "recommended_time_allocation": "15%（每周1.5小时）"
+          },
+          {
+            "rank": 5,
+            "skill": "数据密集型系统设计",
+            "reason": "重要但可聚焦在与当前业务相关的子集（缓存一致性、分库分表），不需要全面覆盖。",
+            "recommended_time_allocation": "5%（每周0.5小时，融入系统设计练习）"
+          }
+        ],
+        "gap_severity": {
+          "overall_assessment": "中等偏上",
+          "severity_score": "6.5/10",
+          "explanation": "核心差距不在技术执行能力（已有扛住4倍流量增长的实战），而在于系统设计的方法论体系化和答辩表达的结构化。这类差距通过6个月刻意练习可以弥补，但需要高效聚焦。",
+          "risk_factors": [
+            "每周仅10小时，容错空间小，不能分散学习",
+            "系统设计能力提升需要大量模拟练习，纯理论学习见效慢",
+            "业务价值包装需要提前梳理数据，部分数据可能需要从团队/BI获取"
+          ],
+          "confidence_factors": [
+            "已有高质量项目成果作为答辩素材基础",
+            "Go微服务 + React Native 的技术栈与公司方向一致，无需转换",
+            "从50万扩到200万DAU的经验本身就是系统设计能力的有力证明，需要的是体系化提炼"
+          ]
+        }
+      },
+      "rationale": "基于用户当前P6水平（有实战但缺体系）与P7要求（系统设计深度+技术决策力+业务影响力表达）的差距，结合每周10小时的硬约束，按答辩通过概率的边际贡献排序，确保有限时间投入到最高杠杆的技能点上。"
+    },
+    {
+      "node_id": "node_006",
+      "node_type": "skill_call",
+      "name": "interview_prep_planning",
+      "skill_id": "interview_prep_planning",
+      "input": {
+        "context": "- job_requirement_search: 工具返回: result, tool_id, input\n- level_diagnosis: 技能输出: skill_levels, experience_assessment, strength_areas\n- knowledge_graph_query: 工具返回: dependencies, learning_order\n- skill_gap_analysis: 技能输出: skill_gaps, priority_ranking, gap_severity",
+        "profile_summary": "全栈开发工程师（P6）"
+      },
+      "output": {
+        "interview_plan": {
+          "overall_strategy": "以系统设计为核心，结合P7晋升答辩的'技术深度+业务价值'双重要求，用6个月时间构建从设计方法论到实战表达的完整能力闭环",
+          "phases": [
+            {
+              "phase": 1,
+              "name": "基础框架期",
+              "duration": "第1-2月",
+              "weekly_hours": 10,
+              "goals": [
+                "掌握系统设计面试的标准框架（需求澄清→高层设计→深入设计→扩展性讨论）",
+                "补齐分布式系统核心概念（CAP、一致性模型、分布式事务）",
+                "将自身项目经验（邀请系统50万→200万DAU）结构化为设计案例"
+              ],
+              "tasks": [
+                {
+                  "task": "精读《System Design Interview》Vol.1 ch1-8",
+                  "hours_per_week": 4
+                },
+                {
+                  "task": "梳理邀请系统架构演进时间线，提炼设计决策点",
+                  "hours_per_week": 3
+                },
+                {
+                  "task": "每周完成1道经典题（URL Shortener、Rate Limiter等），限时45min手写",
+                  "hours_per_week": 3
+                }
+              ]
+            },
+            {
+              "phase": 2,
+              "name": "深度突破期",
+              "duration": "第3-4月",
+              "weekly_hours": 10,
+              "goals": [
+                "深入Go微服务场景下的设计模式（服务发现、熔断限流、链路追踪）",
+                "掌握高并发系统设计的量化分析能力（QPS估算、容量规划、SLA推导）",
+                "能用数据讲清楚技术决策的业务价值"
+              ],
+              "tasks": [
+                {
+                  "task": "专题学习：消息队列设计、缓存策略、数据库分库分表",
+                  "hours_per_week": 4
+                },
+                {
+                  "task": "以邀请系统为蓝本，练习P7级别的设计深度表达（写设计文档）",
+                  "hours_per_week": 3
+                },
+                {
+                  "task": "每周1道中高难度题（Feed系统、通知系统、支付系统）",
+                  "hours_per_week": 3
+                }
+              ]
+            },
+            {
+              "phase": 3,
+              "name": "模拟实战期",
+              "duration": "第5-6月",
+              "weekly_hours": 10,
+              "goals": [
+                "具备45分钟内完整输出P7水平系统设计方案的能力",
+                "能自如应对追问（故障场景、成本权衡、技术选型对比）",
+                "晋升答辩叙事打磨：技术方案→业务结果→方法论沉淀"
+              ],
+              "tasks": [
+                {
+                  "task": "每周至少1次模拟面试（找同事或线上mock）",
+                  "hours_per_week": 4
+                },
+                {
+                  "task": "录制回放自己的设计陈述，优化表达结构和时间分配",
+                  "hours_per_week": 3
+                },
+                {
+                  "task": "准备3-5个深度追问场景的应答（降级方案、灰度策略、监控告警体系）",
+                  "hours_per_week": 3
+                }
+              ]
+            }
+          ]
+        },
+        "focus_areas": {
+          "primary": [
+            {
+              "area": "高并发系统设计",
+              "reason": "直接对应P7核心能力项——能设计支撑业务量级增长的技术方案",
+              "depth_targets": [
+                "能推导QPS/带宽/存储的量化估算",
+                "能设计多级缓存+异步化的组合方案",
+                "能讲清楚50万→200万DAU的瓶颈识别与解决过程"
+              ]
+            },
+            {
+              "area": "Go微服务架构设计",
+              "reason": "与当前技术栈完全匹配，学即可用，答辩可直接展示",
+              "depth_targets": [
+                "服务拆分原则与边界划定",
+                "分布式事务处理（Saga/TCC）",
+                "可观测性体系设计（metrics/tracing/logging）"
+              ]
+            },
+            {
+              "area": "技术决策与权衡表达",
+              "reason": "P7与P6的核心差异在于能否清晰表达'为什么这样设计而不是那样'",
+              "depth_targets": [
+                "每个设计决策能给出2-3个备选方案及取舍分析",
+                "能用业务数据量化技术方案的ROI",
+                "形成可复用的设计方法论"
+              ]
+            }
+          ],
+          "secondary": [
+            {
+              "area": "全链路压测与容量规划",
+              "reason": "体现从开发到工程交付的完整能力"
+            },
+            {
+              "area": "跨端一致性设计（React Native + 后端）",
+              "reason": "全栈TL的差异化优势，答辩加分项"
+            }
+          ],
+          "deprioritized": [
+            {
+              "area": "算法刷题",
+              "reason": "晋升答辩不考算法，且时间有限应聚焦系统设计深度"
+            },
+            {
+              "area": "新语言/新框架学习",
+              "reason": "违反约束条件——新学的东西必须能用上"
+            }
+          ]
+        },
+        "practice_schedule": {
+          "weekly_template": {
+            "total_hours": 10,
+            "distribution": [
+              {
+                "day": "周一周三",
+                "duration": "各1.5h",
+                "activity": "理论学习（书籍/文章精读+笔记）"
+              },
+              {
+                "day": "周二周四",
+                "duration": "各1.5h",
+                "activity": "设计练习（限时手写方案/画架构图）"
+              },
+              {
+                "day": "周六",
+                "duration": "3h整块",
+                "activity": "深度实战（模拟面试/设计文档撰写/项目复盘）"
+              },
+              {
+                "day": "周日",
+                "duration": "1h",
+                "activity": "周回顾（总结本周设计决策卡片，更新知识图谱）"
+              }
+            ]
+          },
+          "milestone_checkpoints": [
+            {
+              "week": 4,
+              "checkpoint": "能独立完成3道经典系统设计题，每道45min内结构完整"
+            },
+            {
+              "week": 8,
+              "checkpoint": "邀请系统设计文档完成，能15min内讲清楚架构演进故事"
+            },
+            {
+              "week": 12,
+              "checkpoint": "能在模拟面试中拿到'strong hire'级别反馈"
+            },
+            {
+              "week": 16,
+              "checkpoint": "准备好3个深度追问场景的完整应答"
+            },
+            {
+              "week": 20,
+              "checkpoint": "完成至少4次完整模拟面试，表达流畅度达标"
+            },
+            {
+              "week": 24,
+              "checkpoint": "晋升答辩材料定稿，能在30min内完成技术深度陈述+QA"
+            }
+          ],
+          "resources": {
+            "books": [
+              "《System Design Interview》Vol.1 & Vol.2 - Alex Xu",
+              "《Designing Data-Intensive Applications》重点章节"
+            ],
+            "practice_platforms": [
+              "Excalidraw（画架构图）",
+              "与同事互mock",
+              "录屏回放自我review"
+            ],
+            "go_specific": [
+              "Go微服务实战相关技术博客",
+              "公司内部优秀设计文档学习"
+            ]
+          }
+        }
+      },
+      "rationale": "用户目标明确为6个月后P7晋升答辩中的系统设计板块，结合其在职时间受限（周10h）、技术栈为Go+React、有高并发实战经验的特点，设计了从框架到深度到实战的三阶段计划，重点将其邀请系统经验转化为可答辩的设计深度表达。"
+    },
+    {
+      "node_id": "node_007",
+      "node_type": "tool_call",
+      "name": "interview_question_search",
+      "tool_id": "interview_question_search",
+      "input": {
+        "role": "高级全栈工程师 / 技术 TL（P7）",
+        "category": "system_design",
+        "difficulty": "medium"
+      },
+      "output": {
+        "questions": [
+          {
+            "question": "请描述一次你解决复杂技术问题的经历",
+            "category": "behavioral",
+            "difficulty": "medium",
+            "frequency": "high"
+          },
+          {
+            "question": "设计一个短链接系统",
+            "category": "system_design",
+            "difficulty": "medium",
+            "frequency": "high"
+          },
+          {
+            "question": "LRU Cache 实现",
+            "category": "algorithm",
+            "difficulty": "medium",
+            "frequency": "high"
+          }
+        ],
+        "preparation_tips": [
+          "STAR 格式组织行为面试回答",
+          "系统设计先澄清需求再画架构",
+          "算法题先说思路再写代码"
+        ]
+      },
+      "rationale": "根据用户的目标（高级全栈工程师 / 技术 TL（P7）），需要调用面试题库检索获取相关信息。"
+    },
+    {
+      "node_id": "node_008",
+      "node_type": "skill_call",
+      "name": "time_budget_allocation",
+      "skill_id": "time_budget_allocation",
+      "input": {
+        "context": "- knowledge_graph_query: 工具返回: dependencies, learning_order\n- skill_gap_analysis: 技能输出: skill_gaps, priority_ranking, gap_severity\n- interview_prep_planning: 技能输出: interview_plan, focus_areas, practice_schedule\n- interview_question_search: 工具返回: questions, preparation_tips",
+        "profile_summary": "全栈开发工程师（P6）"
+      },
+      "output": {
+        "time_allocation": {
+          "total_weekly_hours": 10,
+          "total_duration_weeks": 24,
+          "total_available_hours": 240,
+          "phase_allocation": {
+            "phase_1_foundation": {
+              "label": "基础补强期",
+              "weeks": "1-6",
+              "weekly_hours": 10,
+              "total_hours": 60,
+              "percentage": "25%",
+              "focus": "分布式系统理论 + 系统设计方法论框架",
+              "breakdown": {
+                "分布式系统核心概念（CAP/BASE/一致性模型）": 2.5,
+                "经典论文与书籍精读（DDIA 重点章节）": 3,
+                "系统设计框架练习（需求分析→高层设计→深入设计→权衡取舍）": 3,
+                "复盘自己项目的架构决策，用系统设计语言重新表达": 1.5
+              }
+            },
+            "phase_2_depth": {
+              "label": "深度攻坚期",
+              "weeks": "7-14",
+              "weekly_hours": 10,
+              "total_hours": 80,
+              "percentage": "33%",
+              "focus": "高频系统设计题 + 结合业务深挖技术点",
+              "breakdown": {
+                "高频系统设计题练习（每周2题，限时45min）": 4,
+                "Go微服务深度专题（服务治理/限流熔断/链路追踪）": 2.5,
+                "高并发场景设计（结合邀请系统50万→200万DAU经验）": 2,
+                "技术写作：将设计方案写成答辩级别的文档": 1.5
+              }
+            },
+            "phase_3_practice": {
+              "label": "实战模拟期",
+              "weeks": "15-20",
+              "weekly_hours": 10,
+              "total_hours": 60,
+              "percentage": "25%",
+              "focus": "模拟答辩 + 系统设计面试全真练习",
+              "breakdown": {
+                "全真模拟面试（找同事/社区 mock，每周1-2场）": 4,
+                "答辩材料准备（技术深度故事线 + 业务价值量化）": 3,
+                "薄弱环节针对性补强": 2,
+                "复盘与迭代表达方式": 1
+              }
+            },
+            "phase_4_polish": {
+              "label": "冲刺打磨期",
+              "weeks": "21-24",
+              "weekly_hours": 10,
+              "total_hours": 40,
+              "percentage": "17%",
+              "focus": "查漏补缺 + 表达打磨 + 心态调整",
+              "breakdown": {
+                "高频追问题准备（为什么这样设计/如果重来怎么做）": 3,
+                "答辩演练（全流程计时，控制在15-20分钟）": 4,
+                "技术亮点提炼与金句打磨": 2,
+                "休息缓冲与心态调整": 1
+              }
+            }
+          }
+        },
+        "schedule_breakdown": {
+          "weekly_template": {
+            "工作日（周一至周五）": {
+              "daily_hours": 1.5,
+              "time_slot": "晚上 21:30-23:00 或早上 6:30-8:00",
+              "content": "理论学习 + 刷题（专注型任务）",
+              "total": 7.5
+            },
+            "周末（周六或周日选一天）": {
+              "daily_hours": 2.5,
+              "time_slot": "上午整块时间",
+              "content": "系统设计完整练习 / 模拟面试 / 答辩材料撰写",
+              "total": 2.5
+            }
+          },
+          "efficiency_principles": [
+            "工作日用碎片时间做轻量输入（通勤听播客/看设计案例），不计入10小时",
+            "每周六上午做一次完整的系统设计限时练习，模拟真实压力",
+            "利用工作中 Go 微服务项目作为实验场，学以致用零额外成本",
+            "每两周做一次阶段性复盘，动态调整下两周的时间分配比例",
+            "答辩前4周停止新知识输入，全力打磨表达和材料"
+          ],
+          "milestone_checkpoints": [
+            {
+              "week": 6,
+              "checkpoint": "能用框架化方法在45分钟内完成一道中等难度系统设计题"
+            },
+            {
+              "week": 14,
+              "checkpoint": "能深入讲清楚3个以上高并发/分布式设计方案，且能结合业务经验举例"
+            },
+            {
+              "week": 20,
+              "checkpoint": "模拟答辩评分达到P7标准，能扛住2-3轮追问"
+            },
+            {
+              "week": 24,
+              "checkpoint": "答辩材料定稿，全流程演练流畅，信心充足"
+            }
+          ]
+        }
+      },
+      "rationale": "在每周仅10小时、6个月周期的硬约束下，按'先建框架→再攻深度→后练表达'的递进逻辑分配时间，前期重理论后期重输出，确保晋升答辩同时具备技术深度和清晰表达。"
+    },
+    {
+      "node_id": "node_009",
+      "node_type": "skill_call",
+      "name": "feasibility_check",
+      "skill_id": "feasibility_check",
+      "input": {
+        "context": "- skill_gap_analysis: 技能输出: skill_gaps, priority_ranking, gap_severity\n- interview_prep_planning: 技能输出: interview_plan, focus_areas, practice_schedule\n- interview_question_search: 工具返回: questions, preparation_tips\n- time_budget_allocation: 技能输出: time_allocation, schedule_breakdown",
+        "profile_summary": "全栈开发工程师（P6）"
+      },
+      "output": {
+        "feasibility_result": {
+          "overall_verdict": "可行，但需严格优先级管理",
+          "confidence": 0.75,
+          "summary": "6个月内每周10小时（共约260小时）准备系统设计面试并完成P7晋升答辩，在聚焦核心领域且结合日常工作实践的前提下可行。主要风险在于时间缓冲不足和深度与广度的平衡。"
+        },
+        "time_budget_check": {
+          "total_available_hours": 260,
+          "estimated_required_hours": {
+            "系统设计理论与框架学习": 50,
+            "针对性题目练习与模拟面试": 80,
+            "技术深度专项（Go性能优化/分布式系统）": 60,
+            "晋升答辩材料准备与业务价值提炼": 40,
+            "缓冲与回顾": 30
+          },
+          "total_estimated": 260,
+          "margin": "几乎无余量，任何一项超时都会挤压其他模块"
+        },
+        "risk_items": [
+          {
+            "risk": "时间缓冲为零",
+            "severity": "高",
+            "description": "260小时刚好覆盖预估需求，工作突发加班、生病、项目紧急上线等都会直接打破计划",
+            "mitigation": "前4个月保持每周10小时节奏，后2个月预留弹性；优先砍练习数量而非深度"
+          },
+          {
+            "risk": "系统设计深度不足以匹配P7标准",
+            "severity": "中高",
+            "description": "P7答辩需要展示架构决策背后的权衡推理，仅靠刷题难以体现。需要在现有项目中找到可深挖的技术决策点",
+            "mitigation": "将邀请系统重构（50万→200万DAU）作为核心案例，深挖容量规划、降级策略、数据一致性等决策点，一题多用"
+          },
+          {
+            "risk": "学练脱节——学的东西用不上",
+            "severity": "中",
+            "description": "约束要求新学的东西能在公司技术栈中落地，但部分系统设计主题（如全球化部署、搜索引擎设计）可能与当前业务无关",
+            "mitigation": "题目选择聚焦于用户增长/社交裂变/高并发写入等与业务相关的系统设计题，放弃与业务无关的冷门题型"
+          },
+          {
+            "risk": "答辩叙事与面试准备方向不一致",
+            "severity": "中",
+            "description": "系统设计面试偏通用设计能力，P7答辩偏「我在具体场景下的技术判断力」，两者准备方式不同",
+            "mitigation": "将准备拆为两条线：60%时间围绕答辩案例做深度拆解，40%时间练通用系统设计题提升表达框架"
+          },
+          {
+            "risk": "缺乏高质量反馈源",
+            "severity": "中低",
+            "description": "自己练系统设计容易陷入盲区，没有P7+的人帮你做模拟答辩和review",
+            "mitigation": "每月至少1次找组内TL或跨组P7做模拟答辩；参加2-3次线上mock interview平台练习"
+          }
+        ],
+        "adjustment_suggestions": [
+          {
+            "suggestion": "合并答辩准备与系统设计练习",
+            "detail": "把邀请系统重构作为系统设计的主案例来反复打磨，既练表达框架又产出答辩材料，预计节省30-40小时",
+            "priority": "必须采纳"
+          },
+          {
+            "suggestion": "系统设计题目做减法，控制在8-10道精练题",
+            "detail": "不追求覆盖面，选与业务强相关的题型：消息推送系统、邀请/裂变系统、Feed流、限流熔断、用户增长漏斗数据管道。每题练到能在35分钟内完整讲清",
+            "priority": "强烈建议"
+          },
+          {
+            "suggestion": "前2个月侧重输入，中间2个月侧重输出，最后2个月侧重打磨",
+            "detail": "月1-2：学习系统设计框架+深挖项目技术决策；月3-4：大量练题+写答辩初稿；月5-6：模拟答辩+迭代材料+查漏补缺",
+            "priority": "建议采纳"
+          },
+          {
+            "suggestion": "每周10小时拆分为「4小时深度学习 + 4小时练习输出 + 2小时回顾复盘」",
+            "detail": "避免全部时间用于输入，保证输出驱动学习。回顾环节用于调整下周重点",
+            "priority": "建议采纳"
+          },
+          {
+            "suggestion": "设置月度检查点，允许动态砍需求",
+            "detail": "每月底评估进度，如果落后于计划，优先保答辩深度，砍通用系统设计练习量。底线是答辩材料必须打磨到位",
+            "priority": "建议采纳"
+          }
+        ],
+        "hard_constraints_compliance": {
+          "在职时间有限_学习必须高效聚焦": "通过题目精选（8-10道）和答辩/面试合并准备来保证聚焦度——合规",
+          "技术栈以Go+React为主_新学东西能用上": "系统设计专项围绕Go微服务场景展开（限流、服务发现、链路追踪），React侧不额外投入——合规",
+          "晋升答辩需体现技术深度和业务价值": "以邀请系统50万→200万DAU为核心叙事，深挖架构决策而非泛学——合规"
+        }
+      },
+      "rationale": "在用户强约束（每周10小时、6个月、需同时服务答辩和系统设计面试）下验证计划是否可执行，识别时间余量为零的核心风险，并给出合并准备线、题目做减法等具体调整建议以提高成功概率。"
+    },
+    {
+      "node_id": "node_010",
+      "node_type": "agent_response",
+      "name": "final_response",
+      "content": "# P7 系统设计准备计划（6个月 / 每周10小时）\n\n## 现状判断\n\n你的邀请系统重构（50万→200万DAU）已经证明了单系统的架构能力，P7答辩需要展现的是**跨系统视角和技术决策的深度论证**——不只是\"怎么做\"，而是\"为什么这样做、tradeoff是什么\"。\n\n## 三阶段计划\n\n**第1-2月：补齐理论骨架（每周6h理论 + 4h实践）**\n- 分布式基础：CAP/BASE、一致性模型、分布式事务（结合你Go微服务中实际遇到的数据一致性问题）\n- 存储选型：关系型 vs KV vs 时序，结合增长业务中的用户行为数据场景做选型分析\n- 练习：用你的邀请系统画完整架构图，标注每个决策点的tradeoff\n\n**第3-4月：场景化深度设计（每周4h设计 + 4h mock + 2h复盘）**\n- 围绕增长业务出题：裂变活动系统（防刷+幂等）、实时归因链路、推送系统（百万级触达）\n- 每周完成1个完整设计，限时45分钟白板输出，重点练**容量估算→核心链路→瓶颈识别→扩展方案**的表达结构\n\n**第5-6月：答辩模拟与表达打磨（每周3h模拟 + 4h打磨材料 + 3h查漏）**\n- 找P7+同事做mock答辩，重点训练被追问时的深度展开能力\n- 将邀请系统重构包装为完整案例：业务背景→技术挑战→方案对比→落地结果→可迁移方法论\n\n## 下一步行动\n\n1. 本周先花2小时，把邀请系统重构中**你做过的所有技术决策**列一个清单，标出哪些能讲清tradeoff、哪些还模糊\n2. 模糊的部分就是第一阶段的学习重点\n\n这个计划要不要我进一步拆解某个阶段的具体学习资源和练习题？"
+    }
+  ],
+  "edges": [
+    {
+      "from": "node_000",
+      "to": "node_001",
+      "relation": "user_input 的输出被 need_analysis 使用"
+    },
+    {
+      "from": "node_001",
+      "to": "node_002",
+      "relation": "need_analysis 的输出被 job_requirement_search 使用"
+    },
+    {
+      "from": "node_002",
+      "to": "node_003",
+      "relation": "job_requirement_search 的输出被 level_diagnosis 使用"
+    },
+    {
+      "from": "node_003",
+      "to": "node_004",
+      "relation": "level_diagnosis 的输出被 knowledge_graph_query 使用"
+    },
+    {
+      "from": "node_004",
+      "to": "node_005",
+      "relation": "knowledge_graph_query 的输出被 skill_gap_analysis 使用"
+    },
+    {
+      "from": "node_005",
+      "to": "node_006",
+      "relation": "skill_gap_analysis 的输出被 interview_prep_planning 使用"
+    },
+    {
+      "from": "node_006",
+      "to": "node_007",
+      "relation": "interview_prep_planning 的输出被 interview_question_search 使用"
+    },
+    {
+      "from": "node_007",
+      "to": "node_008",
+      "relation": "interview_question_search 的输出被 time_budget_allocation 使用"
+    },
+    {
+      "from": "node_008",
+      "to": "node_009",
+      "relation": "time_budget_allocation 的输出被 feasibility_check 使用"
+    },
+    {
+      "from": "node_009",
+      "to": "node_010",
+      "relation": "feasibility_check 的输出被 final_response 使用"
+    }
+  ],
+  "final_response": "# P7 系统设计准备计划（6个月 / 每周10小时）\n\n## 现状判断\n\n你的邀请系统重构（50万→200万DAU）已经证明了单系统的架构能力，P7答辩需要展现的是**跨系统视角和技术决策的深度论证**——不只是\"怎么做\"，而是\"为什么这样做、tradeoff是什么\"。\n\n## 三阶段计划\n\n**第1-2月：补齐理论骨架（每周6h理论 + 4h实践）**\n- 分布式基础：CAP/BASE、一致性模型、分布式事务（结合你Go微服务中实际遇到的数据一致性问题）\n- 存储选型：关系型 vs KV vs 时序，结合增长业务中的用户行为数据场景做选型分析\n- 练习：用你的邀请系统画完整架构图，标注每个决策点的tradeoff\n\n**第3-4月：场景化深度设计（每周4h设计 + 4h mock + 2h复盘）**\n- 围绕增长业务出题：裂变活动系统（防刷+幂等）、实时归因链路、推送系统（百万级触达）\n- 每周完成1个完整设计，限时45分钟白板输出，重点练**容量估算→核心链路→瓶颈识别→扩展方案**的表达结构\n\n**第5-6月：答辩模拟与表达打磨（每周3h模拟 + 4h打磨材料 + 3h查漏）**\n- 找P7+同事做mock答辩，重点训练被追问时的深度展开能力\n- 将邀请系统重构包装为完整案例：业务背景→技术挑战→方案对比→落地结果→可迁移方法论\n\n## 下一步行动\n\n1. 本周先花2小时，把邀请系统重构中**你做过的所有技术决策**列一个清单，标出哪些能讲清tradeoff、哪些还模糊\n2. 模糊的部分就是第一阶段的学习重点\n\n这个计划要不要我进一步拆解某个阶段的具体学习资源和练习题？"
+}

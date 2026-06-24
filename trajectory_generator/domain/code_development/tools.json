@@ -1,0 +1,109 @@
+[
+  {
+    "tool_id": "job_requirement_search",
+    "name": "岗位技能要求检索",
+    "description": "根据岗位名称和级别检索所需技能、经验和项目要求",
+    "input_schema": {
+      "job_title": "string",
+      "seniority": "string",
+      "region": "string (optional)"
+    },
+    "output_schema": {
+      "required_skills": "list[string]",
+      "preferred_skills": "list[string]",
+      "experience_years": "string",
+      "typical_projects": "list[string]"
+    },
+    "failure_modes": ["岗位名称过于模糊", "地区无相关数据"]
+  },
+  {
+    "tool_id": "tech_trend_search",
+    "name": "技术趋势检索",
+    "description": "检索特定技术方向的市场趋势、热度和前景",
+    "input_schema": {
+      "technology": "string",
+      "aspect": "string (demand|salary|growth)"
+    },
+    "output_schema": {
+      "trend_summary": "string",
+      "market_demand": "string",
+      "salary_range": "string",
+      "growth_outlook": "string"
+    },
+    "failure_modes": ["技术名称不明确", "数据过时"]
+  },
+  {
+    "tool_id": "course_resource_search",
+    "name": "课程资源检索",
+    "description": "根据技能和难度级别检索学习资源",
+    "input_schema": {
+      "skill_name": "string",
+      "difficulty": "string (beginner|intermediate|advanced)",
+      "format_preference": "string (video|text|interactive) (optional)",
+      "language": "string (optional)"
+    },
+    "output_schema": {
+      "resources": "list[{name, url, type, difficulty, estimated_hours, rating}]"
+    },
+    "failure_modes": ["技能名称匹配不到资源", "语言无对应内容"]
+  },
+  {
+    "tool_id": "project_repository_search",
+    "name": "项目库检索",
+    "description": "检索适合特定技能水平的实战项目",
+    "input_schema": {
+      "tech_stack": "list[string]",
+      "difficulty": "string",
+      "project_type": "string (optional)"
+    },
+    "output_schema": {
+      "projects": "list[{name, description, tech_stack, difficulty, estimated_hours, learning_outcomes}]"
+    },
+    "failure_modes": ["技术栈组合冷门", "难度筛选无结果"]
+  },
+  {
+    "tool_id": "interview_question_search",
+    "name": "面试题库检索",
+    "description": "根据岗位和类型检索常见面试题目",
+    "input_schema": {
+      "role": "string",
+      "category": "string (algorithm|system_design|behavioral|domain_specific)",
+      "difficulty": "string"
+    },
+    "output_schema": {
+      "questions": "list[{question, category, difficulty, frequency}]",
+      "preparation_tips": "list[string]"
+    },
+    "failure_modes": ["角色类型太泛", "类别不匹配"]
+  },
+  {
+    "tool_id": "salary_benchmark_search",
+    "name": "薪资基准检索",
+    "description": "查询特定岗位在特定地区的薪资范围",
+    "input_schema": {
+      "role": "string",
+      "seniority": "string",
+      "region": "string"
+    },
+    "output_schema": {
+      "salary_range": {"min": "number", "median": "number", "max": "number"},
+      "currency": "string",
+      "data_source": "string"
+    },
+    "failure_modes": ["地区数据缺失", "岗位粒度不匹配"]
+  },
+  {
+    "tool_id": "knowledge_graph_query",
+    "name": "知识依赖图谱查询",
+    "description": "查询技术知识点之间的前置依赖关系",
+    "input_schema": {
+      "target_skill": "string",
+      "depth": "number (optional, default 2)"
+    },
+    "output_schema": {
+      "dependencies": "list[{skill, relation, is_required}]",
+      "learning_order": "list[string]"
+    },
+    "failure_modes": ["知识点不在图谱中"]
+  }
+]

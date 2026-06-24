@@ -1,0 +1,1383 @@
+{
+  "trajectory_id": "traj_task_overseas-remote-rust-engineer_4945_841",
+  "domain": "code_development",
+  "template_used": "llm_generated",
+  "user_profile": {
+    "displayName": "李骁",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "C++ 引擎开发工程师",
+    "employmentStatus": "在职，准备跳槽到海外远程岗位",
+    "experienceSummary": "六年系统级开发经验。前四年在游戏公司做 C++ 游戏引擎开发（渲染管线、物理引擎模块），后两年跳到一家做实时音视频的公司，负责音频编解码器的 C++ 实现和跨平台适配。对底层性能优化、内存管理很在行。一年前开始学 Rust，贡献了几个 PR 到 tokio 生态的一个小库，对 Rust 的异步和所有权模型已经比较熟练。",
+    "educationSummary": "985 大学计算机本科，2019 年毕业。在校期间对操作系统和编译原理很感兴趣。英语六级 580 分，日常能读英文技术文档和 RFC，但口语面试经验很少。",
+    "locationRegion": "深圳（目标远程工作，对时区有一定灵活度）",
+    "targetRole": "Rust Systems Engineer（Remote）",
+    "targetIndustries": [
+      "区块链基础设施",
+      "数据库/存储引擎",
+      "WebAssembly 运行时",
+      "开发者工具"
+    ],
+    "shortTermGoal": "三个月内拿到一个海外远程 Rust 岗位的 offer。刷 Rust 相关的系统设计题 + 准备英文面试。",
+    "longTermGoal": "成为 Rust 生态的核心贡献者之一，在某个方向（数据库或 Wasm runtime）建立技术影响力",
+    "weeklyTimeBudget": "12 小时（工作日晚上 + 周末，在职状态）",
+    "constraints": [
+      "英文口语面试是最大短板，需要大量练习",
+      "海外远程岗位竞争激烈，需要有开源 proof of work",
+      "时区差异可能影响协作，美西岗位需要偶尔深夜开会",
+      "Rust 生产经验只有个人项目 + 开源贡献，没有公司项目背书"
+    ],
+    "workPreferences": [
+      "纯远程，async-first 的团队文化",
+      "技术驱动而非业务驱动",
+      "小团队（10 人以下）",
+      "有开源文化的公司"
+    ],
+    "learningPreferences": [
+      "通过实现小型项目学习（如自己写一个 mini Redis）",
+      "读源码是主要学习方式",
+      "喜欢在 Discord/Zulip 社区提问和讨论"
+    ],
+    "keyStrengths": [
+      "系统编程基础扎实，C++ 和 Rust 双精通",
+      "性能优化经验丰富",
+      "已有开源贡献记录",
+      "对底层原理的理解深度好"
+    ],
+    "riskSignals": [
+      "英文沟通能力未经面试验证",
+      "没有 Rust 的商业项目经验",
+      "对 Web3/区块链的业务逻辑不熟",
+      "社交网络（LinkedIn、Twitter）经营不足，缺乏海外圈子的 visibility"
+    ],
+    "portfolioLinks": []
+  },
+  "task": {
+    "task_id": "task_overseas-remote-rust-engineer_4945",
+    "domain": "code_development",
+    "task_type": "learning-plan",
+    "user_id": "overseas-remote-rust-engineer",
+    "task_description": "为 C++ 引擎开发工程师 生成学习路径规划",
+    "initial_user_query": "帮我规划一下接下来三个月的学习路径，目标是拿到海外远程Rust岗offer。我不要那种泛泛的建议，我要精确到每周的安排。重点是：系统设计题用Rust怎么练、英文面试口语怎么突破、以及开源贡献怎么攒proof of work。每周只有12小时，必须给我排优先级。",
+    "interaction_style": "偏好强烈型",
+    "expected_skills": [
+      "Rust",
+      "系统编程",
+      "WebAssembly",
+      "英文面试",
+      "开源贡献"
+    ]
+  },
+  "nodes": [
+    {
+      "node_id": "node_000",
+      "node_type": "user_input",
+      "name": "user_input",
+      "content": "帮我规划一下接下来三个月的学习路径，目标是拿到海外远程Rust岗offer。我不要那种泛泛的建议，我要精确到每周的安排。重点是：系统设计题用Rust怎么练、英文面试口语怎么突破、以及开源贡献怎么攒proof of work。每周只有12小时，必须给我排优先级。"
+    },
+    {
+      "node_id": "node_001",
+      "node_type": "skill_call",
+      "name": "need_analysis",
+      "skill_id": "need_analysis",
+      "input": {
+        "context": "- user_input: 帮我规划一下接下来三个月的学习路径，目标是拿到海外远程Rust岗offer。我不要那种泛泛的建议，我要精确到每周的安排。重点是：系统设计题用Rust怎么练、英文",
+        "profile_summary": "C++ 引擎开发工程师"
+      },
+      "output": {
+        "parsed_goal": {
+          "primary": "三个月内拿到海外远程 Rust Systems Engineer 岗位 offer",
+          "sub_goals": [
+            "掌握 Rust 系统设计面试的解题能力",
+            "突破英文面试口语短板",
+            "积累有说服力的开源 Rust 贡献（PR 记录作为 proof of work）"
+          ],
+          "time_horizon": "12 周",
+          "granularity_requirement": "精确到每周的可执行安排，拒绝泛泛建议"
+        },
+        "parsed_constraints": {
+          "hard_constraints": [
+            "总时间窗口：3 个月（约 12 周）",
+            "英文口语是当前最大短板，需要高频练习",
+            "目标岗位竞争激烈，必须有可验证的开源贡献",
+            "美西时区岗位可能需要偶尔深夜会议，学习计划需兼顾精力管理"
+          ],
+          "soft_constraints": [
+            "当前有全职工作（实时音视频公司），学习时间主要在工作日晚间和周末",
+            "输出需精确到周级粒度，非月级或阶段级"
+          ]
+        },
+        "parsed_context": {
+          "transferable_skills": [
+            "六年系统级 C++ 开发经验（内存管理、性能优化已是强项）",
+            "渲染管线和物理引擎模块开发经验 → 对并发、实时性有深刻理解",
+            "音频编解码器实现和跨平台适配 → 熟悉底层 ABI、平台差异处理",
+            "C++ 所有权/生命周期心智模型可快速迁移到 Rust borrow checker"
+          ],
+          "skill_gaps": [
+            "Rust 语言本身的工程熟练度（异步生态、trait 系统深度使用）",
+            "英文口语表达：技术讨论、行为面试（STAR 法）的流利度",
+            "开源社区协作流程（英文 PR review、issue 讨论的沟通规范）",
+            "系统设计题的英文表达与 Rust 特有方案（如用 tokio 做异步架构设计）"
+          ],
+          "leverage_points": [
+            "音视频/实时系统背景与 Rust 在媒体基础设施领域的需求高度吻合（如 WebRTC Rust 实现、音频处理 crate）",
+            "C++ 转 Rust 的叙事在简历和面试中具有差异化优势",
+            "系统级优化能力在 Rust 岗位中是稀缺能力，可作为面试亮点"
+          ]
+        }
+      },
+      "rationale": "用户请求包含明确的时间、目标和三个具体方向，需结构化拆解为目标/约束/上下文三层，为后续周级路径规划提供精确输入。"
+    },
+    {
+      "node_id": "node_002",
+      "node_type": "tool_call",
+      "name": "job_requirement_search",
+      "tool_id": "job_requirement_search",
+      "input": {
+        "job_title": "Rust Systems Engineer（Remote）",
+        "seniority": "mid",
+        "region": "深圳（目标远程工作，对时区有一定灵活度）"
+      },
+      "output": {
+        "result": "mock data not available",
+        "tool_id": "job_requirement_search",
+        "input": {
+          "job_title": "Rust Systems Engineer（Remote）",
+          "seniority": "mid",
+          "region": "深圳（目标远程工作，对时区有一定灵活度）"
+        }
+      },
+      "rationale": "根据用户的目标（Rust Systems Engineer（Remote）），需要调用岗位技能要求检索获取相关信息。"
+    },
+    {
+      "node_id": "node_003",
+      "node_type": "skill_call",
+      "name": "level_diagnosis",
+      "skill_id": "level_diagnosis",
+      "input": {
+        "context": "- user_input: 帮我规划一下接下来三个月的学习路径，目标是拿到海外远程Rust岗offer。我不要那种泛泛的建议，我要精确到每周的安排。重点是：系统设计题用Rust怎么练、英文\n- need_analysis: 技能输出: parsed_goal, parsed_constraints, parsed_context\n- job_requirement_search: 工具返回: result, tool_id, input",
+        "profile_summary": "C++ 引擎开发工程师"
+      },
+      "output": {
+        "skill_levels": {
+          "cpp_systems_programming": {
+            "level": "expert",
+            "years": 6,
+            "detail": "深度掌握C++系统级开发，含渲染管线、物理引擎、音频编解码器、跨平台适配"
+          },
+          "rust_programming": {
+            "level": "beginner_to_intermediate",
+            "estimated_basis": "有强C++底层功底，所有权/生命周期概念可快速映射，但缺乏生产级Rust项目经验",
+            "transferable_knowledge": [
+              "内存管理心智模型",
+              "零成本抽象理解",
+              "unsafe边界感知",
+              "性能剖析与优化"
+            ]
+          },
+          "system_design": {
+            "level": "advanced",
+            "detail": "有实时系统（游戏引擎tick loop、音视频低延迟管线）设计经验，缺乏分布式系统/微服务架构的面试表达训练"
+          },
+          "performance_optimization": {
+            "level": "expert",
+            "detail": "SIMD、cache-friendly数据布局、内存池、lock-free结构均有实战"
+          },
+          "cross_platform_development": {
+            "level": "advanced",
+            "detail": "音视频跨平台适配经验（iOS/Android/Desktop），熟悉条件编译与平台抽象层设计"
+          },
+          "english_communication": {
+            "level": "weak",
+            "detail": "读写尚可，口语面试为自认最大短板，缺乏英文技术讨论实战场景"
+          },
+          "open_source_contribution": {
+            "level": "none_to_minimal",
+            "detail": "无公开可验证的开源proof of work，需从零建立GitHub可见度"
+          },
+          "remote_collaboration": {
+            "level": "limited",
+            "detail": "无海外远程协作经验，异步沟通、英文RFC撰写、跨时区会议节奏均需适应"
+          }
+        },
+        "experience_assessment": {
+          "total_years": 6,
+          "domain_depth": "系统级开发深度突出，覆盖实时渲染、物理模拟、音频DSP三个高难度子领域",
+          "rust_readiness": "C++专家转Rust的典型高潜力画像——所有权模型、trait系统、zero-cost async与已有心智模型高度对齐，预计4-6周可达生产力拐点",
+          "interview_readiness": "技术实力足够支撑Senior级别岗位，但英文表达和系统设计的结构化输出是面试通过率的瓶颈",
+          "market_positioning": "C++引擎背景在Rust生态中稀缺且高价值——音视频/游戏/嵌入式方向的Rust岗位对此背景有明确偏好"
+        },
+        "strength_areas": [
+          "底层性能优化与内存管理（直接可迁移至Rust unsafe/no_std场景）",
+          "实时系统设计经验（游戏引擎+音视频管线=低延迟系统思维）",
+          "跨平台工程能力（与Rust的条件编译、target triple体系天然契合）",
+          "对C ABI/FFI边界的理解（Rust与C/C++互操作是常见岗位需求）",
+          "性能剖析工具链熟练度（perf/vtune/tracy经验可复用）"
+        ],
+        "weak_areas": [
+          {
+            "area": "英文口语面试",
+            "severity": "critical",
+            "impact": "直接决定offer通过率，尤其behavioral和system design轮需要流利表达",
+            "gap_detail": "缺乏用英文描述技术决策trade-off、实时应对追问的肌肉记忆"
+          },
+          {
+            "area": "Rust生产级项目经验",
+            "severity": "high",
+            "impact": "简历上无Rust项目=通过简历筛选概率低，需要开源PR或side project补充",
+            "gap_detail": "语法层面可快速上手，但async runtime选择、error handling惯用模式、workspace组织等工程实践需刻意练习"
+          },
+          {
+            "area": "开源贡献记录",
+            "severity": "high",
+            "impact": "海外远程岗位高度依赖公开可验证的代码产出作为信任信号",
+            "gap_detail": "无GitHub活跃度、无merged PR、无维护的crate"
+          },
+          {
+            "area": "分布式系统设计面试表达",
+            "severity": "medium",
+            "impact": "虽有实时系统经验，但面试中需用标准框架（CAP/一致性模型/消息队列）结构化输出",
+            "gap_detail": "实战经验偏单机高性能，需补充分布式场景的Rust实现思路"
+          },
+          {
+            "area": "异步沟通与远程协作规范",
+            "severity": "low_to_medium",
+            "impact": "影响入职后的协作效率和团队融入速度",
+            "gap_detail": "英文RFC撰写、PR description质量、异步决策流程不熟悉"
+          }
+        ]
+      },
+      "rationale": "基于用户6年C++系统级开发背景和目标岗位要求，诊断出核心能力可高度迁移至Rust，但英文口语、开源可见度和Rust工程实践是拿到远程offer的三个关键缺口，需在三个月内集中突破。"
+    },
+    {
+      "node_id": "node_004",
+      "node_type": "skill_call",
+      "name": "skill_gap_analysis",
+      "skill_id": "skill_gap_analysis",
+      "input": {
+        "context": "- user_input: 帮我规划一下接下来三个月的学习路径，目标是拿到海外远程Rust岗offer。我不要那种泛泛的建议，我要精确到每周的安排。重点是：系统设计题用Rust怎么练、英文\n- need_analysis: 技能输出: parsed_goal, parsed_constraints, parsed_context\n- job_requirement_search: 工具返回: result, tool_id, input\n- level_diagnosis: 技能输出: skill_levels, experience_assessment, strength_areas",
+        "profile_summary": "C++ 引擎开发工程师"
+      },
+      "output": {
+        "skill_gaps": [
+          {
+            "skill": "Rust 语言精通度",
+            "current_level": "入门/初中级（有 C++ 系统编程基础，Rust 概念可快速映射但缺乏生产级项目经验）",
+            "target_level": "中高级（能独立用 Rust 设计和实现系统级模块，熟练运用 ownership/borrow checker/trait/async）",
+            "specific_sub_gaps": [
+              "async/await 与 tokio 生态的生产级使用",
+              "trait 系统高级用法（trait object vs generics 的取舍、GAT）",
+              "unsafe Rust 的合理使用与 FFI 边界处理",
+              "Rust 错误处理惯用模式（thiserror/anyhow/自定义 error type）",
+              "Rust 宏系统（proc macro）"
+            ]
+          },
+          {
+            "skill": "Rust 生态与工具链",
+            "current_level": "初级",
+            "target_level": "中高级",
+            "specific_sub_gaps": [
+              "cargo workspace 多 crate 项目组织",
+              "常用 crate 选型能力（serde, tokio, rayon, crossbeam, tracing 等）",
+              "Rust CI/CD 流程（clippy, miri, cargo-deny, fuzzing）",
+              "no_std 嵌入式/系统级场景"
+            ]
+          },
+          {
+            "skill": "系统设计（Rust 语境表达）",
+            "current_level": "中高级（有丰富 C++ 系统设计经验，但无法用 Rust 惯用模式描述设计方案）",
+            "target_level": "高级（能用 Rust 类型系统、ownership 模型重新表述经典系统设计题，面试中流畅输出）",
+            "specific_sub_gaps": [
+              "用 Rust 类型系统做 compile-time guarantee 的设计思路",
+              "actor model / channel-based concurrency 设计模式",
+              "Rust 中的 zero-copy 和内存布局优化表达",
+              "分布式系统设计在 Rust 生态中的实现方案（tower, tonic/gRPC）"
+            ]
+          },
+          {
+            "skill": "英文技术面试口语",
+            "current_level": "低（用户自述为最大短板）",
+            "target_level": "中高级（能流畅进行 45-60 分钟全英文技术面试，包括系统设计讨论、行为面试、code walkthrough）",
+            "specific_sub_gaps": [
+              "技术术语的自然口语化表达（不是读文档，是 live discussion）",
+              "系统设计面试中实时用英文 think aloud",
+              "行为面试 STAR 框架的英文输出",
+              "提问环节（ask good questions）的英文表达",
+              "处理听不懂时的 clarification 策略"
+            ]
+          },
+          {
+            "skill": "开源贡献与 proof of work",
+            "current_level": "无/极低（缺少可展示的 Rust 开源 PR 记录）",
+            "target_level": "中级（有 3-5 个 meaningful PR merged 到知名 Rust 项目，或有一个有质量的个人 Rust 项目）",
+            "specific_sub_gaps": [
+              "识别适合贡献的 Rust 项目和 issue（good first issue 筛选）",
+              "开源协作流程（RFC、PR review 文化、commit message 规范）",
+              "用英文写 PR description 和参与 code review 讨论",
+              "从 C++ 迁移/绑定类项目切入的策略"
+            ]
+          },
+          {
+            "skill": "远程协作与异步沟通",
+            "current_level": "低（缺乏海外远程团队协作经验）",
+            "target_level": "中级（能适应异步优先文化、写清晰的 RFC/design doc、时区友好地协作）",
+            "specific_sub_gaps": [
+              "异步沟通写作能力（清晰的英文技术写作）",
+              "远程工作工具链熟悉度（Linear, Notion, Loom 等）",
+              "时区管理与会议节奏适应"
+            ]
+          }
+        ],
+        "priority_ranking": [
+          {
+            "rank": 1,
+            "skill": "Rust 语言精通度",
+            "reason": "一切的基础。没有生产级 Rust 能力，系统设计和开源贡献都无法推进。C++ 背景可以加速，但必须投入集中时间突破 ownership 心智模型和 async 生态。"
+          },
+          {
+            "rank": 2,
+            "skill": "英文技术面试口语",
+            "reason": "用户自述最大短板，且无法短期速成，需要贯穿整个三个月持续练习。面试是最终关卡，口语不过关则前面所有准备归零。"
+          },
+          {
+            "rank": 3,
+            "skill": "开源贡献与 proof of work",
+            "reason": "海外远程岗位高度依赖可验证的公开代码记录。需要在第一个月末就开始积累，PR review cycle 需要时间。"
+          },
+          {
+            "rank": 4,
+            "skill": "系统设计（Rust 语境表达）",
+            "reason": "用户已有 C++ 系统设计功底，核心是学会用 Rust 惯用法重新表达。可与 Rust 学习并行推进，中后期集中突破。"
+          },
+          {
+            "rank": 5,
+            "skill": "Rust 生态与工具链",
+            "reason": "在实践中自然积累，通过开源贡献和个人项目覆盖，不需要单独分配大块时间。"
+          },
+          {
+            "rank": 6,
+            "skill": "远程协作与异步沟通",
+            "reason": "通过开源贡献过程自然训练，面试中适当展示意识即可，不需要专门学习。"
+          }
+        ],
+        "gap_severity": {
+          "critical_blockers": [
+            "英文面试口语 — 直接决定能否通过面试，当前水平与要求差距最大，且提升速度最慢",
+            "Rust 生产级经验缺失 — 无法通过 coding interview 和 take-home assignment"
+          ],
+          "significant_gaps": [
+            "开源 proof of work 为零 — 海外远程岗简历筛选阶段即可能被淘汰",
+            "系统设计的 Rust 表达 — 会做但说不出 Rust 味道，面试观感大打折扣"
+          ],
+          "manageable_gaps": [
+            "Rust 生态工具链 — C++ 工程经验可迁移，边做边学即可",
+            "远程协作能力 — 开源参与过程自然覆盖，不构成独立瓶颈"
+          ],
+          "existing_strengths_as_leverage": [
+            "六年系统级 C++ 经验 → Rust 的内存管理模型学习曲线大幅降低",
+            "性能优化专长 → 直接对标 Rust systems engineer 核心能力",
+            "音视频编解码经验 → 可选择音视频相关 Rust 项目（如 symphonia, webrtc-rs）快速形成 domain expertise + Rust 的交叉竞争力",
+            "跨平台适配经验 → 对 Rust 的 cross-compilation 和平台抽象理解更快"
+          ]
+        }
+      },
+      "rationale": "对比用户当前 C++ 系统级开发背景与海外远程 Rust Systems Engineer 岗位要求，识别语言熟练度、口语面试、开源记录三大关键缺口，并按对 offer 获取的影响程度排列优先级，为后续周粒度学习路径规划提供精确的输入依据。"
+    },
+    {
+      "node_id": "node_005",
+      "node_type": "tool_call",
+      "name": "project_repository_search",
+      "tool_id": "project_repository_search",
+      "input": {
+        "tech_stack": [
+          "Rust",
+          "系统编程",
+          "WebAssembly"
+        ],
+        "difficulty": "intermediate"
+      },
+      "output": {
+        "projects": [
+          {
+            "name": "Todo App",
+            "difficulty": "beginner",
+            "estimated_hours": 10,
+            "learning_outcomes": [
+              "基础CRUD",
+              "状态管理"
+            ]
+          },
+          {
+            "name": "Blog System",
+            "difficulty": "intermediate",
+            "estimated_hours": 30,
+            "learning_outcomes": [
+              "认证授权",
+              "数据库设计",
+              "部署"
+            ]
+          },
+          {
+            "name": "Real-time Chat",
+            "difficulty": "intermediate",
+            "estimated_hours": 40,
+            "learning_outcomes": [
+              "WebSocket",
+              "并发处理",
+              "消息存储"
+            ]
+          }
+        ]
+      },
+      "rationale": "根据用户的目标（Rust Systems Engineer（Remote）），需要调用项目库检索获取相关信息。"
+    },
+    {
+      "node_id": "node_006",
+      "node_type": "tool_call",
+      "name": "interview_question_search",
+      "tool_id": "interview_question_search",
+      "input": {
+        "role": "Rust Systems Engineer（Remote）",
+        "category": "system_design",
+        "difficulty": "medium"
+      },
+      "output": {
+        "questions": [
+          {
+            "question": "请描述一次你解决复杂技术问题的经历",
+            "category": "behavioral",
+            "difficulty": "medium",
+            "frequency": "high"
+          },
+          {
+            "question": "设计一个短链接系统",
+            "category": "system_design",
+            "difficulty": "medium",
+            "frequency": "high"
+          },
+          {
+            "question": "LRU Cache 实现",
+            "category": "algorithm",
+            "difficulty": "medium",
+            "frequency": "high"
+          }
+        ],
+        "preparation_tips": [
+          "STAR 格式组织行为面试回答",
+          "系统设计先澄清需求再画架构",
+          "算法题先说思路再写代码"
+        ]
+      },
+      "rationale": "根据用户的目标（Rust Systems Engineer（Remote）），需要调用面试题库检索获取相关信息。"
+    },
+    {
+      "node_id": "node_007",
+      "node_type": "skill_call",
+      "name": "learning_path_planning",
+      "skill_id": "learning_path_planning",
+      "input": {
+        "context": "- level_diagnosis: 技能输出: skill_levels, experience_assessment, strength_areas\n- skill_gap_analysis: 技能输出: skill_gaps, priority_ranking, gap_severity\n- project_repository_search: 工具返回: projects\n- interview_question_search: 工具返回: questions, preparation_tips",
+        "profile_summary": "C++ 引擎开发工程师"
+      },
+      "output": {
+        "learning_stages": [
+          {
+            "stage": 1,
+            "name": "Rust 核心能力构建 + 英文输出启动",
+            "duration": "第1-4周",
+            "objectives": [
+              "完成 Rust 所有权/生命周期/trait 系统的肌肉记忆",
+              "用 Rust 重写一个熟悉的 C++ 模块（音频 buffer 管理或简单渲染管线抽象）",
+              "建立每日英文口语输出习惯"
+            ],
+            "focus_ratio": {
+              "rust_language": "50%",
+              "english_speaking": "30%",
+              "open_source_recon": "20%"
+            }
+          },
+          {
+            "stage": 2,
+            "name": "系统设计实战 + 开源首个 PR",
+            "duration": "第5-8周",
+            "objectives": [
+              "用 Rust 完成 3-4 个系统设计题的完整实现",
+              "向目标开源项目提交第一个有质量的 PR（bug fix 或 perf improvement）",
+              "能用英文流利描述自己项目的架构决策"
+            ],
+            "focus_ratio": {
+              "system_design_in_rust": "40%",
+              "open_source_contribution": "30%",
+              "english_interview": "30%"
+            }
+          },
+          {
+            "stage": 3,
+            "name": "面试冲刺 + 开源持续产出",
+            "duration": "第9-12周",
+            "objectives": [
+              "每周完成 2-3 次全英文模拟面试（含 system design + behavioral）",
+              "累计 3-5 个被 merge 的 PR，形成可展示的贡献记录",
+              "开始投递并进入面试流程"
+            ],
+            "focus_ratio": {
+              "mock_interviews": "40%",
+              "open_source_contribution": "30%",
+              "job_applications": "30%"
+            }
+          }
+        ],
+        "weekly_plan": [
+          {
+            "week": 1,
+            "theme": "Rust 所有权模型深度对齐",
+            "tasks": [
+              "完成 rustlings 全部练习（你 C++ 底子好，2-3天可刷完）",
+              "阅读 The Rustonomicon 前3章，重点对比 C++ RAII 与 Rust Drop",
+              "每天 Shadowing 练习 15 分钟（材料：Rustacean Station podcast）",
+              "列出 3 个目标开源项目（推荐：wgpu、symphonia、xilem），读 CONTRIBUTING.md"
+            ]
+          },
+          {
+            "week": 2,
+            "theme": "用 Rust 重建肌肉记忆",
+            "tasks": [
+              "实现一个 lock-free ring buffer（对标你在音频项目中写过的 C++ 版本）",
+              "练习 unsafe Rust 边界划分：哪些必须 unsafe，如何最小化 unsafe 块",
+              "英文：录制一段 3 分钟自我介绍，发给 AI 评分，修改后重录",
+              "在目标开源项目中找 good-first-issue，读相关代码"
+            ]
+          },
+          {
+            "week": 3,
+            "theme": "异步与并发模型",
+            "tasks": [
+              "用 tokio 实现一个多连接音频流 demuxer 原型",
+              "对比 C++ coroutines(co_await) 与 Rust async/await 的调度模型差异",
+              "英文：准备 'Tell me about a challenging project' 答案，STAR 格式，练到不磕巴",
+              "给目标项目提一个 issue（bug report 或 feature request），建立 presence"
+            ]
+          },
+          {
+            "week": 4,
+            "theme": "Trait 系统与泛型设计",
+            "tasks": [
+              "用 trait object + generics 设计一个可扩展的编解码器插件系统",
+              "阅读 dtolnay 的 Rust quiz，搞懂每道 trait 相关的题",
+              "英文：完成第一次与真人的 mock interview（Pramp 或找 Discord 搭子）",
+              "提交第一个 PR：可以是文档修复、CI 修复或小 bug fix"
+            ]
+          },
+          {
+            "week": 5,
+            "theme": "系统设计题(1)：分布式KV Store",
+            "tasks": [
+              "用 Rust 实现 PingCAP talent-plan 的 project-2（KV store with log-structured engine）",
+              "练习画系统设计图并用英文口述：data partitioning, replication strategy",
+              "英文：练习解释 trade-off 的句式（'The reason I chose X over Y is...'）",
+              "跟进 PR review 反馈，快速迭代"
+            ]
+          },
+          {
+            "week": 6,
+            "theme": "系统设计题(2)：实时流处理管线",
+            "tasks": [
+              "设计并实现一个 Rust 版简易音频处理 DAG（参考你的音视频经验）",
+              "重点练习：backpressure 处理、zero-copy buffer 传递、graceful degradation",
+              "英文：录制 15 分钟 system design walkthrough 视频，自己回看纠正",
+              "向目标项目提交第二个 PR（这次瞄准 perf optimization 或 feature）"
+            ]
+          },
+          {
+            "week": 7,
+            "theme": "系统设计题(3)：高并发网络服务",
+            "tasks": [
+              "用 Rust 实现一个简化的 rate limiter + connection pool manager",
+              "练习 capacity estimation、bottleneck analysis 的英文表达",
+              "英文：参加一次 Rust 社区的 English-speaking meetup 或 Discord voice chat",
+              "开源：开始写一个独立的小工具或 library（可以是音频相关），发布到 crates.io"
+            ]
+          },
+          {
+            "week": 8,
+            "theme": "系统设计题(4)：跨平台 runtime 设计",
+            "tasks": [
+              "设计一个跨平台 audio HAL abstraction layer（结合你的跨平台适配经验）",
+              "用 Rust 的 cfg 系统 + platform-specific traits 实现",
+              "英文：完成第二次全流程 mock interview（system design round）",
+              "开源：确保至少 2 个 PR 已 merge"
+            ]
+          },
+          {
+            "week": 9,
+            "theme": "面试冲刺启动",
+            "tasks": [
+              "准备 Rust 八股问答：Pin/Unpin、PhantomData、variance、Send/Sync",
+              "整理 3 个可讲的项目故事（C++ 引擎 + 音视频 + Rust 开源贡献）",
+              "英文：每隔一天做一次 mock（交替 system design 和 behavioral）",
+              "开始投递第一批目标公司（5-8家）"
+            ]
+          },
+          {
+            "week": 10,
+            "theme": "高强度模拟面试",
+            "tasks": [
+              "每次 mock 后整理错题本：语言表达问题 vs 技术知识问题 分开记",
+              "针对薄弱系统设计题再做一轮（45分钟限时、全英文、不许停顿超3秒）",
+              "英文：练习 'Do you have questions for me?' 环节的高质量提问",
+              "开源：提交第三个 PR 或发布 crate 的 v0.1"
+            ]
+          },
+          {
+            "week": 11,
+            "theme": "查缺补漏 + 公司定制",
+            "tasks": [
+              "研究已拿到面试的公司技术栈，针对性准备（如 embedded Rust、networking、WASM）",
+              "准备 'Why remote?' 'How do you handle timezone differences?' 等问题",
+              "英文：模拟深夜会议场景练习（疲劳状态下保持表达清晰）",
+              "更新 GitHub profile README，展示 Rust 贡献和项目"
+            ]
+          },
+          {
+            "week": 12,
+            "theme": "最终冲刺与复盘",
+            "tasks": [
+              "保持每周 2 次 mock 节奏",
+              "薪资谈判英文话术准备（'Based on my research, the range for this role is...'）",
+              "开源：确保 GitHub 贡献图在近3个月有持续绿点",
+              "整理面试记录，优化策略，扩大投递范围"
+            ]
+          }
+        ],
+        "milestones": [
+          {
+            "checkpoint": "第2周末",
+            "criteria": "能不查文档用 Rust 写出 lock-free ring buffer 并通过 Miri 检查",
+            "verification": "代码通过 cargo test + miri"
+          },
+          {
+            "checkpoint": "第4周末",
+            "criteria": "第一个开源 PR 已提交；能用英文流利做 3 分钟自我介绍不卡顿",
+            "verification": "PR link + 录音回放"
+          },
+          {
+            "checkpoint": "第6周末",
+            "criteria": "完成 2 个系统设计题的 Rust 实现；能用英文做 15 分钟 design walkthrough",
+            "verification": "GitHub repo + 录制视频"
+          },
+          {
+            "checkpoint": "第8周末",
+            "criteria": "至少 2 个 PR 被 merge；mock interview 中系统设计能拿到 'hire' 评价",
+            "verification": "merge 记录 + mock 评分反馈"
+          },
+          {
+            "checkpoint": "第10周末",
+            "criteria": "已投递 5+ 家公司；mock 中英文表达流畅度达到 7/10 以上",
+            "verification": "投递记录 + mock 评分趋势"
+          },
+          {
+            "checkpoint": "第12周末",
+            "criteria": "进入至少 2 家公司的 final round；GitHub 有 3-5 个 merged PR + 1 个自有 crate",
+            "verification": "面试邀请邮件 + GitHub profile"
+          }
+        ],
+        "key_resources": {
+          "system_design_practice": [
+            "PingCAP talent-plan（Rust 分布式系统实战）",
+            "《Designing Data-Intensive Applications》配合 Rust 实现",
+            "Fly.io distributed systems challenges（用 Rust 解）"
+          ],
+          "english_speaking": [
+            "Pramp.com（免费 mock interview）",
+            "Rust 社区 Discord voice channels",
+            "Shadowing 材料：Jon Gjengset YouTube（Rust + 地道英文双收）",
+            "准备模板：Tech Interview Handbook 的 behavioral 框架"
+          ],
+          "open_source_targets": [
+            "wgpu（你有渲染管线经验，直接能贡献）",
+            "symphonia（Rust 音频解码库，和你音频编解码背景完美匹配）",
+            "cpal（跨平台音频 HAL，你做过跨平台适配）",
+            "备选：rav1e（AV1编码器）、rodio（音频播放）"
+          ]
+        },
+        "time_budget": {
+          "weekday": "工作日每天 2-2.5 小时（下班后）",
+          "weekend": "周末每天 4-5 小时",
+          "total_weekly": "约 18-22 小时",
+          "note": "美西岗位深夜会议：建议第9周起每周模拟一次 11pm-12am 的英文对话，适应疲劳状态"
+        }
+      },
+      "rationale": "基于用户六年 C++ 系统级开发背景和明确的三个月时间窗口，将 Rust 语言习得、系统设计面试准备、英文口语突破、开源贡献积累四条线交织进每周计划，确保产出可量化且直接服务于拿到海外远程 offer 的目标。"
+    },
+    {
+      "node_id": "node_008",
+      "node_type": "skill_call",
+      "name": "time_budget_allocation",
+      "skill_id": "time_budget_allocation",
+      "input": {
+        "context": "- skill_gap_analysis: 技能输出: skill_gaps, priority_ranking, gap_severity\n- project_repository_search: 工具返回: projects\n- interview_question_search: 工具返回: questions, preparation_tips\n- learning_path_planning: 技能输出: learning_stages, weekly_plan, milestones",
+        "profile_summary": "C++ 引擎开发工程师"
+      },
+      "output": {
+        "time_allocation": {
+          "total_duration": "12 weeks (3 months)",
+          "available_hours_per_week": 25,
+          "note": "基于全职工作状态，工作日每天2-3小时 + 周末每天5-6小时",
+          "allocation_by_track": {
+            "rust_language_and_systems_design": {
+              "percentage": 35,
+              "hours_per_week": 8.75,
+              "description": "Rust 语言深化 + 系统设计题 Rust 实战"
+            },
+            "open_source_contribution": {
+              "percentage": 30,
+              "hours_per_week": 7.5,
+              "description": "开源项目 PR 积累，建立 proof of work"
+            },
+            "english_interview_speaking": {
+              "percentage": 25,
+              "hours_per_week": 6.25,
+              "description": "英文口语面试突破，含 mock interview"
+            },
+            "networking_and_job_applications": {
+              "percentage": 10,
+              "hours_per_week": 2.5,
+              "description": "职位投递、社区互动、LinkedIn 维护"
+            }
+          },
+          "phase_shifting": {
+            "weeks_1_to_4": {
+              "rust_language_and_systems_design": "45%",
+              "open_source_contribution": "20%",
+              "english_interview_speaking": "25%",
+              "networking_and_job_applications": "10%",
+              "rationale": "前期重 Rust 基础打桩，开源先选项目熟悉代码库"
+            },
+            "weeks_5_to_8": {
+              "rust_language_and_systems_design": "30%",
+              "open_source_contribution": "40%",
+              "english_interview_speaking": "20%",
+              "networking_and_job_applications": "10%",
+              "rationale": "中期开源冲刺，争取 2-3 个 merged PR，系统设计转为模拟面试"
+            },
+            "weeks_9_to_12": {
+              "rust_language_and_systems_design": "25%",
+              "open_source_contribution": "20%",
+              "english_interview_speaking": "35%",
+              "networking_and_job_applications": "20%",
+              "rationale": "后期面试冲刺，口语强化 + 大量投递，开源进入维护节奏"
+            }
+          }
+        },
+        "schedule_breakdown": {
+          "week_1": {
+            "theme": "Rust 所有权模型深化 + 开源选型 + 口语基线测试",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 Rust by Example / Rustlings 刷题（ownership, lifetimes, traits）",
+                "21:00-22:30 英文口语：录制自我介绍 + STAR 故事框架准备（用 Otter.ai 回听纠音）"
+              ],
+              "saturday": [
+                "9:00-12:00 精读目标开源项目源码（推荐：tokio / wgpu / symphonia 选一）",
+                "14:00-16:00 系统设计：用 Rust 实现简单 thread pool，理解 Send/Sync"
+              ],
+              "sunday": [
+                "9:00-11:00 英文 mock interview 录音 + 复盘（Pramp 或找 language partner）",
+                "14:00-16:00 写第一份 Rust 学习笔记博客（英文），发到 dev.to"
+              ]
+            }
+          },
+          "week_2": {
+            "theme": "async Rust + 第一个 good-first-issue",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 Tokio tutorial 跟做，理解 Future / Poll / Waker",
+                "21:00-22:30 英文口语：准备 'Tell me about a time you optimized performance' 等行为题答案"
+              ],
+              "saturday": [
+                "9:00-12:00 在目标项目中找到 good-first-issue，clone 并搭建本地开发环境",
+                "14:00-16:30 系统设计练习：Rust 实现简易 pub/sub message broker"
+              ],
+              "sunday": [
+                "9:00-11:00 Cambly / italki 外教 1v1 口语课",
+                "14:00-16:00 继续开源 issue 的代码阅读和本地复现"
+              ]
+            }
+          },
+          "week_3": {
+            "theme": "unsafe Rust + FFI + 提交第一个 PR",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 Rustonomicon 精读（unsafe、raw pointers、FFI），结合 C++ 经验对比",
+                "21:00-22:30 英文口语：系统设计面试英文表达练习（画图 + 边说边写）"
+              ],
+              "saturday": [
+                "9:00-13:00 编写并提交第一个开源 PR（哪怕是 doc fix / clippy lint 修复）",
+                "14:00-16:00 系统设计：Rust 实现 lock-free queue（对比 C++ 版本写博客）"
+              ],
+              "sunday": [
+                "9:00-11:00 Mock interview（系统设计类），全程英文",
+                "14:00-15:30 Review PR 反馈，迭代代码"
+              ]
+            }
+          },
+          "week_4": {
+            "theme": "Rust 错误处理模式 + 网络编程 + 口语节奏训练",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 thiserror / anyhow 实践 + 自定义 Error type 设计",
+                "21:00-22:30 英文口语：Shadowing 练习（跟读 Oxide & Friends podcast）"
+              ],
+              "saturday": [
+                "9:00-12:00 系统设计：用 Rust 从零写一个 TCP echo server → 演化为简易 Redis clone",
+                "14:00-16:30 开源第二个 PR：找一个 bug fix 或 small feature"
+              ],
+              "sunday": [
+                "9:00-11:00 行为面试全流程 mock（BQ 8题连答，录像复盘）",
+                "14:00-15:30 整理本月学习成果，更新 GitHub README 和 LinkedIn"
+              ]
+            },
+            "milestone": "Month 1 完成：Rust 基础牢固，1-2 个 PR 提交，英文自我介绍流利"
+          },
+          "week_5": {
+            "theme": "系统设计深度题 + 开源 feature PR 启动",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 系统设计题库：Rate Limiter / URL Shortener 用 Rust 实现",
+                "21:00-22:30 英文口语：技术解释练习（用英文解释 zero-copy、memory-mapped I/O 等概念）"
+              ],
+              "saturday": [
+                "9:00-13:00 开源中等难度 issue 开发（aim for feature-level contribution）",
+                "14:00-16:30 系统设计 mock：Distributed Cache 设计（英文白板）"
+              ],
+              "sunday": [
+                "9:00-11:00 Cambly 外教课 + 针对技术面场景做 role play",
+                "14:00-16:00 继续开源开发 + 写 PR description（英文，练技术写作）"
+              ]
+            }
+          },
+          "week_6": {
+            "theme": "并发模式 + 开源 PR review cycle",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 Rust 并发模式：Actor model (actix)、channel patterns、rayon 数据并行",
+                "21:00-22:30 英文口语：模拟 'walk me through your architecture decision' 类回答"
+              ],
+              "saturday": [
+                "9:00-12:00 响应 PR review comment，迭代代码，学习项目的 CI/test 规范",
+                "14:00-16:30 系统设计：Log-structured storage engine in Rust（参考 PingCAP talent plan）"
+              ],
+              "sunday": [
+                "9:00-11:00 系统设计全流程 mock（50min 英文，模拟真实面试节奏）",
+                "14:00-15:30 写技术博客：对比 C++ 和 Rust 的并发安全保证"
+              ]
+            }
+          },
+          "week_7": {
+            "theme": "性能分析 + 第三个 PR + 面试话术打磨",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 Rust profiling: flamegraph, criterion benchmarks, cargo-asm",
+                "21:00-22:30 英文口语：针对 'Why Rust? Why leave current role?' 打磨 narrative"
+              ],
+              "saturday": [
+                "9:00-12:00 给开源项目提一个 performance improvement PR（用 benchmark 数据支撑）",
+                "14:00-16:30 系统设计：Real-time audio streaming pipeline in Rust（结合音视频经验）"
+              ],
+              "sunday": [
+                "9:00-11:00 Mock interview: coding round（LeetCode medium in Rust，限时30min）",
+                "14:00-15:30 复盘本周所有练习录音，整理高频卡壳点"
+              ]
+            }
+          },
+          "week_8": {
+            "theme": "综合项目 + 开源收尾 + 面试pipeline启动",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 完善个人 showcase project：Rust-based audio codec / 渲染组件 / systems tool",
+                "21:00-22:30 英文口语：完整 45min mock interview 录音（BQ + 系统设计混合）"
+              ],
+              "saturday": [
+                "9:00-12:00 开源 PR 最后一轮迭代，确保至少 2 个 merged",
+                "14:00-16:30 系统设计合集复盘：整理 5 个设计题的 Rust 解法模板"
+              ],
+              "sunday": [
+                "9:00-11:00 更新简历 + portfolio，突出 Rust 开源贡献 + 系统设计能力",
+                "14:00-16:00 开始投递第一批职位（5-8家），定制 cover letter"
+              ]
+            },
+            "milestone": "Month 2 完成：2-3 merged PRs，系统设计题能用 Rust 流利作答，开始投递"
+          },
+          "week_9": {
+            "theme": "面试冲刺 + 高频投递 + 口语强化",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 LeetCode Rust 刷题（medium/hard，每天1题，重点 graph + DP）",
+                "21:00-22:30 英文口语：每天一个完整 STAR 故事录音，计时控制在 2min 内"
+              ],
+              "saturday": [
+                "9:00-11:00 系统设计 mock（找人对练或用 Interviewing.io）",
+                "11:30-13:00 投递新一批职位 + 跟进已投的（LinkedIn / email follow-up）",
+                "14:00-16:00 Rust coding mock: 实现 concurrent HashMap / B-Tree 等"
+              ],
+              "sunday": [
+                "9:00-11:00 外教课 + 针对上周面试反馈做口语微调",
+                "14:00-16:00 开源社区互动：review 别人的 PR、参与 discussion"
+              ]
+            }
+          },
+          "week_10": {
+            "theme": "真实面试 + 反馈循环",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 针对已拿到面试的公司做 targeted prep（读他们的 tech blog / 开源项目）",
+                "21:00-22:30 英文 mock：模拟目标公司风格（有的重 coding，有的重 design）"
+              ],
+              "saturday": [
+                "9:00-12:00 如有面试安排则全天 prep；无则继续系统设计新题",
+                "14:00-16:00 整理面试复盘笔记，修补薄弱环节"
+              ],
+              "sunday": [
+                "9:00-11:00 Rest / light review",
+                "14:00-16:00 社区参与 + 保持开源活跃度（至少回复 issue / comment）"
+              ]
+            }
+          },
+          "week_11": {
+            "theme": "密集面试 + 谈判准备",
+            "daily_plan": {
+              "monday_to_friday": [
+                "7:00-8:00 面试前 warm-up：快速过一道 Rust 题 + 口语热身",
+                "21:00-22:30 复盘当天面试 + 准备次日面试的公司 context"
+              ],
+              "saturday": [
+                "9:00-12:00 薪资谈判话术准备（remote compensation structure, equity, timezone policy）",
+                "14:00-16:00 备选：系统设计补强 / 新公司投递"
+              ],
+              "sunday": [
+                "9:00-11:00 完整 mock interview 保持状态",
+                "14:00-15:00 更新追踪表，评估 pipeline 进度"
+              ]
+            }
+          },
+          "week_12": {
+            "theme": "收官 + Offer 决策",
+            "daily_plan": {
+              "monday_to_friday": [
+                "维持面试节奏，根据 pipeline 状态调整投入",
+                "口语保持每天 30min shadowing"
+              ],
+              "saturday": [
+                "如有 offer：对比分析（comp, growth, timezone, team）",
+                "如无 offer：复盘全流程，调整策略进入下一个月"
+              ],
+              "sunday": [
+                "整理三个月学习成果，更新所有 public profile",
+                "制定入职前 onboarding 学习计划或继续面试计划"
+              ]
+            },
+            "milestone": "Month 3 完成：完成 10+ 家投递，3-5 个面试流程，目标拿到 1-2 个 offer"
+          },
+          "buffer_and_recovery": {
+            "rule": "每两周留半天作为 buffer，用于处理 PR review 延迟、面试临时变动、身体恢复",
+            "burnout_prevention": "周日下午若连续高强度两周，改为轻松阅读或散步思考，不强制产出"
+          }
+        }
+      },
+      "rationale": "基于用户三大核心需求（系统设计Rust实战、英文口语突破、开源PR积累）和12周时间约束，按前期打基础→中期冲成果→后期冲面试的节奏做动态权重分配，确保每周25小时的精力在正确的阶段投向正确的方向。"
+    },
+    {
+      "node_id": "node_009",
+      "node_type": "skill_call",
+      "name": "interview_prep_planning",
+      "skill_id": "interview_prep_planning",
+      "input": {
+        "context": "- project_repository_search: 工具返回: projects\n- interview_question_search: 工具返回: questions, preparation_tips\n- learning_path_planning: 技能输出: learning_stages, weekly_plan, milestones\n- time_budget_allocation: 技能输出: time_allocation, schedule_breakdown",
+        "profile_summary": "C++ 引擎开发工程师"
+      },
+      "output": {
+        "interview_plan": {
+          "overview": "12周面试准备计划，三条主线并行：Rust系统设计实战、英文口语突破、开源贡献积累。每周约25-30小时投入（工作日每天2-3h + 周末集中8-10h）。",
+          "phases": [
+            {
+              "phase": "Phase 1: 基础重建与习惯养成",
+              "weeks": "Week 1-4",
+              "goals": [
+                "Rust ownership/lifetime/async 彻底内化，能脱口用英文解释",
+                "系统设计基础框架建立（用Rust思维重构C++经验）",
+                "开源项目选定并提交第一个PR",
+                "英文口语从 '能读能写' 过渡到 '能即兴表达技术观点'"
+              ],
+              "weekly_breakdown": [
+                {
+                  "week": 1,
+                  "system_design": "精读 Tokio 源码架构，手写一个最小 async runtime（理解 Future/Waker/Poll），同时用英文写设计文档",
+                  "algorithm": "LeetCode medium 5题/周，必须用 Rust 写，重点练 ownership 友好的数据结构题（链表、树、图）",
+                  "behavioral_english": "录制3段2分钟自我介绍视频（分别侧重：引擎经验、音视频经验、为什么转Rust），逐字修改到自然",
+                  "opensource": "调研目标项目：优先选 tokio、wgpu、symphonia（音频相关，匹配你背景）、或 rustls。Fork + 本地构建 + 跑通测试"
+                },
+                {
+                  "week": 2,
+                  "system_design": "设计题练习#1：设计一个 lock-free MPSC channel（画架构图 + Rust实现核心部分），练习用英文讲解 tradeoff",
+                  "algorithm": "LeetCode 5题，加入计时（每题35min上限），开始练 unsafe Rust 场景题",
+                  "behavioral_english": "Pramp 或 Interviewing.io 预约第一次 mock interview（哪怕说得烂也要开始）",
+                  "opensource": "挑选 good-first-issue 或 documentation issue，提交第一个 PR（哪怕只是修 typo/改文档也算起步）"
+                },
+                {
+                  "week": 3,
+                  "system_design": "设计题练习#2：设计一个实时音频流处理 pipeline（ring buffer + zero-copy + backpressure），直接用你的音视频经验",
+                  "algorithm": "LeetCode 5题，重点：并发相关题（Rust Arc/Mutex 实现），手写 Rust 版本的 concurrent data structure",
+                  "behavioral_english": "准备 STAR 故事 x3（性能优化案例、跨团队协作、解决技术难题），每个故事练到90秒内讲完",
+                  "opensource": "基于 week2 的 PR 反馈迭代，同时找一个涉及实际代码逻辑的 issue 开始做"
+                },
+                {
+                  "week": 4,
+                  "system_design": "设计题练习#3：设计一个跨平台 plugin system（trait object vs enum dispatch vs dynamic loading），对比C++虚函数方案",
+                  "algorithm": "LeetCode 5题 + 1道 hard。开始练习边写边讲（英文 think aloud）",
+                  "behavioral_english": "第二次 mock interview + 开始每天15分钟 shadowing（听 Rust 相关 podcast 跟读：推荐 Rustacean Station）",
+                  "opensource": "目标：累计2个 merged PR。如果第一个项目不顺，切换到备选项目"
+                }
+              ]
+            },
+            {
+              "phase": "Phase 2: 深度打磨与模拟实战",
+              "weeks": "Week 5-8",
+              "goals": [
+                "系统设计能在45分钟内用英文完整讲解一个方案",
+                "算法题 Rust 解题速度接近 C++ 水平",
+                "开源贡献有实质性 feature PR",
+                "英文口语能自然讨论技术 tradeoff"
+              ],
+              "weekly_breakdown": [
+                {
+                  "week": 5,
+                  "system_design": "设计题#4：设计一个分布式 task scheduler（类似你引擎里的 job system），重点讲 Rust 的 Send/Sync 如何保证线程安全",
+                  "algorithm": "切换到 45min 模拟模式：随机抽题 + 英文讲解思路 + 写代码，每周4次",
+                  "behavioral_english": "准备 'Why Rust / Why remote / Why this company' 系列回答模板，每个2-3个版本",
+                  "opensource": "开始做一个 medium-size feature（比如给 wgpu 加一个小的渲染 pass，或给 symphonia 加一个 codec 格式支持）"
+                },
+                {
+                  "week": 6,
+                  "system_design": "设计题#5：设计一个 ECS (Entity Component System)（你的游戏引擎经验直接复用），用 Rust 的 TypeId + Any 或 macro 实现",
+                  "algorithm": "4次模拟 + 开始刷系统编程相关题：实现 malloc/mempool、写一个简单的 allocator",
+                  "behavioral_english": "每周2次 mock interview（1次算法+1次behavioral），开始找 native speaker 练",
+                  "opensource": "Feature PR 持续推进，在 PR review 中积极用英文讨论"
+                },
+                {
+                  "week": 7,
+                  "system_design": "设计题#6：设计一个 WebRTC-like 实时通信系统的 Rust 实现（你的音视频经验 + Rust 异步），重点讲 error handling 策略",
+                  "algorithm": "加入 competitive programming 元素：Codeforces/AtCoder 周赛用 Rust 参加（练速度）",
+                  "behavioral_english": "录制一次完整的 45min 系统设计 mock（英文），回放找语言问题",
+                  "opensource": "目标：feature PR 进入 review 阶段或已 merge。开始写 blog post 记录贡献过程"
+                },
+                {
+                  "week": 8,
+                  "system_design": "设计题#7：设计一个 memory-safe 的 FFI layer（C++ ↔ Rust interop），这是你的核心竞争力题目",
+                  "algorithm": "模拟面试 full loop：2道算法 + 1道系统设计，连续做，练体力和节奏",
+                  "behavioral_english": "准备处理 'weakness' 类问题的策略（时区、英文非母语转化为优势叙事）",
+                  "opensource": "累计目标：4-5个 merged PR，其中至少1个是非trivial的代码贡献"
+                }
+              ]
+            },
+            {
+              "phase": "Phase 3: 冲刺投递与实战面试",
+              "weeks": "Week 9-12",
+              "goals": [
+                "开始实际投递并面试",
+                "保持刷题手感同时重心转向面试复盘",
+                "开源 profile 已经能作为 proof of work 展示",
+                "英文面试能自如应对突发问题"
+              ],
+              "weekly_breakdown": [
+                {
+                  "week": 9,
+                  "system_design": "复习所有设计题，整理成 cheat sheet（每个题目的核心 tradeoff + Rust 特有考量）",
+                  "algorithm": "维持每周3次模拟，不再加新题型，专注熟练度",
+                  "behavioral_english": "开始投递（目标：第一批5-8家），简历突出 Rust 开源贡献 + C++系统经验的迁移故事",
+                  "opensource": "减少新PR投入，把精力转到面试。但保持 review 和社区互动的可见度"
+                },
+                {
+                  "week": 10,
+                  "system_design": "针对实际面试公司定制准备（研究其技术栈，准备相关设计题）",
+                  "algorithm": "根据面试反馈调整弱点，针对性练习",
+                  "behavioral_english": "每次面试后立即录音复盘，找语言表达的改进点",
+                  "opensource": "如有余力，写一篇技术 blog 发到 Rust 社区（users.rust-lang.org 或个人博客）"
+                },
+                {
+                  "week": 11,
+                  "system_design": "进入面试密集期，每次面试前做1次完整模拟",
+                  "algorithm": "保持手感，每周2-3题",
+                  "behavioral_english": "针对每家公司的文化准备不同版本的 story（remote-first 公司强调异步沟通能力）",
+                  "opensource": "维持社区可见度，回答 issue 里的问题也算贡献"
+                },
+                {
+                  "week": 12,
+                  "system_design": "收尾阶段，如有 onsite/final round 则集中准备该公司的深度题",
+                  "algorithm": "仅维持，不加量",
+                  "behavioral_english": "准备 negotiation 话术（英文薪资谈判、remote 条款确认）",
+                  "opensource": "整理 GitHub profile：pinned repos、README、contribution graph 可视化"
+                }
+              ]
+            }
+          ]
+        },
+        "focus_areas": {
+          "system_design_with_rust": {
+            "priority": "最高",
+            "rationale": "你的C++系统经验是核心竞争力，但需要翻译成Rust idiom。面试官想看到的不是'我会用Rust重写C++'，而是'我理解Rust的ownership model如何在架构层面改变设计决策'。",
+            "key_topics": [
+              "Async runtime 设计（Tokio 内部原理，何时用 async 何时用 thread）",
+              "Zero-copy 数据管道设计（bytes crate、io_uring、mmap 的 Rust safe wrapper）",
+              "Error handling 架构（thiserror vs anyhow，何时 panic 何时 Result，error propagation 策略）",
+              "FFI 安全边界设计（C++ interop 是你的独特优势，讲清楚 Pin、ManuallyDrop、unsafe boundary）",
+              "并发原语选择（crossbeam vs std::sync、actor model vs shared state、Send+Sync 约束如何影响架构）",
+              "Memory allocator 策略（arena allocation、custom allocator API、jemalloc integration）"
+            ],
+            "practice_method": "每个设计题都走完整流程：需求澄清(2min) → 高层架构(5min) → 核心组件深入(15min) → Rust 特有考量(10min) → tradeoff 讨论(10min) → 扩展问题(5min)。全程英文。"
+          },
+          "english_interview_fluency": {
+            "priority": "最高（与系统设计并列）",
+            "rationale": "技术能力够强但英文表达卡壳会直接导致 reject。Remote 岗位更依赖口头沟通。",
+            "strategy": [
+              "每天15min podcast shadowing（Rustacean Station, Oxide and Friends, Software Unscripted）",
+              "每周至少2次 real mock interview（Pramp免费 + Interviewing.io付费都用）",
+              "建立 '技术词汇-句型' 库：比如 'The tradeoff here is...' / 'One concern with this approach is...' / 'Let me walk you through...'",
+              "录音回听：每次 mock 之后听自己的录音，标注 filler words (um, uh) 和长停顿",
+              "Think-aloud 练习：刷算法题时强制自己全程英文自言自语，模拟面试节奏"
+            ],
+            "milestones": [
+              "Week 2: 能完成一次完整 mock interview 不卡壳超过5秒",
+              "Week 6: 能在系统设计中自然使用过渡词和结构化表达",
+              "Week 10: 面试官反馈中不再提到 communication 问题"
+            ]
+          },
+          "opensource_proof_of_work": {
+            "priority": "高",
+            "rationale": "海外远程岗位非常看重可验证的代码能力。开源PR是最直接的proof——比刷题记录有说服力得多。",
+            "target_projects": [
+              {
+                "project": "symphonia",
+                "reason": "音频解码库，直接匹配你的音频编解码经验，能快速上手且贡献有深度",
+                "entry_point": "加一个新 codec 格式支持或优化现有解码器性能"
+              },
+              {
+                "project": "wgpu",
+                "reason": "GPU/渲染相关，匹配你的引擎渲染管线经验",
+                "entry_point": "修 bug、加 validation、或优化某个 backend 的实现"
+              },
+              {
+                "project": "tokio / hyper / tower",
+                "reason": "展示 async Rust 能力，这些库用到的公司非常多",
+                "entry_point": "从 documentation 和 small bugfix 入手，逐步参与 design discussion"
+              }
+            ],
+            "quantity_target": "12周内 5-8 个 merged PR，其中至少2个涉及非trivial逻辑",
+            "visibility_tips": [
+              "PR description 写清楚动机和方案，展示沟通能力",
+              "在 issue discussion 里主动参与技术讨论",
+              "GitHub profile 的 pinned repos 放1-2个自己的 Rust 项目（比如一个 mini audio codec）"
+            ]
+          },
+          "algorithm_in_rust": {
+            "priority": "中高",
+            "rationale": "算法面试不会因为你经验丰富就跳过。但你的C++算法底子在，主要是适应Rust语法和ownership对某些数据结构的影响。",
+            "focus": [
+              "链表/树的 Rust 惯用实现（Box、Rc<RefCell>、arena pattern）",
+              "图算法中的 borrow checker 应对策略",
+              "并发算法题（用 std::sync 和 crossbeam）",
+              "unsafe 合理使用场景（面试中如何解释你的 unsafe 选择）"
+            ],
+            "volume": "前8周每周5题(含模拟)，后4周每周2-3题维持手感"
+          }
+        },
+        "practice_schedule": {
+          "weekday_template": {
+            "morning_30min": "英文 podcast shadowing / 技术词汇复习",
+            "lunch_or_commute_30min": "LeetCode 1题（Rust，计时）",
+            "evening_90min": "主线任务轮换——周一三五：系统设计 / 周二四：开源贡献 / 每天穿插英文表达练习"
+          },
+          "weekend_template": {
+            "saturday_5h": "深度时间块——系统设计完整练习(2h) + 开源项目编码(2h) + 英文 mock interview(1h)",
+            "sunday_4h": "算法模拟(2h) + 复盘本周 + 规划下周(1h) + 自由探索/blog写作(1h)"
+          },
+          "weekly_total": "约25-28小时",
+          "key_rituals": [
+            "每周日晚: 30min 复盘——记录本周完成了什么、卡在哪里、下周调整什么",
+            "每两周: 1次付费 mock interview（Interviewing.io），拿到客观反馈",
+            "每月: 重新评估开源项目选择——如果 PR 审核太慢就换项目"
+          ],
+          "tools_and_resources": [
+            "系统设计: 'Designing Data-Intensive Applications' + Rust 官方 async book + Tokio tutorial",
+            "算法: LeetCode (Rust tag) + 'Rust by Practice' 的数据结构章节",
+            "英文: Pramp(免费mock) + Interviewing.io(付费) + Rustacean Station podcast + Oxide and Friends",
+            "开源: GitHub issue tracker + rust-lang/this-week-in-rust 找活跃项目动态",
+            "投递: LinkedIn (设为 Open to Work remote) + Rust Jobs 板块 + 各公司 career page"
+          ]
+        }
+      },
+      "rationale": "用户要求精确到每周的学习路径，且明确了三个重点方向（Rust系统设计、英文口语、开源PR），因此面试准备计划需要将这三条线交织成具体的周计划，并基于其C++系统开发背景设计最大化经验迁移的练习策略。"
+    },
+    {
+      "node_id": "node_010",
+      "node_type": "skill_call",
+      "name": "feasibility_check",
+      "skill_id": "feasibility_check",
+      "input": {
+        "context": "- interview_question_search: 工具返回: questions, preparation_tips\n- learning_path_planning: 技能输出: learning_stages, weekly_plan, milestones\n- time_budget_allocation: 技能输出: time_allocation, schedule_breakdown\n- interview_prep_planning: 技能输出: interview_plan, focus_areas, practice_schedule",
+        "profile_summary": "C++ 引擎开发工程师"
+      },
+      "output": {
+        "feasibility_result": {
+          "overall_verdict": "有条件可行",
+          "confidence": 0.72,
+          "summary": "三个月时间线紧凑但对该用户画像而言并非不可能。六年系统级C++经验意味着Rust的所有权/生命周期模型学习曲线会显著缩短，核心风险集中在英文口语突破速度和开源贡献的可见度积累上。若严格执行计划且第一个月内完成Rust语言基础切换，时间线可控；若任何一个维度滑坡超过两周，三个月目标将大概率延期。"
+        },
+        "risk_items": [
+          {
+            "id": "R1",
+            "category": "语言能力",
+            "description": "英文口语从短板到面试通过水平，三个月内实现质变的概率偏低",
+            "severity": "高",
+            "likelihood": 0.65,
+            "impact": "直接导致终面挂掉，技术再强也拿不到offer",
+            "evidence": "用户自述'最大短板'，口语能力提升通常需要持续3-6个月高强度输出训练"
+          },
+          {
+            "id": "R2",
+            "category": "开源贡献",
+            "description": "三个月内积累有说服力的开源proof of work时间不足",
+            "severity": "高",
+            "likelihood": 0.55,
+            "impact": "海外远程岗简历筛选阶段缺乏差异化，投递转化率低",
+            "evidence": "有意义的PR从选项目、读代码、提PR到被merge通常需要2-6周/个，三个月内能落地3-5个quality PR已属乐观"
+          },
+          {
+            "id": "R3",
+            "category": "计划执行",
+            "description": "在职状态下每周可用学习时间存在挤压风险",
+            "severity": "中",
+            "likelihood": 0.5,
+            "impact": "周计划延期累积，后期系统设计和模拟面试准备被压缩",
+            "evidence": "用户当前全职工作（实时音视频方向），加班或项目紧张时每周可能损失5-10小时"
+          },
+          {
+            "id": "R4",
+            "category": "目标岗位",
+            "description": "Rust远程岗位市场竞争激烈，三个月窗口内合适岗位数量有限",
+            "severity": "中",
+            "likelihood": 0.45,
+            "impact": "即使准备充分，若目标公司不在招聘窗口则需延长timeline",
+            "evidence": "Rust远程岗集中在infra/crypto/embedded领域，职位绝对数量少于Go/Java"
+          },
+          {
+            "id": "R5",
+            "category": "技术深度",
+            "description": "Rust系统设计面试的惯用模式与C++有差异，需要刻意适应",
+            "severity": "低",
+            "likelihood": 0.3,
+            "impact": "面试中写出'C++ style Rust'，给面试官留下不够native的印象",
+            "evidence": "用户C++经验深厚但Rust实战经验未提及，error handling/async/trait设计等需要范式切换"
+          }
+        ],
+        "adjustment_suggestions": [
+          {
+            "针对风险": "R1",
+            "建议": "英文口语训练前置且加量：第1周起每天30分钟shadowing+每周至少2次真人模拟面试（Pramp/interviewing.io），不要等到第三个月才做mock interview。设定可量化里程碑：第4周能用英文流畅描述一个完整项目经验（2分钟内），第8周能即兴回答behavioral question不卡顿超过3秒。",
+            "优先级": "P0"
+          },
+          {
+            "针对风险": "R2",
+            "建议": "精选1-2个目标项目而非广撒网。推荐策略：选与用户现有经验高度重叠的Rust项目（如 xilem/vello 渲染相关，或 symphonia/rubato 音频相关），利用领域知识降低上手成本。第1-2周先提'good first issue'建立contributor身份，第3周起瞄准中等复杂度issue。同时自建一个showcase项目（如用Rust重写一个简化音频编解码器），兼作portfolio和面试谈资。",
+            "优先级": "P0"
+          },
+          {
+            "针对风险": "R3",
+            "建议": "设定保底时间线：每周最低15小时不可压缩学习时间（工作日晚间1.5h×5 + 周末各4h）。建立周日晚复盘机制，若连续两周未达标则触发plan B：考虑提前离职或请假集中冲刺。",
+            "优先级": "P1"
+          },
+          {
+            "针对风险": "R4",
+            "建议": "从第1周起就开始被动投递准备：LinkedIn设置open to work、在Rust社区Discord/Zulip活跃、关注目标公司job board。第6周开始主动投递，不要等到'完全准备好'。目标公司列表建议包含：Cloudflare、Fastly、1Password、Oxide Computer、Embark Studios、crypto类公司，覆盖不同招聘周期。",
+            "优先级": "P1"
+          },
+          {
+            "针对风险": "R5",
+            "建议": "系统设计练习从第3周起用Rust idiom重写：每周精做1道经典题（如设计KV store、消息队列、rate limiter），重点练习trait抽象、async架构、error propagation。参考 mini-redis、tikv 的设计模式。到第8周应能在45分钟内用Rust画出完整系统设计并写出核心数据结构。",
+            "优先级": "P1"
+          },
+          {
+            "针对风险": "全局",
+            "建议": "增设第6周checkpoint：若此时英文mock interview通过率<50%或无任何merged PR，建议将目标时间线从3个月调整为4-5个月，避免仓促面试浪费机会。失败的面试会消耗目标公司的冷却期（通常6-12个月）。",
+            "优先级": "P0"
+          }
+        ]
+      },
+      "rationale": "在前序节点已生成具体周计划和时间分配的基础上，需要验证该计划在用户真实约束（在职、英语短板、远程岗竞争）下是否可落地执行，识别可能导致计划失败的关键风险并提供可操作的调整方案，避免用户按不现实的计划执行三个月后颗粒无收。"
+    },
+    {
+      "node_id": "node_011",
+      "node_type": "agent_response",
+      "name": "final_response",
+      "content": "# 12周冲刺计划：C++ → Rust Remote Offer\n\n## 时间分配框架（每周12h）\n\n| 模块 | 时间 | 优先级 |\n|------|------|--------|\n| Rust系统设计实战 | 5h | P0 |\n| 开源贡献（proof of work） | 4h | P0 |\n| 英文面试口语 | 3h | P1 |\n\n---\n\n## Phase 1：基础搭建（Week 1-4）\n\n**Rust系统设计（5h/周）**\n- Week 1-2：用Rust实现mini-redis（tokio生态熟练度），同步刷 Designing Data-Intensive Applications 第5-9章\n- Week 3-4：实现一个简易raft consensus模块，练习画架构图并用英文讲解设计权衡（trade-off）\n\n**开源贡献（4h/周）**\n- 目标仓库：`tikv/tikv`、`tokio-rs/tokio`、`hyperium/hyper` 三选一\n- Week 1：阅读 contributing guide + 认领 good-first-issue\n- Week 2-4：提交至少2个PR（文档修复也算，关键是建立commit记录）\n\n**英文口语（3h/周）**\n- 每天25min shadowing（YouTube: Systems Design Interview频道）\n- 周末1次模拟behavioral interview（用Pramp或找伙伴）\n\n## Phase 2：强化输出（Week 5-8）\n\n**系统设计**：完成3个完整设计练习（分布式KV store / rate limiter / log aggregator），每个用Rust写可运行的核心模块，README用英文写设计文档\n\n**开源**：目标升级到medium-complexity issue，争取1个功能性PR被merge\n\n**口语**：切换到全英文讲解自己的系统设计方案，录音回听，修正表达\n\n## Phase 3：模拟冲刺（Week 9-12）\n\n- 每周2次全英文mock interview（系统设计+behavioral各一）\n- 完善GitHub profile：pin 3个Rust项目，写好项目描述\n- 开始投递，目标公司：Cloudflare、Fly.io、Grafana Labs、Turso、Fermyon\n\n---\n\n## 下一步行动（本周）\n\n1. Fork tokio或tikv，找到一个你能修的issue，今天就开始读代码\n2. 开一个 `rust-system-design` 仓库，第一个项目写mini-redis\n3. 订阅一个英文系统设计频道，今天开始第一个25min shadowing\n\n你的C++系统编程底子是核心优势——所有权模型、零成本抽象这些概念对你来说是迁移而不是学习。把精力放在Rust生态工具链（tokio/serde/tonic）和可展示的产出上。"
+    }
+  ],
+  "edges": [
+    {
+      "from": "node_000",
+      "to": "node_001",
+      "relation": "user_input 的输出被 need_analysis 使用"
+    },
+    {
+      "from": "node_001",
+      "to": "node_002",
+      "relation": "need_analysis 的输出被 job_requirement_search 使用"
+    },
+    {
+      "from": "node_002",
+      "to": "node_003",
+      "relation": "job_requirement_search 的输出被 level_diagnosis 使用"
+    },
+    {
+      "from": "node_003",
+      "to": "node_004",
+      "relation": "level_diagnosis 的输出被 skill_gap_analysis 使用"
+    },
+    {
+      "from": "node_004",
+      "to": "node_005",
+      "relation": "skill_gap_analysis 的输出被 project_repository_search 使用"
+    },
+    {
+      "from": "node_005",
+      "to": "node_006",
+      "relation": "project_repository_search 的输出被 interview_question_search 使用"
+    },
+    {
+      "from": "node_006",
+      "to": "node_007",
+      "relation": "interview_question_search 的输出被 learning_path_planning 使用"
+    },
+    {
+      "from": "node_007",
+      "to": "node_008",
+      "relation": "learning_path_planning 的输出被 time_budget_allocation 使用"
+    },
+    {
+      "from": "node_008",
+      "to": "node_009",
+      "relation": "time_budget_allocation 的输出被 interview_prep_planning 使用"
+    },
+    {
+      "from": "node_009",
+      "to": "node_010",
+      "relation": "interview_prep_planning 的输出被 feasibility_check 使用"
+    },
+    {
+      "from": "node_010",
+      "to": "node_011",
+      "relation": "feasibility_check 的输出被 final_response 使用"
+    }
+  ],
+  "final_response": "# 12周冲刺计划：C++ → Rust Remote Offer\n\n## 时间分配框架（每周12h）\n\n| 模块 | 时间 | 优先级 |\n|------|------|--------|\n| Rust系统设计实战 | 5h | P0 |\n| 开源贡献（proof of work） | 4h | P0 |\n| 英文面试口语 | 3h | P1 |\n\n---\n\n## Phase 1：基础搭建（Week 1-4）\n\n**Rust系统设计（5h/周）**\n- Week 1-2：用Rust实现mini-redis（tokio生态熟练度），同步刷 Designing Data-Intensive Applications 第5-9章\n- Week 3-4：实现一个简易raft consensus模块，练习画架构图并用英文讲解设计权衡（trade-off）\n\n**开源贡献（4h/周）**\n- 目标仓库：`tikv/tikv`、`tokio-rs/tokio`、`hyperium/hyper` 三选一\n- Week 1：阅读 contributing guide + 认领 good-first-issue\n- Week 2-4：提交至少2个PR（文档修复也算，关键是建立commit记录）\n\n**英文口语（3h/周）**\n- 每天25min shadowing（YouTube: Systems Design Interview频道）\n- 周末1次模拟behavioral interview（用Pramp或找伙伴）\n\n## Phase 2：强化输出（Week 5-8）\n\n**系统设计**：完成3个完整设计练习（分布式KV store / rate limiter / log aggregator），每个用Rust写可运行的核心模块，README用英文写设计文档\n\n**开源**：目标升级到medium-complexity issue，争取1个功能性PR被merge\n\n**口语**：切换到全英文讲解自己的系统设计方案，录音回听，修正表达\n\n## Phase 3：模拟冲刺（Week 9-12）\n\n- 每周2次全英文mock interview（系统设计+behavioral各一）\n- 完善GitHub profile：pin 3个Rust项目，写好项目描述\n- 开始投递，目标公司：Cloudflare、Fly.io、Grafana Labs、Turso、Fermyon\n\n---\n\n## 下一步行动（本周）\n\n1. Fork tokio或tikv，找到一个你能修的issue，今天就开始读代码\n2. 开一个 `rust-system-design` 仓库，第一个项目写mini-redis\n3. 订阅一个英文系统设计频道，今天开始第一个25min shadowing\n\n你的C++系统编程底子是核心优势——所有权模型、零成本抽象这些概念对你来说是迁移而不是学习。把精力放在Rust生态工具链（tokio/serde/tonic）和可展示的产出上。"
+}

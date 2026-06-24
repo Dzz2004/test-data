@@ -1,0 +1,105 @@
+[
+  {
+    "template_id": "learning_path_basic",
+    "name": "基础学习路径规划",
+    "applicable_task_types": ["learning_path_planning"],
+    "applicable_interaction_styles": ["信息充分型"],
+    "node_sequence": [
+      "user_input",
+      "need_analysis",
+      "level_diagnosis",
+      "knowledge_graph_query",
+      "skill_gap_analysis",
+      "learning_path_planning",
+      "resource_recommendation",
+      "time_budget_allocation",
+      "feasibility_check",
+      "final_response"
+    ]
+  },
+  {
+    "template_id": "job_oriented_planning",
+    "name": "求职导向路径规划",
+    "applicable_task_types": ["career_roadmap", "learning_path_planning"],
+    "applicable_interaction_styles": ["信息充分型", "偏好强烈型"],
+    "node_sequence": [
+      "user_input",
+      "need_analysis",
+      "job_requirement_search",
+      "level_diagnosis",
+      "skill_gap_analysis",
+      "career_path_analysis",
+      "learning_path_planning",
+      "project_recommendation",
+      "interview_prep_planning",
+      "feasibility_check",
+      "final_response"
+    ]
+  },
+  {
+    "template_id": "clarification_then_plan",
+    "name": "信息不足澄清后规划",
+    "applicable_task_types": ["learning_path_planning", "career_roadmap"],
+    "applicable_interaction_styles": ["信息缺失型", "目标模糊型"],
+    "node_sequence": [
+      "user_input",
+      "need_analysis",
+      "information_sufficiency_check",
+      "agent_clarification",
+      "user_followup",
+      "need_analysis",
+      "level_diagnosis",
+      "learning_path_planning",
+      "feasibility_check",
+      "final_response"
+    ]
+  },
+  {
+    "template_id": "skill_gap_focused",
+    "name": "技能缺口诊断",
+    "applicable_task_types": ["skill_gap_diagnosis"],
+    "applicable_interaction_styles": ["信息充分型"],
+    "node_sequence": [
+      "user_input",
+      "need_analysis",
+      "job_requirement_search",
+      "level_diagnosis",
+      "skill_gap_analysis",
+      "resource_recommendation",
+      "final_response"
+    ]
+  },
+  {
+    "template_id": "interview_preparation",
+    "name": "面试准备规划",
+    "applicable_task_types": ["mock_interview_prep"],
+    "applicable_interaction_styles": ["信息充分型", "偏好强烈型"],
+    "node_sequence": [
+      "user_input",
+      "need_analysis",
+      "job_requirement_search",
+      "level_diagnosis",
+      "interview_prep_planning",
+      "interview_question_search",
+      "time_budget_allocation",
+      "feasibility_check",
+      "final_response"
+    ]
+  },
+  {
+    "template_id": "constraint_revision",
+    "name": "约束变更后修正",
+    "applicable_task_types": ["learning_path_planning", "career_roadmap"],
+    "applicable_interaction_styles": ["反复修改型"],
+    "node_sequence": [
+      "user_input",
+      "need_analysis",
+      "learning_path_planning",
+      "user_constraint_update",
+      "feasibility_check",
+      "plan_revision",
+      "feasibility_check",
+      "final_response"
+    ]
+  }
+]

@@ -1,0 +1,665 @@
+{
+  "trajectory_id": "traj_task_freelancer-indie-developer_4376_565",
+  "domain": "code_development",
+  "template_used": "llm_generated",
+  "user_profile": {
+    "displayName": "苏远",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "独立开发者 / 自由职业全栈工程师",
+    "employmentStatus": "自由职业，接外包项目 + 做独立产品",
+    "experienceSummary": "五年开发经验。前三年在创业公司做全栈（Next.js + Python Flask），负责过两个从 0 到 1 的 SaaS 产品。两年前离职做独立开发，目前有一个小工具产品（浏览器插件 + Web 端）月收入约 8000 元，同时接一些中小公司的外包项目补贴收入。技术栈广但不算深，什么都能做但没有特别突出的方向。",
+    "educationSummary": "普通本科计算机专业，2020 年毕业。在校成绩一般，但动手能力强，大学期间就开始做外包赚零花钱。后续学习主要靠实际项目驱动和 YouTube/Twitter 上的独立开发者社区。",
+    "locationRegion": "成都（远程工作）",
+    "targetRole": "全职独立开发者 / 技术合伙人",
+    "targetIndustries": [
+      "开发者工具",
+      "效率工具",
+      "AI 应用层"
+    ],
+    "shortTermGoal": "把现有产品的 MRR 从 8000 做到 30000 元，减少对外包收入的依赖。同时探索一个 AI wrapper 类的新产品方向。",
+    "longTermGoal": "两年内实现独立产品月入 5 万以上，不再接外包。或者找到合适的技术合伙人机会加入早期团队。",
+    "weeklyTimeBudget": "35 小时（自己分配，但需要兼顾外包交付）",
+    "constraints": [
+      "收入不稳定，不能长时间不产出",
+      "一个人精力有限，不能同时做太多事",
+      "缺少设计能力，UI 是短板",
+      "没有市场营销经验，产品增长纯靠自然流量和社区"
+    ],
+    "workPreferences": [
+      "完全远程，时间自由",
+      "偏好小而美的产品",
+      "喜欢直接面对用户拿反馈",
+      "讨厌冗长的会议和流程"
+    ],
+    "learningPreferences": [
+      "边做边学，需求驱动",
+      "关注独立开发者社区动态（Indie Hackers、Twitter、V2EX）",
+      "喜欢看别人的产品拆解和收入报告"
+    ],
+    "keyStrengths": [
+      "全栈能力覆盖面广，能独立交付完整产品",
+      "对产品有感觉，知道用户要什么",
+      "执行力强，能快速出 MVP",
+      "有实际的付费用户和收入证明"
+    ],
+    "riskSignals": [
+      "技术深度不够，遇到性能瓶颈可能搞不定",
+      "容易分心，同时想做的事情太多",
+      "商业化能力不足，定价和增长策略靠直觉",
+      "长期独立工作可能导致技术视野变窄"
+    ],
+    "portfolioLinks": []
+  },
+  "task": {
+    "task_id": "task_freelancer-indie-developer_4376",
+    "domain": "code_development",
+    "task_type": "learning-plan",
+    "user_id": "freelancer-indie-developer",
+    "task_description": "为 独立开发者 / 自由职业全栈工程师 生成学习路径规划",
+    "initial_user_query": "我想学AI应用开发，但只学能直接用在我产品里的东西，不要底层原理，不要论文，只要能快速出活的实战路线。最好一周不超过5小时，两个月内能独立做出一个AI wrapper产品的MVP。",
+    "interaction_style": "偏好强烈型",
+    "expected_skills": [
+      "独立产品开发",
+      "全栈技术选型",
+      "商业化变现",
+      "DevOps",
+      "产品设计"
+    ]
+  },
+  "nodes": [
+    {
+      "node_id": "node_000",
+      "node_type": "user_input",
+      "name": "user_input",
+      "content": "我想学AI应用开发，但只学能直接用在我产品里的东西，不要底层原理，不要论文，只要能快速出活的实战路线。最好一周不超过5小时，两个月内能独立做出一个AI wrapper产品的MVP。"
+    },
+    {
+      "node_id": "node_001",
+      "node_type": "skill_call",
+      "name": "need_analysis",
+      "skill_id": "need_analysis",
+      "input": {
+        "context": "- user_input: 我想学AI应用开发，但只学能直接用在我产品里的东西，不要底层原理，不要论文，只要能快速出活的实战路线。最好一周不超过5小时，两个月内能独立做出一个AI wrap",
+        "profile_summary": "独立开发者 / 自由职业全栈工程师"
+      },
+      "output": {
+        "parsed_goal": "[需求解析 output for parsed_goal]",
+        "parsed_constraints": "[需求解析 output for parsed_constraints]",
+        "parsed_context": "[需求解析 output for parsed_context]"
+      },
+      "rationale": "执行 需求解析 以推进任务。"
+    },
+    {
+      "node_id": "node_002",
+      "node_type": "tool_call",
+      "name": "tech_trend_search",
+      "tool_id": "tech_trend_search",
+      "input": {
+        "technology": "独立产品开发",
+        "aspect": "demand"
+      },
+      "output": {
+        "result": "mock data not available",
+        "tool_id": "tech_trend_search",
+        "input": {
+          "technology": "独立产品开发",
+          "aspect": "demand"
+        }
+      },
+      "rationale": "根据用户的目标（全职独立开发者 / 技术合伙人），需要调用技术趋势检索获取相关信息。"
+    },
+    {
+      "node_id": "node_003",
+      "node_type": "skill_call",
+      "name": "level_diagnosis",
+      "skill_id": "level_diagnosis",
+      "input": {
+        "context": "- user_input: 我想学AI应用开发，但只学能直接用在我产品里的东西，不要底层原理，不要论文，只要能快速出活的实战路线。最好一周不超过5小时，两个月内能独立做出一个AI wrap\n- need_analysis: 技能输出: parsed_goal, parsed_constraints, parsed_context\n- tech_trend_search: 工具返回: result, tool_id, input",
+        "profile_summary": "独立开发者 / 自由职业全栈工程师"
+      },
+      "output": {
+        "skill_levels": {
+          "frontend": {
+            "level": "高级",
+            "detail": "Next.js 深度使用，有从 0 到 1 产品经验，浏览器插件开发经验证明对浏览器 API 熟悉"
+          },
+          "backend": {
+            "level": "中高级",
+            "detail": "Python Flask 生产级经验，具备 API 设计和服务端逻辑能力，但缺少大规模系统架构经验"
+          },
+          "devops_infra": {
+            "level": "中级",
+            "detail": "独立开发者必然自己处理部署和运维，但大概率停留在 Vercel/Railway 等托管平台层面，未深入 K8s 或复杂基础设施"
+          },
+          "ai_ml": {
+            "level": "初级",
+            "detail": "无明确 AI/ML 项目经验，但 Python 基础扎实，调用 API 的能力不成问题，缺的是 prompt engineering、向量数据库、RAG 等应用层模式"
+          },
+          "product_design": {
+            "level": "中级",
+            "detail": "有两个 SaaS 从 0 到 1 经验，说明产品感觉不差，但自述 UI 是短板，视觉设计和交互细节弱"
+          },
+          "business_growth": {
+            "level": "中初级",
+            "detail": "已有产品但收入不稳定，说明分发、定价、留存等增长环节仍在摸索"
+          }
+        },
+        "experience_assessment": {
+          "total_years": 5,
+          "career_stage": "中级偏高，正在从执行者向产品负责人/技术决策者过渡",
+          "project_depth": "有完整产品周期经验（0→1→运营），这是做 AI wrapper 产品最关键的前置能力",
+          "independence": "高，已独立运行产品两年，具备自驱力和全链路交付能力"
+        },
+        "strength_areas": [
+          "全栈交付能力强，能一个人搞定前后端和上线",
+          "Python + Next.js 技术栈与 AI 应用开发主流生态高度吻合（LangChain/OpenAI SDK 是 Python，前端用 Next.js 接）",
+          "有产品从 0 到 1 的完整经验，不会在 MVP 阶段过度设计",
+          "浏览器插件经验意味着对用户侧数据采集、上下文注入有理解，这在 AI wrapper 产品中是差异化能力",
+          "独立开发习惯已养成，时间管理和自驱力不是瓶颈"
+        ],
+        "weak_areas": [
+          {
+            "area": "AI 应用模式认知",
+            "gap": "不了解 prompt engineering、RAG、function calling、agent 等应用层范式",
+            "impact": "直接影响能否设计出合理的 AI 产品架构",
+            "urgency": "高 - 这是本次学习路径的核心目标"
+          },
+          {
+            "area": "UI/UX 设计",
+            "gap": "自述短板，AI 产品的交互体验（流式输出、对话界面、结果呈现）对设计要求不低",
+            "impact": "影响产品第一印象和用户留存",
+            "urgency": "中 - 可用 shadcn/ui + v0.dev 等工具缓解，不需要系统学设计"
+          },
+          {
+            "area": "增长与变现",
+            "gap": "当前产品收入不稳定，说明 PMF 验证和分发渠道未跑通",
+            "impact": "即使做出 AI MVP 也可能重复收入不稳定的困境",
+            "urgency": "中 - 两个月内先聚焦出产品，但需要在产品设计阶段就考虑变现模型"
+          },
+          {
+            "area": "成本控制意识",
+            "gap": "AI API 调用成本非零，独立开发者对 token 用量、缓存策略、模型选择的成本优化缺乏经验",
+            "impact": "可能导致产品上线后利润被 API 成本吃掉",
+            "urgency": "低 - MVP 阶段量小，但架构设计时要预留优化空间"
+          }
+        ]
+      },
+      "rationale": "用户的技术栈（Python + Next.js）与 AI 应用开发主流生态高度契合，核心差距仅在 AI 应用层模式，结合其强交付能力，两个月出 MVP 的目标切实可行，诊断结果为后续学习路径聚焦方向提供依据。"
+    },
+    {
+      "node_id": "node_004",
+      "node_type": "tool_call",
+      "name": "knowledge_graph_query",
+      "tool_id": "knowledge_graph_query",
+      "input": {
+        "target_skill": "独立产品开发",
+        "depth": 2
+      },
+      "output": {
+        "dependencies": [
+          {
+            "skill": "基础语法",
+            "relation": "prerequisite",
+            "is_required": true
+          },
+          {
+            "skill": "数据结构",
+            "relation": "prerequisite",
+            "is_required": true
+          },
+          {
+            "skill": "项目实践",
+            "relation": "application",
+            "is_required": false
+          }
+        ],
+        "learning_order": [
+          "基础语法",
+          "数据结构",
+          "框架入门",
+          "项目实践",
+          "进阶优化"
+        ]
+      },
+      "rationale": "根据用户的目标（全职独立开发者 / 技术合伙人），需要调用知识依赖图谱查询获取相关信息。"
+    },
+    {
+      "node_id": "node_005",
+      "node_type": "skill_call",
+      "name": "skill_gap_analysis",
+      "skill_id": "skill_gap_analysis",
+      "input": {
+        "context": "- need_analysis: 技能输出: parsed_goal, parsed_constraints, parsed_context\n- tech_trend_search: 工具返回: result, tool_id, input\n- level_diagnosis: 技能输出: skill_levels, experience_assessment, strength_areas\n- knowledge_graph_query: 工具返回: dependencies, learning_order",
+        "profile_summary": "独立开发者 / 自由职业全栈工程师"
+      },
+      "output": {
+        "skill_gaps": [
+          {
+            "skill": "LLM API 集成与 Prompt Engineering",
+            "current_level": "了解概念，用过 ChatGPT，但未在产品中集成过 LLM API",
+            "target_level": "能熟练调用 OpenAI/Claude API，掌握 system prompt 设计、few-shot、输出格式控制，能处理 streaming 响应",
+            "gap_type": "核心技能缺失"
+          },
+          {
+            "skill": "AI 应用架构模式（AI Wrapper 产品设计）",
+            "current_level": "有 SaaS 产品架构经验，但不了解 AI 应用特有的架构模式",
+            "target_level": "掌握 RAG、Chain、Agent 等常见模式的适用场景与实现方式，能独立选型并落地一个完整的 AI 功能模块",
+            "gap_type": "核心技能缺失"
+          },
+          {
+            "skill": "向量数据库与 Embedding",
+            "current_level": "零基础",
+            "target_level": "能使用 Pinecone/Supabase pgvector 等服务完成文本向量化、存储与相似度检索，支撑 RAG 场景",
+            "gap_type": "关键依赖技能"
+          },
+          {
+            "skill": "LangChain / Vercel AI SDK 等框架使用",
+            "current_level": "未使用过",
+            "target_level": "至少熟练掌握一个框架（推荐 Vercel AI SDK，贴合现有 Next.js 技术栈），能快速搭建对话、补全、RAG 等功能",
+            "gap_type": "效率加速技能"
+          },
+          {
+            "skill": "AI 产品的成本控制与速率限制处理",
+            "current_level": "有通用 API 限流经验，但不了解 token 计费、上下文窗口管理",
+            "target_level": "能设计 token 预算策略、实现缓存层、处理 rate limit 与 fallback 逻辑",
+            "gap_type": "产品化必备技能"
+          },
+          {
+            "skill": "AI 功能的产品化体验设计（加载态、流式输出、错误兜底）",
+            "current_level": "有前端交互经验，但缺乏 AI 特有的 UX 模式认知",
+            "target_level": "能实现 streaming UI、打字机效果、生成中断、结果评价反馈等 AI 产品标配交互",
+            "gap_type": "体验差异化技能"
+          }
+        ],
+        "priority_ranking": [
+          {
+            "rank": 1,
+            "skill": "LLM API 集成与 Prompt Engineering",
+            "reason": "一切 AI Wrapper 产品的基础，不会调 API 什么都做不了。且学习曲线平缓，能最快产出成果。"
+          },
+          {
+            "rank": 2,
+            "skill": "LangChain / Vercel AI SDK 等框架使用",
+            "reason": "直接复用 Next.js 技术栈，Vercel AI SDK 可将集成时间从天缩短到小时级。"
+          },
+          {
+            "rank": 3,
+            "skill": "AI 应用架构模式",
+            "reason": "决定产品形态和技术选型方向，在动手做 MVP 之前必须有清晰认知，避免返工。"
+          },
+          {
+            "rank": 4,
+            "skill": "向量数据库与 Embedding",
+            "reason": "如果 MVP 涉及知识库/文档问答场景则为必需项；若是纯对话/生成类产品可延后。"
+          },
+          {
+            "rank": 5,
+            "skill": "AI 功能的产品化体验设计",
+            "reason": "影响用户感知质量，但可以在核心功能跑通后再打磨。"
+          },
+          {
+            "rank": 6,
+            "skill": "AI 产品的成本控制与速率限制处理",
+            "reason": "MVP 阶段用户量小，成本可控；产品验证通过后再系统优化不迟。"
+          }
+        ],
+        "gap_severity": {
+          "overall_assessment": "中等偏低",
+          "explanation": "用户已有扎实的全栈工程能力（Next.js + Python）和从 0 到 1 的产品经验，AI 应用开发的核心门槛（API 集成、数据流处理、产品化）与其现有技能高度重合。真正的'新知识'集中在 LLM API 调用模式和 Prompt Engineering 这一层，属于'新工具学习'而非'新领域入门'。两个月内完成 MVP 的目标在每周 5 小时的约束下可行。",
+          "risk_factors": [
+            "Prompt Engineering 需要大量试错迭代，可能超出预估时间",
+            "如果 MVP 选型涉及 RAG，向量数据库学习成本会挤占有限时间",
+            "AI API 成本不可预测，可能影响独立开发者的现金流约束"
+          ],
+          "confidence": "高 — 基于用户现有技术栈与目标技术的重合度判断"
+        }
+      },
+      "rationale": "用户已有完整的全栈产品能力，技能缺口集中在 AI 应用层的工具链和模式认知，而非底层能力不足，因此需精确识别'差什么'和'先补什么'以匹配其时间约束和快速出活的诉求。"
+    },
+    {
+      "node_id": "node_006",
+      "node_type": "skill_call",
+      "name": "learning_path_planning",
+      "skill_id": "learning_path_planning",
+      "input": {
+        "context": "- tech_trend_search: 工具返回: result, tool_id, input\n- level_diagnosis: 技能输出: skill_levels, experience_assessment, strength_areas\n- knowledge_graph_query: 工具返回: dependencies, learning_order\n- skill_gap_analysis: 技能输出: skill_gaps, priority_ranking, gap_severity",
+        "profile_summary": "独立开发者 / 自由职业全栈工程师"
+      },
+      "output": {
+        "learning_stages": [
+          {
+            "stage": 1,
+            "name": "基础工具链搭建",
+            "duration": "第1-2周",
+            "goal": "跑通 OpenAI/Claude API 调用链路，理解 prompt 工程基本模式",
+            "topics": [
+              "OpenAI / Anthropic API 接入（Chat Completions、streaming）",
+              "Prompt 模板设计与变量注入",
+              "Vercel AI SDK 快速集成到 Next.js",
+              "API Key 管理与用量控制"
+            ],
+            "deliverable": "在现有产品技术栈（Next.js）中跑通一个可 stream 输出的 AI 对话接口"
+          },
+          {
+            "stage": 2,
+            "name": "核心能力模块化",
+            "duration": "第3-4周",
+            "goal": "掌握 RAG、结构化输出、Function Calling 三板斧",
+            "topics": [
+              "Function Calling / Tool Use 实现外部能力调用",
+              "结构化输出（JSON mode、Zod schema 约束）",
+              "轻量 RAG：文本分块 + Embedding + 向量检索（用 Supabase pgvector 或 Pinecone）",
+              "Prompt Chain 编排（简单的多步推理）"
+            ],
+            "deliverable": "一个能读取用户上传文档并基于内容回答问题的功能原型"
+          },
+          {
+            "stage": 3,
+            "name": "产品化封装",
+            "duration": "第5-6周",
+            "goal": "把 AI 能力包装成可交付的产品功能，处理边界情况",
+            "topics": [
+              "流式 UI 体验优化（加载态、逐字输出、中断处理）",
+              "Token 用量计费与用户配额设计",
+              "错误处理与降级策略（rate limit、超时、模型切换）",
+              "用户输入安全（prompt injection 基本防护）",
+              "使用 v0/shadcn 快速搭建 AI 交互界面（补 UI 短板）"
+            ],
+            "deliverable": "具备完整用户体验的 AI 功能模块，含配额、错误处理、安全防护"
+          },
+          {
+            "stage": 4,
+            "name": "MVP 整合与发布",
+            "duration": "第7-8周",
+            "goal": "完成 AI wrapper 产品 MVP 并上线获取首批用户",
+            "topics": [
+              "产品定位确认与最小功能集裁剪",
+              "Stripe/LemonSqueezy 付费集成",
+              "部署优化（Edge Function、冷启动、成本控制）",
+              "Landing page 快速搭建与 ProductHunt/Twitter 冷启动",
+              "用户反馈收集与快速迭代循环"
+            ],
+            "deliverable": "可公开访问、可付费的 AI wrapper 产品 MVP"
+          }
+        ],
+        "weekly_plan": {
+          "time_budget": "每周 5 小时",
+          "structure": {
+            "学习输入": "1.5 小时/周（看教程、读文档、看别人产品拆解）",
+            "动手实践": "3 小时/周（直接在自己项目中写代码）",
+            "复盘输出": "0.5 小时/周（记录踩坑、更新 TODO、发 build in public 推文）"
+          },
+          "recommended_resources": [
+            "Vercel AI SDK 官方文档（直接对应 Next.js 技术栈）",
+            "OpenAI Cookbook（按需查阅具体 pattern）",
+            "YouTube: AI Jason / 花生酱 的 AI 产品拆解视频（每个 10-15 分钟）",
+            "v0.dev 生成 UI 组件（跳过设计环节）"
+          ],
+          "anti_patterns": [
+            "不看 Transformer 论文、不学模型微调",
+            "不搭本地模型、不折腾 GPU 部署",
+            "不做通用 chatbot，聚焦垂直场景",
+            "不同时学超过一个新框架（LangChain/LlamaIndex 二选一，建议先跳过都不用，直接裸调 API）"
+          ]
+        },
+        "milestones": [
+          {
+            "week": 2,
+            "checkpoint": "API 调通 + Streaming 跑通",
+            "validation": "在本地 Next.js 项目中有一个 /api/chat 路由能流式返回 AI 回答",
+            "go_no_go": "如果卡住，说明 Next.js API route 或异步流处理有盲区，花 1 小时补"
+          },
+          {
+            "week": 4,
+            "checkpoint": "核心 AI 功能原型可用",
+            "validation": "能 demo 一个「上传文件 → 提问 → 基于文件内容回答」的完整流程",
+            "go_no_go": "此时应确定 MVP 的产品方向，如果还没想清楚做什么产品，本周必须定下来"
+          },
+          {
+            "week": 6,
+            "checkpoint": "产品级体验完成",
+            "validation": "非技术朋友能顺畅使用，无明显报错或卡顿，有基本的付费墙",
+            "go_no_go": "如果 UI 仍然很粗糙，用 v0 生成一版标准化界面，不要手写"
+          },
+          {
+            "week": 8,
+            "checkpoint": "MVP 公开发布",
+            "validation": "产品上线、有 landing page、至少 10 个真实用户试用、收到至少 3 条反馈",
+            "go_no_go": "能否收到付费意愿信号决定是否继续投入迭代"
+          }
+        ]
+      },
+      "rationale": "基于用户「只要能快速出活」的约束，将学习路径完全锚定在其现有技术栈（Next.js）上，跳过所有底层原理，按产出驱动分阶段推进，确保每阶段都有可验证的交付物，且总时间控制在 40 小时以内完成 MVP。"
+    },
+    {
+      "node_id": "node_007",
+      "node_type": "tool_call",
+      "name": "project_repository_search",
+      "tool_id": "project_repository_search",
+      "input": {
+        "tech_stack": [
+          "独立产品开发",
+          "全栈技术选型",
+          "商业化变现"
+        ],
+        "difficulty": "intermediate"
+      },
+      "output": {
+        "projects": [
+          {
+            "name": "Todo App",
+            "difficulty": "beginner",
+            "estimated_hours": 10,
+            "learning_outcomes": [
+              "基础CRUD",
+              "状态管理"
+            ]
+          },
+          {
+            "name": "Blog System",
+            "difficulty": "intermediate",
+            "estimated_hours": 30,
+            "learning_outcomes": [
+              "认证授权",
+              "数据库设计",
+              "部署"
+            ]
+          },
+          {
+            "name": "Real-time Chat",
+            "difficulty": "intermediate",
+            "estimated_hours": 40,
+            "learning_outcomes": [
+              "WebSocket",
+              "并发处理",
+              "消息存储"
+            ]
+          }
+        ]
+      },
+      "rationale": "根据用户的目标（全职独立开发者 / 技术合伙人），需要调用项目库检索获取相关信息。"
+    },
+    {
+      "node_id": "node_008",
+      "node_type": "tool_call",
+      "name": "course_resource_search",
+      "tool_id": "course_resource_search",
+      "input": {
+        "skill_name": "独立产品开发",
+        "difficulty": "intermediate"
+      },
+      "output": {
+        "resources": [
+          {
+            "name": "官方文档",
+            "type": "text",
+            "difficulty": "varies",
+            "estimated_hours": 20,
+            "rating": 4.5
+          },
+          {
+            "name": "实战课程",
+            "type": "video",
+            "difficulty": "intermediate",
+            "estimated_hours": 40,
+            "rating": 4.3
+          },
+          {
+            "name": "开源项目源码",
+            "type": "code",
+            "difficulty": "advanced",
+            "estimated_hours": 60,
+            "rating": 4.7
+          }
+        ]
+      },
+      "rationale": "根据用户的目标（全职独立开发者 / 技术合伙人），需要调用课程资源检索获取相关信息。"
+    },
+    {
+      "node_id": "node_009",
+      "node_type": "skill_call",
+      "name": "feasibility_check",
+      "skill_id": "feasibility_check",
+      "input": {
+        "context": "- skill_gap_analysis: 技能输出: skill_gaps, priority_ranking, gap_severity\n- learning_path_planning: 技能输出: learning_stages, weekly_plan, milestones\n- project_repository_search: 工具返回: projects\n- course_resource_search: 工具返回: resources",
+        "profile_summary": "独立开发者 / 自由职业全栈工程师"
+      },
+      "output": {
+        "feasibility_result": {
+          "overall_verdict": "可行，但需严格控制范围",
+          "confidence": 0.78,
+          "summary": "以用户现有全栈能力（Next.js + Python Flask）为基础，两个月内每周5小时做出一个AI wrapper MVP是可行的。核心前提是：复用已有技术栈、使用现成API而非自建模型、MVP功能极度精简。风险集中在时间弹性不足和UI短板上。"
+        },
+        "risk_items": [
+          {
+            "risk_id": "R1",
+            "category": "时间约束",
+            "description": "每周5小时总计约40小时，需覆盖学习+开发+调试+部署。如果在prompt engineering或API调试上踩坑，时间预算容易超支。",
+            "severity": "中",
+            "probability": "高",
+            "impact": "MVP延期1-2周或功能缩水"
+          },
+          {
+            "risk_id": "R2",
+            "category": "收入压力",
+            "description": "两个月学习期间产出为零。用户收入不稳定，如果期间需要接单补贴收入，实际可用时间会进一步压缩。",
+            "severity": "高",
+            "probability": "中",
+            "impact": "计划中断或拉长至3个月以上"
+          },
+          {
+            "risk_id": "R3",
+            "category": "UI/设计短板",
+            "description": "AI wrapper产品通常是对话界面或表单+结果展示，用户自述UI是短板。如果产品需要良好的用户体验才能验证市场，UI粗糙可能导致无法获取有效用户反馈。",
+            "severity": "中",
+            "probability": "高",
+            "impact": "产品上线后转化率低，无法验证PMF"
+          },
+          {
+            "risk_id": "R4",
+            "category": "API成本不确定性",
+            "description": "OpenAI/Claude等API调用有成本，开发调试阶段token消耗难以精确预估，可能产生超预期费用。",
+            "severity": "低",
+            "probability": "中",
+            "impact": "额外支出50-200美元，对收入不稳定者有心理压力"
+          },
+          {
+            "risk_id": "R5",
+            "category": "范围蔓延",
+            "description": "独立开发者容易在探索AI能力时产生新想法，功能不断膨胀导致MVP无法按时交付。",
+            "severity": "中",
+            "probability": "中",
+            "impact": "两个月结束时产品仍在开发中"
+          }
+        ],
+        "adjustment_suggestions": [
+          {
+            "针对风险": "R1",
+            "建议": "将两个月拆成「3周学习 + 5周开发」而非匀速学习。前3周集中学Prompt Engineering和API集成（边学边写demo），第4周起全部时间投入MVP开发。学习内容严格限定为：OpenAI API调用、流式输出、基础prompt模板，不碰RAG/向量数据库等进阶内容。"
+          },
+          {
+            "针对风险": "R2",
+            "建议": "将AI学习与现有产品结合——给现有浏览器插件加一个AI功能作为MVP，而非从零起一个新产品。这样既学了技术又给现有产品增值，不存在纯学习零产出的阶段。"
+          },
+          {
+            "针对风险": "R3",
+            "建议": "UI方案锁定为：使用shadcn/ui或v0.dev生成界面，选择chat界面模板（成熟且用户认知门槛低）。或者做CLI工具/API服务型产品，完全绕开UI问题。"
+          },
+          {
+            "针对风险": "R4",
+            "建议": "开发阶段优先使用免费额度（OpenAI新账户5美元额度、Claude免费tier）或本地Ollama跑小模型做调试，正式上线再切换到付费API。设定月度API预算上限50美元。"
+          },
+          {
+            "针对风险": "R5",
+            "建议": "第一周就锁定MVP范围，写成一句话：「用户输入X，AI返回Y」。任何超出这个核心loop的功能一律放到v2。建议用一个notion页面列出「不做清单」来约束自己。"
+          },
+          {
+            "针对风险": "整体",
+            "建议": "设置第4周为检查点：如果此时还没开始写MVP代码，说明学习路径需要压缩或计划需要延长。提前接受「两个月是乐观估计，三个月是安全估计」的心理预期。"
+          }
+        ]
+      },
+      "rationale": "用户时间、精力、收入三重约束下，需要验证40小时总预算是否足够覆盖从学习到交付的全流程，并识别最可能导致计划失败的风险点以便提前干预。"
+    },
+    {
+      "node_id": "node_010",
+      "node_type": "agent_response",
+      "name": "final_response",
+      "content": "# AI 应用开发实战路线（8周，≤5h/周）\n\n## 你的起点优势\n\n全栈工程师转 AI 应用开发，不需要从零开始。你缺的不是编程能力，而是对 LLM API 生态的熟悉度和 prompt 工程的实操经验。\n\n## 8 周路线\n\n**第 1-2 周：基础接入（10h）**\n- 跑通 OpenAI / Claude API 调用，理解 token、temperature、streaming\n- 学 prompt engineering 核心模式（few-shot、chain-of-thought、system prompt 设计）\n- 产出：一个能对话的 CLI 工具\n\n**第 3-4 周：产品化能力（10h）**\n- RAG 管道搭建（文档切片 → embedding → 向量检索 → 上下文注入）\n- 工具：LangChain 或 Vercel AI SDK（选一个，别都学）\n- 产出：一个能基于自有文档回答问题的 API\n\n**第 5-6 周：MVP 开发（10h）**\n- 选定你的产品方向，搭建前后端\n- 加入用户鉴权、对话历史、流式输出、错误兜底\n- 产出：可部署的 MVP\n\n**第 7-8 周：打磨上线（10h）**\n- 成本控制（缓存、token 限流）、基础 eval 测试\n- 部署上线，收集真实用户反馈\n- 产出：可分享的在线产品\n\n## 资源精选（不贪多）\n\n- Vercel AI SDK 文档 — 前端集成最快路径\n- OpenAI Cookbook（GitHub）— 官方实战示例\n- BuildSpace 或 Ship 类社区 — 保持节奏和动力\n\n## 下一步行动\n\n今天就做一件事：用你熟悉的技术栈，调通一次 Claude 或 GPT API 的流式返回，打印到终端。这个 10 分钟的动作会让后面所有步骤变得具体。"
+    }
+  ],
+  "edges": [
+    {
+      "from": "node_000",
+      "to": "node_001",
+      "relation": "user_input 的输出被 need_analysis 使用"
+    },
+    {
+      "from": "node_001",
+      "to": "node_002",
+      "relation": "need_analysis 的输出被 tech_trend_search 使用"
+    },
+    {
+      "from": "node_002",
+      "to": "node_003",
+      "relation": "tech_trend_search 的输出被 level_diagnosis 使用"
+    },
+    {
+      "from": "node_003",
+      "to": "node_004",
+      "relation": "level_diagnosis 的输出被 knowledge_graph_query 使用"
+    },
+    {
+      "from": "node_004",
+      "to": "node_005",
+      "relation": "knowledge_graph_query 的输出被 skill_gap_analysis 使用"
+    },
+    {
+      "from": "node_005",
+      "to": "node_006",
+      "relation": "skill_gap_analysis 的输出被 learning_path_planning 使用"
+    },
+    {
+      "from": "node_006",
+      "to": "node_007",
+      "relation": "learning_path_planning 的输出被 project_repository_search 使用"
+    },
+    {
+      "from": "node_007",
+      "to": "node_008",
+      "relation": "project_repository_search 的输出被 course_resource_search 使用"
+    },
+    {
+      "from": "node_008",
+      "to": "node_009",
+      "relation": "course_resource_search 的输出被 feasibility_check 使用"
+    },
+    {
+      "from": "node_009",
+      "to": "node_010",
+      "relation": "feasibility_check 的输出被 final_response 使用"
+    }
+  ],
+  "final_response": "# AI 应用开发实战路线（8周，≤5h/周）\n\n## 你的起点优势\n\n全栈工程师转 AI 应用开发，不需要从零开始。你缺的不是编程能力，而是对 LLM API 生态的熟悉度和 prompt 工程的实操经验。\n\n## 8 周路线\n\n**第 1-2 周：基础接入（10h）**\n- 跑通 OpenAI / Claude API 调用，理解 token、temperature、streaming\n- 学 prompt engineering 核心模式（few-shot、chain-of-thought、system prompt 设计）\n- 产出：一个能对话的 CLI 工具\n\n**第 3-4 周：产品化能力（10h）**\n- RAG 管道搭建（文档切片 → embedding → 向量检索 → 上下文注入）\n- 工具：LangChain 或 Vercel AI SDK（选一个，别都学）\n- 产出：一个能基于自有文档回答问题的 API\n\n**第 5-6 周：MVP 开发（10h）**\n- 选定你的产品方向，搭建前后端\n- 加入用户鉴权、对话历史、流式输出、错误兜底\n- 产出：可部署的 MVP\n\n**第 7-8 周：打磨上线（10h）**\n- 成本控制（缓存、token 限流）、基础 eval 测试\n- 部署上线，收集真实用户反馈\n- 产出：可分享的在线产品\n\n## 资源精选（不贪多）\n\n- Vercel AI SDK 文档 — 前端集成最快路径\n- OpenAI Cookbook（GitHub）— 官方实战示例\n- BuildSpace 或 Ship 类社区 — 保持节奏和动力\n\n## 下一步行动\n\n今天就做一件事：用你熟悉的技术栈，调通一次 Claude 或 GPT API 的流式返回，打印到终端。这个 10 分钟的动作会让后面所有步骤变得具体。"
+}

@@ -1,0 +1,55 @@
+{
+  "frontend": {
+    "React": {"prerequisites": ["JavaScript", "HTML/CSS"], "difficulty": "intermediate"},
+    "Vue": {"prerequisites": ["JavaScript", "HTML/CSS"], "difficulty": "intermediate"},
+    "TypeScript": {"prerequisites": ["JavaScript"], "difficulty": "intermediate"},
+    "Next.js": {"prerequisites": ["React", "Node.js"], "difficulty": "advanced"},
+    "CSS/Tailwind": {"prerequisites": ["HTML/CSS"], "difficulty": "beginner"},
+    "浏览器原理": {"prerequisites": ["JavaScript", "HTML/CSS"], "difficulty": "advanced"},
+    "性能优化": {"prerequisites": ["浏览器原理", "JavaScript"], "difficulty": "advanced"},
+    "工程化(Webpack/Vite)": {"prerequisites": ["Node.js", "JavaScript"], "difficulty": "intermediate"}
+  },
+  "backend": {
+    "Node.js": {"prerequisites": ["JavaScript"], "difficulty": "intermediate"},
+    "Python Flask/FastAPI": {"prerequisites": ["Python"], "difficulty": "intermediate"},
+    "Django": {"prerequisites": ["Python"], "difficulty": "intermediate"},
+    "Spring Boot": {"prerequisites": ["Java"], "difficulty": "intermediate"},
+    "Go 微服务": {"prerequisites": ["Go", "HTTP/REST"], "difficulty": "advanced"},
+    "数据库设计": {"prerequisites": ["SQL"], "difficulty": "intermediate"},
+    "Redis": {"prerequisites": ["数据库设计"], "difficulty": "intermediate"},
+    "消息队列": {"prerequisites": ["分布式基础"], "difficulty": "advanced"},
+    "微服务架构": {"prerequisites": ["HTTP/REST", "数据库设计", "Docker"], "difficulty": "advanced"}
+  },
+  "infrastructure": {
+    "Linux": {"prerequisites": [], "difficulty": "beginner"},
+    "Docker": {"prerequisites": ["Linux"], "difficulty": "intermediate"},
+    "Kubernetes": {"prerequisites": ["Docker", "Linux"], "difficulty": "advanced"},
+    "CI/CD": {"prerequisites": ["Git", "Docker"], "difficulty": "intermediate"},
+    "云服务(AWS/GCP)": {"prerequisites": ["Linux", "Docker"], "difficulty": "intermediate"},
+    "监控与可观测性": {"prerequisites": ["Linux", "Docker"], "difficulty": "advanced"}
+  },
+  "fundamentals": {
+    "数据结构": {"prerequisites": ["任一编程语言"], "difficulty": "intermediate"},
+    "算法": {"prerequisites": ["数据结构"], "difficulty": "intermediate"},
+    "操作系统": {"prerequisites": [], "difficulty": "advanced"},
+    "计算机网络": {"prerequisites": [], "difficulty": "intermediate"},
+    "设计模式": {"prerequisites": ["面向对象编程"], "difficulty": "intermediate"},
+    "系统设计": {"prerequisites": ["计算机网络", "数据库设计", "分布式基础"], "difficulty": "advanced"}
+  },
+  "languages": {
+    "Python": {"prerequisites": [], "difficulty": "beginner"},
+    "JavaScript": {"prerequisites": [], "difficulty": "beginner"},
+    "Java": {"prerequisites": [], "difficulty": "beginner"},
+    "Go": {"prerequisites": [], "difficulty": "intermediate"},
+    "Rust": {"prerequisites": ["C/C++基础"], "difficulty": "advanced"},
+    "SQL": {"prerequisites": [], "difficulty": "beginner"},
+    "HTML/CSS": {"prerequisites": [], "difficulty": "beginner"}
+  },
+  "specialized": {
+    "机器学习": {"prerequisites": ["Python", "线性代数", "统计学"], "difficulty": "advanced"},
+    "深度学习": {"prerequisites": ["机器学习"], "difficulty": "advanced"},
+    "WebAssembly": {"prerequisites": ["C/C++基础", "JavaScript"], "difficulty": "advanced"},
+    "区块链开发": {"prerequisites": ["分布式基础", "密码学基础"], "difficulty": "advanced"},
+    "音视频开发": {"prerequisites": ["C/C++基础", "操作系统"], "difficulty": "advanced"}
+  }
+}

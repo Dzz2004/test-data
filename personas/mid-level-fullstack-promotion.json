@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "personaId": "mid-level-fullstack-promotion",
+    "archetype": "在职晋升",
+    "careerStage": "mid",
+    "urgency": "exploring",
+    "expectedSkills": ["系统设计", "微服务架构", "性能优化", "技术方案评审", "团队协作与 mentoring"],
+    "expectedPlanComplexity": "medium",
+    "testScenarios": ["learning-plan", "career-roadmap", "mock-interview"]
+  },
+  "profile": {
+    "displayName": "张明远",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "全栈开发工程师（P6）",
+    "employmentStatus": "在职，某中型互联网公司",
+    "experienceSummary": "四年全栈开发经验。前两年主要写 React + Node.js 的中后台系统，后两年转到核心业务组，负责用户增长相关的全链路开发（React Native 客户端 + Go 微服务）。主导过用户邀请系统的重构，DAU 从 50 万扩到 200 万时保证了服务稳定。带过一个两人小组做过一个季度的项目。",
+    "educationSummary": "985 大学软件工程本科，2021 年毕业。在校期间参加过 ACM 校赛拿过三等奖，对算法有一定基础。毕业后主要通过实际项目和技术博客学习，偶尔看架构类书籍。",
+    "locationRegion": "杭州",
+    "targetRole": "高级全栈工程师 / 技术 TL（P7）",
+    "targetIndustries": ["互联网", "企业服务", "出海产品"],
+    "shortTermGoal": "下个晋升周期（6 个月后）冲 P7，需要补齐系统设计能力和技术影响力方面的短板",
+    "longTermGoal": "三年内成为能带 5-8 人团队的技术 TL，有能力主导中型系统的架构设计",
+    "weeklyTimeBudget": "10 小时（工作日晚上 + 周末，在职状态）",
+    "constraints": ["在职时间有限，学习必须高效聚焦", "公司技术栈以 Go + React 为主，新学的东西最好能用上", "晋升答辩需要体现技术深度和业务价值，不能只做广度学习"],
+    "workPreferences": ["喜欢有挑战的核心业务", "希望有更多架构决策权", "不想做纯管理，技术不能丢"],
+    "learningPreferences": ["看书 + 实际项目结合", "喜欢研究开源项目源码", "写技术博客倒逼输出"],
+    "keyStrengths": ["全栈能力均衡，前后端都能独立搞定", "有高并发实战经验", "代码质量意识强，CR 反馈通常一次过", "沟通能力不错，跨团队协作顺畅"],
+    "riskSignals": ["系统设计面试类问题回答不够结构化", "缺乏从 0 到 1 的架构经验，都是在已有系统上迭代", "技术影响力不足，没有内部分享或外部输出", "带人经验太少，对团队管理缺乏方法论"],
+    "portfolioLinks": []
+  }
+}

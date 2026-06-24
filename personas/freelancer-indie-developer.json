@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "personaId": "freelancer-indie-developer",
+    "archetype": "自由职业",
+    "careerStage": "mid",
+    "urgency": "exploring",
+    "expectedSkills": ["独立产品开发", "全栈技术选型", "商业化变现", "DevOps", "产品设计"],
+    "expectedPlanComplexity": "light",
+    "testScenarios": ["learning-plan", "career-roadmap"]
+  },
+  "profile": {
+    "displayName": "苏远",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "独立开发者 / 自由职业全栈工程师",
+    "employmentStatus": "自由职业，接外包项目 + 做独立产品",
+    "experienceSummary": "五年开发经验。前三年在创业公司做全栈（Next.js + Python Flask），负责过两个从 0 到 1 的 SaaS 产品。两年前离职做独立开发，目前有一个小工具产品（浏览器插件 + Web 端）月收入约 8000 元，同时接一些中小公司的外包项目补贴收入。技术栈广但不算深，什么都能做但没有特别突出的方向。",
+    "educationSummary": "普通本科计算机专业，2020 年毕业。在校成绩一般，但动手能力强，大学期间就开始做外包赚零花钱。后续学习主要靠实际项目驱动和 YouTube/Twitter 上的独立开发者社区。",
+    "locationRegion": "成都（远程工作）",
+    "targetRole": "全职独立开发者 / 技术合伙人",
+    "targetIndustries": ["开发者工具", "效率工具", "AI 应用层"],
+    "shortTermGoal": "把现有产品的 MRR 从 8000 做到 30000 元，减少对外包收入的依赖。同时探索一个 AI wrapper 类的新产品方向。",
+    "longTermGoal": "两年内实现独立产品月入 5 万以上，不再接外包。或者找到合适的技术合伙人机会加入早期团队。",
+    "weeklyTimeBudget": "35 小时（自己分配，但需要兼顾外包交付）",
+    "constraints": ["收入不稳定，不能长时间不产出", "一个人精力有限，不能同时做太多事", "缺少设计能力，UI 是短板", "没有市场营销经验，产品增长纯靠自然流量和社区"],
+    "workPreferences": ["完全远程，时间自由", "偏好小而美的产品", "喜欢直接面对用户拿反馈", "讨厌冗长的会议和流程"],
+    "learningPreferences": ["边做边学，需求驱动", "关注独立开发者社区动态（Indie Hackers、Twitter、V2EX）", "喜欢看别人的产品拆解和收入报告"],
+    "keyStrengths": ["全栈能力覆盖面广，能独立交付完整产品", "对产品有感觉，知道用户要什么", "执行力强，能快速出 MVP", "有实际的付费用户和收入证明"],
+    "riskSignals": ["技术深度不够，遇到性能瓶颈可能搞不定", "容易分心，同时想做的事情太多", "商业化能力不足，定价和增长策略靠直觉", "长期独立工作可能导致技术视野变窄"],
+    "portfolioLinks": []
+  }
+}

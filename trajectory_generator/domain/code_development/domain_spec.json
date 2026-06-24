@@ -1,0 +1,18 @@
+{
+  "domain_id": "code_development",
+  "domain_name": "代码开发工程师职业发展",
+  "description": "面向不同阶段的代码开发工程师，生成职业规划、学习路径、面试准备等场景的 agent 轨迹数据",
+  "task_types": [
+    "learning_path_planning",
+    "skill_gap_diagnosis",
+    "career_roadmap",
+    "mock_interview_prep",
+    "project_recommendation",
+    "tech_stack_selection"
+  ],
+  "supported_interaction_modes": [
+    "single_turn",
+    "multi_turn_clarification",
+    "multi_turn_revision"
+  ]
+}

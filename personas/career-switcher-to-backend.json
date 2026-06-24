@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "personaId": "career-switcher-to-backend",
+    "archetype": "转行者",
+    "careerStage": "entry",
+    "urgency": "urgent",
+    "expectedSkills": ["Python", "Django/FastAPI", "数据库设计", "Linux", "Docker", "系统设计基础"],
+    "expectedPlanComplexity": "heavy",
+    "testScenarios": ["learning-plan", "career-roadmap", "coding-assessment"]
+  },
+  "profile": {
+    "displayName": "陈思远",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "前产品经理，转行学后端开发中",
+    "employmentStatus": "已离职，全职转行准备",
+    "experienceSummary": "在一家教育公司做了三年产品经理，负责过 K12 题库产品的从 0 到 1。对业务逻辑和需求分析很熟，日常和开发团队协作密切，能看懂代码但从没独立写过生产级后端。半年前开始自学 Python，跟完了一套 Django 课程，做了一个简易博客系统和一个 RESTful API demo。",
+    "educationSummary": "英语专业本科毕业，2019 年。产品经理期间考过 PMP，自学编程主要靠在线课程（极客时间、Udemy）和官方文档。没有计算机基础课程背景，数据结构和算法是自学的，理解程度一般。",
+    "locationRegion": "北京",
+    "targetRole": "Python 后端开发工程师",
+    "targetIndustries": ["教育科技", "SaaS", "企业服务"],
+    "shortTermGoal": "两个月内完成一个能拿得出手的后端项目（最好结合之前的教育行业背景），然后开始投简历",
+    "longTermGoal": "一年内稳定入职后端岗位，两年内能独立设计中等复杂度的后端系统",
+    "weeklyTimeBudget": "50 小时（全职学习）",
+    "constraints": ["非科班出身，很多公司简历关就被筛掉", "年龄 28 岁，转行窗口期有限", "积蓄支撑约 4 个月，时间压力大", "对底层原理（操作系统、网络协议）理解薄弱"],
+    "workPreferences": ["倾向中小型公司，大厂门槛太高", "希望业务和之前产品经验能互补", "远程或混合办公优先"],
+    "learningPreferences": ["需要项目驱动，纯理论坚持不下去", "喜欢有人带的学习方式（社群/mentor）", "每天需要明确产出才有安全感"],
+    "keyStrengths": ["产品思维强，理解业务需求比纯开发同学快", "写文档和沟通能力是优势", "Python 基础语法已掌握，能写简单 CRUD"],
+    "riskSignals": ["算法薄弱，hard 题基本做不出来", "没有协作开发经验（Git workflow、Code Review）", "可能低估后端工程化的复杂度", "焦虑情绪可能导致学习计划反复变更"],
+    "portfolioLinks": []
+  }
+}

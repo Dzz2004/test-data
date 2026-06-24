@@ -1,0 +1,773 @@
+{
+  "trajectory_id": "traj_task_senior-backend-job-hopping_1472_614",
+  "domain": "code_development",
+  "template_used": "llm_generated",
+  "user_profile": {
+    "displayName": "王立恒",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "后端技术专家（P7）",
+    "employmentStatus": "在职，计划跳槽",
+    "experienceSummary": "七年后端开发经验，前三年在中厂写 Java 微服务（Spring Cloud 全家桶），后四年在某大厂基础架构组，负责内部 RPC 框架的开发和维护，峰值 QPS 百万级。主导过从 Dubbo 到自研框架的迁移，落地了全链路压测方案。目前带 3 个人的小组，但更多是技术 owner 角色而非管理岗。对当前工作的重复性感到厌倦，想去做更有业务挑战的事情。",
+    "educationSummary": "985 大学计算机科学硕士，2018 年毕业。研究方向是分布式系统，发过一篇中间件相关的 EI 论文。基础扎实，算法面试不是短板。",
+    "locationRegion": "北京（可接受远程或搬去上海/杭州）",
+    "targetRole": "后端架构师 / 技术总监",
+    "targetIndustries": [
+      "出海独角兽",
+      "AI 基础设施",
+      "云服务",
+      "金融科技"
+    ],
+    "shortTermGoal": "两个月内拿到目标公司的面试，三个月内完成跳槽。目标薪资涨幅 30%+",
+    "longTermGoal": "五年内做到技术 VP 或者合伙人级别，或者在技术深度上成为领域专家（分布式/云原生方向）",
+    "weeklyTimeBudget": "15 小时（工作日晚间 + 周末集中准备）",
+    "constraints": [
+      "在职跳槽，面试时间需要协调请假",
+      "家庭因素，996 公司不考虑",
+      "当前公司有竞业协议，部分同行业公司不能去",
+      "技术栈以 Java/Go 为主，不想跳去纯 Python 的公司"
+    ],
+    "workPreferences": [
+      "希望有实际业务价值，不想再做纯基础设施",
+      "喜欢技术驱动的公司文化",
+      "团队规模 50-200 人为佳",
+      "有明确技术晋升通道"
+    ],
+    "learningPreferences": [
+      "通过系统设计 Mock 面试练习",
+      "研究目标公司的技术博客和开源项目",
+      "整理自己的项目经验为 STAR 格式"
+    ],
+    "keyStrengths": [
+      "分布式系统设计经验丰富",
+      "性能优化和稳定性治理是强项",
+      "有从 0 到 1 搭建中间件的完整经验",
+      "沟通表达清晰，技术方案评审能力强"
+    ],
+    "riskSignals": [
+      "业务 sense 相对弱，一直做基础设施",
+      "行为面试准备不足，STAR 故事没整理",
+      "对新领域（AI infra、LLM serving）了解不深",
+      "跳槽动机需要包装，不能说'觉得无聊'"
+    ],
+    "portfolioLinks": []
+  },
+  "task": {
+    "task_id": "task_senior-backend-job-hopping_1472",
+    "domain": "code_development",
+    "task_type": "mock-interview",
+    "user_id": "senior-backend-job-hopping",
+    "task_description": "为 后端技术专家（P7） 生成面试准备",
+    "initial_user_query": "我要准备架构师方向的面试，系统设计这块我比较有底，但八股文很久没背了，尤其是 JVM 调优和分布式事务那些细节。帮我出一份两个月的复习计划，每周不超过15小时，重点放在高频考点上，别给我整太基础的内容。",
+    "interaction_style": "偏好强烈型",
+    "expected_skills": [
+      "分布式系统",
+      "云原生架构",
+      "Kubernetes",
+      "系统设计面试",
+      "行为面试"
+    ]
+  },
+  "nodes": [
+    {
+      "node_id": "node_000",
+      "node_type": "user_input",
+      "name": "user_input",
+      "content": "我要准备架构师方向的面试，系统设计这块我比较有底，但八股文很久没背了，尤其是 JVM 调优和分布式事务那些细节。帮我出一份两个月的复习计划，每周不超过15小时，重点放在高频考点上，别给我整太基础的内容。"
+    },
+    {
+      "node_id": "node_001",
+      "node_type": "skill_call",
+      "name": "need_analysis",
+      "skill_id": "need_analysis",
+      "input": {
+        "context": "- user_input: 我要准备架构师方向的面试，系统设计这块我比较有底，但八股文很久没背了，尤其是 JVM 调优和分布式事务那些细节。帮我出一份两个月的复习计划，每周不超过15小时，",
+        "profile_summary": "后端技术专家（P7）"
+      },
+      "output": {
+        "parsed_goal": {
+          "primary": "准备架构师方向的面试，产出一份两个月的复习计划",
+          "target_role": "后端架构师 / 技术总监",
+          "focus_areas": [
+            "八股文高频考点",
+            "JVM 调优",
+            "分布式事务"
+          ],
+          "strength_acknowledged": "系统设计（自评有底，无需重点覆盖）"
+        },
+        "parsed_constraints": {
+          "time_budget": "每周不超过 15 小时，共 8 周（约 120 小时总量）",
+          "schedule": "在职状态，需利用碎片时间和周末，面试需请假协调",
+          "content_level": "排除基础内容，聚焦中高级和高频考点",
+          "industry_restriction": "竞业协议限制部分同行业公司",
+          "work_life_balance": "不考虑 996 公司，计划需适配合理节奏"
+        },
+        "parsed_context": {
+          "current_level": "P7 后端技术专家，7 年经验",
+          "tech_stack": [
+            "Java",
+            "Spring Cloud",
+            "Dubbo",
+            "自研 RPC 框架",
+            "百万级 QPS 基础架构"
+          ],
+          "knowledge_gaps_self_identified": [
+            "JVM 调优细节",
+            "分布式事务细节",
+            "八股文整体生疏"
+          ],
+          "knowledge_strengths": [
+            "系统设计",
+            "高并发架构",
+            "RPC 框架原理与实现",
+            "微服务治理"
+          ],
+          "preparation_window": "两个月",
+          "implicit_needs": [
+            "高频考点筛选（ROI 最大化）",
+            "按周拆解的结构化计划",
+            "难度适配 P7→架构师的面试深度"
+          ]
+        }
+      },
+      "rationale": "从用户请求和画像中提取目标、约束、上下文，为后续生成精准复习计划提供结构化输入。"
+    },
+    {
+      "node_id": "node_002",
+      "node_type": "tool_call",
+      "name": "job_requirement_search",
+      "tool_id": "job_requirement_search",
+      "input": {
+        "job_title": "后端架构师 / 技术总监",
+        "seniority": "senior",
+        "region": "北京（可接受远程或搬去上海/杭州）"
+      },
+      "output": {
+        "result": "mock data not available",
+        "tool_id": "job_requirement_search",
+        "input": {
+          "job_title": "后端架构师 / 技术总监",
+          "seniority": "senior",
+          "region": "北京（可接受远程或搬去上海/杭州）"
+        }
+      },
+      "rationale": "根据用户的目标（后端架构师 / 技术总监），需要调用岗位技能要求检索获取相关信息。"
+    },
+    {
+      "node_id": "node_003",
+      "node_type": "tool_call",
+      "name": "interview_question_search_system_design",
+      "tool_id": "interview_question_search",
+      "input": {
+        "role": "后端架构师 / 技术总监",
+        "category": "system_design",
+        "difficulty": "medium"
+      },
+      "output": {
+        "questions": [
+          {
+            "question": "请描述一次你解决复杂技术问题的经历",
+            "category": "behavioral",
+            "difficulty": "medium",
+            "frequency": "high"
+          },
+          {
+            "question": "设计一个短链接系统",
+            "category": "system_design",
+            "difficulty": "medium",
+            "frequency": "high"
+          },
+          {
+            "question": "LRU Cache 实现",
+            "category": "algorithm",
+            "difficulty": "medium",
+            "frequency": "high"
+          }
+        ],
+        "preparation_tips": [
+          "STAR 格式组织行为面试回答",
+          "系统设计先澄清需求再画架构",
+          "算法题先说思路再写代码"
+        ]
+      },
+      "rationale": "根据用户的目标（后端架构师 / 技术总监），需要调用面试题库检索获取相关信息。"
+    },
+    {
+      "node_id": "node_004",
+      "node_type": "tool_call",
+      "name": "interview_question_search_domain",
+      "tool_id": "interview_question_search",
+      "input": {
+        "role": "后端架构师 / 技术总监",
+        "category": "system_design",
+        "difficulty": "medium"
+      },
+      "output": {
+        "questions": [
+          {
+            "question": "请描述一次你解决复杂技术问题的经历",
+            "category": "behavioral",
+            "difficulty": "medium",
+            "frequency": "high"
+          },
+          {
+            "question": "设计一个短链接系统",
+            "category": "system_design",
+            "difficulty": "medium",
+            "frequency": "high"
+          },
+          {
+            "question": "LRU Cache 实现",
+            "category": "algorithm",
+            "difficulty": "medium",
+            "frequency": "high"
+          }
+        ],
+        "preparation_tips": [
+          "STAR 格式组织行为面试回答",
+          "系统设计先澄清需求再画架构",
+          "算法题先说思路再写代码"
+        ]
+      },
+      "rationale": "根据用户的目标（后端架构师 / 技术总监），需要调用面试题库检索获取相关信息。"
+    },
+    {
+      "node_id": "node_005",
+      "node_type": "skill_call",
+      "name": "level_diagnosis",
+      "skill_id": "level_diagnosis",
+      "input": {
+        "context": "- need_analysis: 技能输出: parsed_goal, parsed_constraints, parsed_context\n- job_requirement_search: 工具返回: result, tool_id, input\n- interview_question_search_system_design: 工具返回: questions, preparation_tips\n- interview_question_search_domain: 工具返回: questions, preparation_tips",
+        "profile_summary": "后端技术专家（P7）"
+      },
+      "output": {
+        "skill_levels": {
+          "系统设计与架构": {
+            "level": "高级（8/10）",
+            "evidence": "主导过 Dubbo 到自研 RPC 框架的迁移，百万级 QPS 系统设计经验，大厂基础架构组四年实战",
+            "interview_readiness": "高，用户自评有底，实际项目经验充分"
+          },
+          "Java 核心与 JVM": {
+            "level": "中高级（6/10），知识有衰退",
+            "evidence": "七年 Java 开发经验打底扎实，但近四年偏框架层开发，JVM 调优细节（GC 算法选择、参数调优、内存模型）长期未系统复习",
+            "interview_readiness": "中等偏低，八股文细节遗忘，需要针对性恢复"
+          },
+          "分布式系统理论与实践": {
+            "level": "高级（7.5/10），实践强但理论表述待打磨",
+            "evidence": "RPC 框架开发涉及服务注册发现、负载均衡、熔断限流等核心能力，但分布式事务（Seata/TCC/Saga）等偏业务侧方案可能接触较少",
+            "interview_readiness": "中等，需要补齐分布式事务、分布式一致性算法的面试表述"
+          },
+          "微服务治理": {
+            "level": "高级（8/10）",
+            "evidence": "Spring Cloud 全家桶 + 自研 RPC 双重经验，对服务治理有从使用者到建设者的完整视角",
+            "interview_readiness": "高"
+          },
+          "中间件与存储": {
+            "level": "中高级（7/10）",
+            "evidence": "基础架构组工作必然涉及 MQ、缓存、DB 的深度使用，但是否主导过存储选型或数据架构设计需进一步确认",
+            "interview_readiness": "中等，Redis/Kafka 高频考点需回顾细节"
+          },
+          "技术管理与架构决策": {
+            "level": "中级（5.5/10），经验积累中",
+            "evidence": "主导过框架迁移说明具备技术决策和推动落地能力，但从 P7 到架构师/总监，需要展现更宏观的技术规划、团队协作和业务理解",
+            "interview_readiness": "中等偏低，需要准备架构评审、技术选型 trade-off 类问题的结构化表述"
+          }
+        },
+        "experience_assessment": {
+          "总年限": "7年",
+          "含金量": "高。中厂业务开发 + 大厂基础架构的组合路径含金量优秀，既有业务理解又有技术深度",
+          "与目标角色匹配度": "70-80%。系统设计和技术深度达标，架构决策的广度和业务全局视角是主要 gap",
+          "核心竞争力": "百万 QPS 级 RPC 框架从选型到自研的完整经历，这是架构师面试中极强的谈资"
+        },
+        "strength_areas": [
+          "高并发系统设计：百万级 QPS 实战，面试系统设计环节天然优势",
+          "基础架构视角：理解框架内部原理而非仅会使用，能从底层解释设计决策",
+          "技术迁移经验：Dubbo → 自研的主导经验体现技术判断力和落地能力",
+          "微服务全链路理解：从 Spring Cloud 使用者到 RPC 框架建设者的认知跃迁",
+          "性能优化：框架级性能调优经验（序列化、连接池、线程模型）"
+        ],
+        "weak_areas": [
+          {
+            "area": "JVM 调优八股",
+            "gap": "GC 算法对比（G1/ZGC/Shenandoah）、JVM 参数调优实战案例、内存泄漏排查方法论等细节遗忘",
+            "priority": "高",
+            "effort": "恢复性复习，约 10-12 小时可覆盖高频考点"
+          },
+          {
+            "area": "分布式事务",
+            "gap": "2PC/3PC/TCC/Saga/本地消息表等方案的适用场景和 trade-off 表述不够流畅",
+            "priority": "高",
+            "effort": "需系统梳理，约 8-10 小时"
+          },
+          {
+            "area": "架构师软技能表达",
+            "gap": "技术选型 ROI 分析、架构评审 presentation、跨团队协作案例的 STAR 法则包装",
+            "priority": "中高",
+            "effort": "需要结合自身项目整理 5-8 个结构化案例，约 6-8 小时"
+          },
+          {
+            "area": "业务架构与领域建模",
+            "gap": "基础架构组偏技术横向，对业务领域划分（DDD）的实战经验可能偏弱",
+            "priority": "中",
+            "effort": "了解核心概念和常见面试问法即可，约 4-6 小时"
+          },
+          {
+            "area": "新技术趋势",
+            "gap": "云原生（K8s/Service Mesh/eBPF）、可观测性体系等架构师高频话题需要有观点",
+            "priority": "中",
+            "effort": "建立认知框架，约 4-6 小时"
+          }
+        ]
+      },
+      "rationale": "基于用户七年经验路径、自述强弱项和目标角色要求，评估当前技术水平并定位面试准备的优先级，为后续生成两个月复习计划提供诊断依据。"
+    },
+    {
+      "node_id": "node_006",
+      "node_type": "skill_call",
+      "name": "interview_prep_planning",
+      "skill_id": "interview_prep_planning",
+      "input": {
+        "context": "- job_requirement_search: 工具返回: result, tool_id, input\n- interview_question_search_system_design: 工具返回: questions, preparation_tips\n- interview_question_search_domain: 工具返回: questions, preparation_tips\n- level_diagnosis: 技能输出: skill_levels, experience_assessment, strength_areas",
+        "profile_summary": "后端技术专家（P7）"
+      },
+      "output": {
+        "interview_plan": {
+          "duration": "8周（2个月）",
+          "weekly_hours": "12-15小时",
+          "strategy": "系统设计保持手感为主，重心放在高频八股文回炉和行为面试叙事打磨",
+          "phases": [
+            {
+              "phase": 1,
+              "name": "基础回炉 & 知识体系重建",
+              "weeks": "第1-3周",
+              "hours_per_week": 14,
+              "tasks": [
+                {
+                  "category": "JVM 深度复习",
+                  "hours_per_week": 6,
+                  "content": [
+                    "GC 算法对比（G1/ZGC/Shenandoah）及调优参数，重点 G1 的 Mixed GC 触发条件、Region 划分",
+                    "JVM 内存模型：堆外内存、直接内存泄漏排查（Netty 场景高频）",
+                    "线上问题排查套路：arthas 火焰图、jstack 死锁分析、MAT 大对象定位",
+                    "JIT 编译优化：逃逸分析、锁消除、OSR，能结合 RPC 框架场景举例"
+                  ]
+                },
+                {
+                  "category": "分布式事务",
+                  "hours_per_week": 5,
+                  "content": [
+                    "2PC/3PC 原理及工程缺陷，XA 的性能瓶颈",
+                    "TCC 模式：空回滚、悬挂、幂等三大问题的解法",
+                    "Saga 模式：编排 vs 协调，补偿事务设计",
+                    "最终一致性方案：本地消息表、事务消息（RocketMQ）、最大努力通知",
+                    "Seata AT 模式原理，全局锁与分支锁，适用场景与局限"
+                  ]
+                },
+                {
+                  "category": "系统设计保持",
+                  "hours_per_week": 3,
+                  "content": [
+                    "每周做1道系统设计题（限时45分钟），重点练表达结构化",
+                    "题目来源：RPC 框架设计、消息队列设计、分布式配置中心设计（贴近你的经验）"
+                  ]
+                }
+              ]
+            },
+            {
+              "phase": 2,
+              "name": "高频考点精练 & 深度延伸",
+              "weeks": "第4-6周",
+              "hours_per_week": 14,
+              "tasks": [
+                {
+                  "category": "并发 & 网络",
+                  "hours_per_week": 5,
+                  "content": [
+                    "AQS 原理、ReentrantLock vs synchronized 底层实现差异",
+                    "线程池：核心参数调优、拒绝策略选型、动态线程池实现思路",
+                    "Netty 线程模型、零拷贝、内存池（结合 RPC 框架经验深挖）",
+                    "TCP 粘包拆包、连接池管理、优雅停机（这些是你的强项，准备好讲故事）"
+                  ]
+                },
+                {
+                  "category": "中间件原理",
+                  "hours_per_week": 4,
+                  "content": [
+                    "Redis：集群模式 gossip 协议、大 key 治理、缓存一致性方案对比",
+                    "Kafka/RocketMQ：消息可靠性保证、顺序消息实现、消费堆积处理",
+                    "MySQL：索引下推、MVCC 实现、大表 DDL 方案（gh-ost/pt-osc）",
+                    "服务治理：限流算法（滑动窗口/令牌桶）、熔断状态机、负载均衡策略"
+                  ]
+                },
+                {
+                  "category": "架构设计 & 行为面试",
+                  "hours_per_week": 5,
+                  "content": [
+                    "系统设计进阶：全链路压测方案、多活架构、大规模服务迁移方案",
+                    "STAR 叙事打磨：准备 5 个核心故事（RPC 框架自研、百万 QPS 优化、重大故障处理、跨团队推动、技术选型决策）",
+                    "架构师视角问题：技术债治理策略、团队技术规划、ROI 评估"
+                  ]
+                }
+              ]
+            },
+            {
+              "phase": 3,
+              "name": "模拟实战 & 查漏补缺",
+              "weeks": "第7-8周",
+              "hours_per_week": 12,
+              "tasks": [
+                {
+                  "category": "模拟面试",
+                  "hours_per_week": 6,
+                  "content": [
+                    "每周 2 次模拟面试（找同事或付费 mock），一次技术面一次行为面",
+                    "录音复盘，关注：是否结构化表达、是否展现架构决策能力、时间控制",
+                    "针对模拟中暴露的薄弱点定向补强"
+                  ]
+                },
+                {
+                  "category": "高频题速刷",
+                  "hours_per_week": 3,
+                  "content": [
+                    "整理个人八股文速查卡（Anki 或 Notion），每天通勤 20 分钟速记",
+                    "重点刷近期目标公司的面经（牛客/脉脉），标注高频题型"
+                  ]
+                },
+                {
+                  "category": "算法保底",
+                  "hours_per_week": 3,
+                  "content": [
+                    "架构师岗算法要求不高，但需保底：中等难度 BFS/DFS、二分、滑动窗口",
+                    "每周 4-5 题 LeetCode 中等，重点刷 Hot 100 中的图、动态规划基础题",
+                    "能手写即可，不追求最优解，重点是思路清晰、代码无 bug"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "focus_areas": {
+          "priority_1_critical": [
+            "JVM 调优（G1 调参、线上问题排查方法论、内存泄漏定位）",
+            "分布式事务（TCC/Saga/消息最终一致性，能画出完整时序图）",
+            "行为面试叙事（STAR 结构，突出架构决策和技术影响力）"
+          ],
+          "priority_2_important": [
+            "并发编程深度（AQS、线程池、Netty 线程模型）",
+            "中间件原理（Redis 集群、消息队列可靠性、MySQL 索引优化）",
+            "架构方法论（DDD 落地经验、技术债治理、容量规划）"
+          ],
+          "priority_3_maintain": [
+            "系统设计（你的强项，保持手感即可，重点练表达）",
+            "算法（保底中等难度，不需要大量刷题）"
+          ],
+          "skip_list": [
+            "Spring 基础（Bean 生命周期之类的 P5/P6 级别问题，架构师面不会问这么细）",
+            "设计模式纯理论背诵（结合实际项目讲即可）",
+            "前端/移动端相关知识"
+          ]
+        },
+        "practice_schedule": {
+          "weekday_template": {
+            "monday": {
+              "hours": 2.5,
+              "focus": "JVM/并发 专题学习",
+              "time_slot": "晚上 9:00-11:30"
+            },
+            "tuesday": {
+              "hours": 2,
+              "focus": "分布式事务/中间件 专题",
+              "time_slot": "晚上 9:00-11:00"
+            },
+            "wednesday": {
+              "hours": 1.5,
+              "focus": "算法 2题 + 八股速记卡复习",
+              "time_slot": "晚上 9:30-11:00"
+            },
+            "thursday": {
+              "hours": 2.5,
+              "focus": "系统设计练习 或 模拟面试",
+              "time_slot": "晚上 9:00-11:30"
+            },
+            "friday": {
+              "hours": 1.5,
+              "focus": "行为面试故事打磨 + 面经阅读",
+              "time_slot": "晚上 9:30-11:00"
+            },
+            "saturday": {
+              "hours": 3,
+              "focus": "周末集中攻坚（薄弱环节深入）",
+              "time_slot": "上午 9:00-12:00"
+            },
+            "sunday": {
+              "hours": 2,
+              "focus": "本周复盘 + 下周计划调整",
+              "time_slot": "上午 10:00-12:00"
+            }
+          },
+          "total_weekly_hours": 15,
+          "flexibility_notes": [
+            "在职状态，晚间时段为主，避免影响白天工作状态",
+            "周末留出家庭时间，集中学习放上午",
+            "如果某天加班，当天任务顺延到周末补，不累积压力",
+            "面试安排在周中请半天假，提前一周协调"
+          ],
+          "milestone_checkpoints": [
+            {
+              "week": 3,
+              "checkpoint": "JVM + 分布式事务核心知识点能脱口而出，STAR 故事初稿完成"
+            },
+            {
+              "week": 5,
+              "checkpoint": "开始投递简历、约面试，并发/中间件模块完成"
+            },
+            {
+              "week": 6,
+              "checkpoint": "第一轮面试反馈收集，针对性调整后续重点"
+            },
+            {
+              "week": 8,
+              "checkpoint": "进入密集面试期，保持每天 30 分钟速记即可，心态调整为主"
+            }
+          ]
+        },
+        "additional_notes": {
+          "竞业风险提示": "面试前确认目标公司是否在竞业名单内，建议先咨询律师了解竞业条款的具体约束范围",
+          "面试时间协调": "建议攒 2-3 家一起面，集中请假 2-3 个半天，减少请假频次引起注意",
+          "目标公司筛选": "优先看技术驱动型中大厂（非 996），如：蚂蚁/字节基础架构组（WLB 相对好）、PingCAP、DaoCloud 等基础设施方向公司"
+        }
+      },
+      "rationale": "用户系统设计能力强但八股文生疏，需在有限时间内（在职+家庭约束）精准打击高频考点，计划以 JVM 调优和分布式事务为核心突破口，结合架构师岗位对技术决策力和影响力的考察重点，分三阶段递进安排。"
+    },
+    {
+      "node_id": "node_007",
+      "node_type": "skill_call",
+      "name": "time_budget_allocation",
+      "skill_id": "time_budget_allocation",
+      "input": {
+        "context": "- interview_question_search_system_design: 工具返回: questions, preparation_tips\n- interview_question_search_domain: 工具返回: questions, preparation_tips\n- level_diagnosis: 技能输出: skill_levels, experience_assessment, strength_areas\n- interview_prep_planning: 技能输出: interview_plan, focus_areas, practice_schedule",
+        "profile_summary": "后端技术专家（P7）"
+      },
+      "output": {
+        "time_allocation": {
+          "total_duration_weeks": 8,
+          "weekly_budget_hours": 15,
+          "total_budget_hours": 120,
+          "allocation_by_category": {
+            "八股文_高频考点": {
+              "hours": 42,
+              "percentage": 35,
+              "rationale": "用户自述薄弱项，JVM调优和分布式事务等细节需要系统性恢复记忆并深化理解"
+            },
+            "系统设计_进阶强化": {
+              "hours": 30,
+              "percentage": 25,
+              "rationale": "用户有底但架构师面试的系统设计深度和广度要求更高，需针对性打磨表达和方案完整性"
+            },
+            "架构思维_方法论": {
+              "hours": 18,
+              "percentage": 15,
+              "rationale": "架构师岗考察架构决策能力、技术选型论证、演进式设计思维，需要专项准备"
+            },
+            "模拟面试_复盘": {
+              "hours": 18,
+              "percentage": 15,
+              "rationale": "在职跳槽面试机会有限，模拟练习提升临场表达质量和时间控制"
+            },
+            "项目经历_STAR梳理": {
+              "hours": 12,
+              "percentage": 10,
+              "rationale": "RPC框架主导经验是核心亮点，需要结构化包装为架构师视角的叙事"
+            }
+          }
+        },
+        "schedule_breakdown": {
+          "phase_1_基础恢复_weeks_1_2": {
+            "theme": "八股文密集恢复 + 项目梳理启动",
+            "weekly_plan": {
+              "八股文_高频考点": "8h — JVM内存模型/GC算法/调优实战case、Java并发(AQS/线程池参数调优)、Spring核心(IOC生命周期/AOP原理/事务传播)",
+              "项目经历_STAR梳理": "4h — 梳理RPC框架从Dubbo迁移自研的完整决策链路、性能优化数据、踩坑与权衡",
+              "系统设计_进阶强化": "3h — 复习经典题(设计限流系统/消息队列)，用自身RPC经验做对照"
+            },
+            "milestone": "能流畅讲清楚JVM调优的完整排查链路，项目STAR初稿完成"
+          },
+          "phase_2_深化攻坚_weeks_3_4": {
+            "theme": "分布式核心 + 系统设计套路",
+            "weekly_plan": {
+              "八股文_高频考点": "7h — 分布式事务(2PC/TCC/Saga/本地消息表的适用场景与trade-off)、分布式一致性(Raft/Paxos要点)、缓存一致性方案",
+              "系统设计_进阶强化": "5h — 中高难度题(设计分布式ID生成器/Feed流系统/秒杀架构)，练习画图+口述15min方案",
+              "架构思维_方法论": "3h — 架构演进方法论(单体→微服务→Service Mesh)、技术选型评估框架(CAP实际应用)"
+            },
+            "milestone": "分布式事务各方案能做到对比讲解而非死记，系统设计形成固定输出结构"
+          },
+          "phase_3_综合提升_weeks_5_6": {
+            "theme": "架构师视角整合 + 模拟面试启动",
+            "weekly_plan": {
+              "八股文_高频考点": "4h — 查漏补缺(网络协议高频点/MySQL索引与锁的架构师级追问)、结合场景而非纯背诵",
+              "系统设计_进阶强化": "4h — 架构师级别题(设计百万QPS网关/跨机房容灾方案)，融入自身RPC框架经验",
+              "架构思维_方法论": "3h — 非功能需求分析(可观测性/容量规划/故障演练)、组织协作视角(技术债治理/架构委员会运作)",
+              "模拟面试_复盘": "4h — 第一轮模拟(系统设计45min + 八股30min)，录音回听，标记卡顿点"
+            },
+            "milestone": "模拟面试能完整走完流程，发现表达短板"
+          },
+          "phase_4_冲刺收尾_weeks_7_8": {
+            "theme": "高强度模拟 + 精准补强",
+            "weekly_plan": {
+              "八股文_高频考点": "3h — 只刷模拟中暴露的薄弱点，不再铺开新内容",
+              "系统设计_进阶强化": "3h — 针对目标公司业务场景定制设计题练习",
+              "架构思维_方法论": "2h — 准备「你对架构师角色的理解」「如何推动技术演进」等开放题",
+              "模拟面试_复盘": "5h — 每周2次完整模拟(含行为面)，严格计时，逐次优化",
+              "项目经历_STAR梳理": "2h — 根据目标公司JD微调叙事重点，准备3个不同粒度版本(1min/5min/15min)"
+            },
+            "milestone": "模拟面试稳定通过率达标，可以开始约面"
+          },
+          "daily_routine_suggestion": {
+            "工作日": "每天1.5-2h（通勤听八股音频0.5h + 晚间专注学习1-1.5h）",
+            "周末": "单日集中3-4h用于系统设计和模拟面试",
+            "弹性机制": "如某周加班严重，优先保证模拟面试和八股文，系统设计可顺延（用户有底子）"
+          },
+          "coordination_notes": {
+            "面试请假策略": "建议集中在第7-8周开始约面，前6周纯备战；面试尽量约下午或周五，减少请假频次",
+            "竞业规避提醒": "在投递阶段提前筛选非竞业范围公司，避免准备后期才发现不能去"
+          }
+        }
+      },
+      "rationale": "用户在职备战时间有限（每周15h/共8周），需将有限预算向自述薄弱项（八股文细节）倾斜，同时保留足够模拟练习时间来应对架构师级面试的综合考察深度。"
+    },
+    {
+      "node_id": "node_008",
+      "node_type": "skill_call",
+      "name": "feasibility_check",
+      "skill_id": "feasibility_check",
+      "input": {
+        "context": "- interview_question_search_domain: 工具返回: questions, preparation_tips\n- level_diagnosis: 技能输出: skill_levels, experience_assessment, strength_areas\n- interview_prep_planning: 技能输出: interview_plan, focus_areas, practice_schedule\n- time_budget_allocation: 技能输出: time_allocation, schedule_breakdown",
+        "profile_summary": "后端技术专家（P7）"
+      },
+      "output": {
+        "feasibility_result": {
+          "overall_feasible": true,
+          "confidence": 0.85,
+          "summary": "两个月、每周15小时的复习计划整体可行，但需注意面试协调和精力分配的弹性空间"
+        },
+        "risk_items": [
+          {
+            "risk_id": "R1",
+            "category": "时间约束",
+            "description": "在职状态下每周15小时已是较紧凑的安排，若遇上线周、oncall轮值或突发故障，当周复习时间可能被压缩到5小时以下",
+            "probability": "中高",
+            "impact": "计划进度延迟，后期堆积导致复习质量下降"
+          },
+          {
+            "risk_id": "R2",
+            "category": "面试协调",
+            "description": "架构师岗位通常3-5轮面试，每轮需半天请假，两个月内密集安排多家公司面试，请假频率可能引起现团队注意",
+            "probability": "中",
+            "impact": "被现公司察觉跳槽意向，影响竞业协议谈判筹码或提前触发离职流程"
+          },
+          {
+            "risk_id": "R3",
+            "category": "竞业协议",
+            "description": "部分目标公司可能落入竞业范围，若前期未做法务确认，复习投入可能白费",
+            "probability": "中低",
+            "impact": "目标公司池缩小，需重新调整投递策略和复习侧重点"
+          },
+          {
+            "risk_id": "R4",
+            "category": "内容深度匹配",
+            "description": "用户系统设计能力强但八股文生疏，JVM调优和分布式事务细节在架构师面试中属于必过关卡，两个月内从'生疏'恢复到'能深入讨论'需要高效的刻意练习，存在高估恢复速度的风险",
+            "probability": "中",
+            "impact": "面试中八股环节暴露短板，被判定基础不扎实而挂掉"
+          },
+          {
+            "risk_id": "R5",
+            "category": "家庭因素",
+            "description": "每周15小时额外学习需占用晚间和周末时间，与家庭时间产生冲突，持续两个月可能引发家庭压力",
+            "probability": "中低",
+            "impact": "复习计划中断或被迫降低每周投入时长"
+          }
+        ],
+        "adjustment_suggestions": [
+          {
+            "针对风险": "R1",
+            "建议": "将计划设计为6个'有效周'+2个'缓冲周'，而非严格8周连续推进。每两周预留一个弹性日用于补进度，避免因一周中断导致整体崩盘"
+          },
+          {
+            "针对风险": "R2",
+            "建议": "面试集中安排在第6-8周，前5周纯复习不投递。面试优先选择支持远程首轮或午休时段电话面的公司，减少请假次数。单周请假不超过1次"
+          },
+          {
+            "针对风险": "R3",
+            "建议": "第1周立即完成竞业协议条款梳理，必要时咨询劳动法律师（费用约500-1000元），明确'禁区公司清单'，在此基础上确定目标公司池再开始针对性复习"
+          },
+          {
+            "针对风险": "R4",
+            "建议": "JVM调优和分布式事务不要从零看书，直接用'高频面试题→知识点反查→源码验证'的倒推路径。结合用户自身RPC框架经验，将分布式事务知识锚定在实际排查过的线上案例上，形成'案例+原理'双线记忆，比纯背诵高效3倍"
+          },
+          {
+            "针对风险": "R5",
+            "建议": "将15小时拆分为工作日通勤碎片时间（每天40分钟×5=3.3小时）+ 工作日晚间（每天1.5小时×4=6小时）+ 周末一个半天（5.7小时），避免占用整个周末。提前与家人沟通两个月的阶段性安排"
+          },
+          {
+            "针对风险": "全局",
+            "建议": "设置第4周末为中期检查点：完成一次模拟面试（可找同级别朋友或付费mock），根据表现动态调整后4周的重心分配。若八股恢复进度超预期，可将部分时间转向行为面试和架构方案表达的打磨"
+          }
+        ]
+      },
+      "rationale": "用户存在在职、竞业、家庭三重硬约束，需验证15小时/周×8周的计划在真实生活条件下是否可持续执行，并提前识别导致计划失败的关键风险点。"
+    },
+    {
+      "node_id": "node_009",
+      "node_type": "agent_response",
+      "name": "final_response",
+      "content": "# 架构师面试复习计划（8周 / 每周≤15小时）\n\n根据你的情况，系统设计不需要大量投入，重心放在 JVM 调优、分布式事务、中间件原理这些高频八股上，搭配少量系统设计题保持手感。\n\n---\n\n## 时间分配\n\n| 模块 | 每周时长 | 占比 |\n|------|---------|------|\n| JVM 与性能调优 | 5h | 33% |\n| 分布式事务与一致性 | 4h | 27% |\n| 中间件原理（Redis/MQ/MySQL） | 3h | 20% |\n| 系统设计题练习 | 2h | 13% |\n| 模拟面试/查漏补缺 | 1h | 7% |\n\n---\n\n## 周计划概览\n\n**第1-2周：JVM 核心**\n- GC 算法对比（G1/ZGC 调优参数、停顿时间控制）\n- 内存模型、逃逸分析、JIT 编译\n- 线上 OOM/CPU 飙高排查链路（arthas、MAT、async-profiler）\n\n**第3-4周：分布式事务**\n- 2PC/3PC、TCC、Saga、本地消息表的适用场景与取舍\n- Seata AT/TCC 模式实现细节\n- 最终一致性方案设计（幂等、补偿、对账）\n\n**第5-6周：中间件深水区**\n- Redis：集群脑裂、大 Key 治理、缓存一致性方案\n- MQ：消息不丢不重的全链路保障、顺序消息、延迟队列实现\n- MySQL：索引下推、MVCC、死锁排查、分库分表路由\n\n**第7-8周：综合冲刺**\n- 系统设计高频题（秒杀、IM、Feed流）限时30分钟口述\n- 薄弱点二刷，模拟面试至少2次\n\n---\n\n## 下一步建议\n\n1. 先花1小时快速过一遍 JVM GC 的知识图谱，标记出记忆模糊的点，第一周集中攻破这些。\n2. 每个知识点用\"能给面试官讲清楚\"作为验收标准，不是看懂就行，要能口述出结论+原因+场景。\n3. 如果需要，我可以按周给你出对应模块的高频面试题清单，带答题要点。\n\n需要我先给你出第1周 JVM 调优的题单吗？"
+    }
+  ],
+  "edges": [
+    {
+      "from": "node_000",
+      "to": "node_001",
+      "relation": "user_input 的输出被 need_analysis 使用"
+    },
+    {
+      "from": "node_001",
+      "to": "node_002",
+      "relation": "need_analysis 的输出被 job_requirement_search 使用"
+    },
+    {
+      "from": "node_002",
+      "to": "node_003",
+      "relation": "job_requirement_search 的输出被 interview_question_search_system_design 使用"
+    },
+    {
+      "from": "node_003",
+      "to": "node_004",
+      "relation": "interview_question_search_system_design 的输出被 interview_question_search_domain 使用"
+    },
+    {
+      "from": "node_004",
+      "to": "node_005",
+      "relation": "interview_question_search_domain 的输出被 level_diagnosis 使用"
+    },
+    {
+      "from": "node_005",
+      "to": "node_006",
+      "relation": "level_diagnosis 的输出被 interview_prep_planning 使用"
+    },
+    {
+      "from": "node_006",
+      "to": "node_007",
+      "relation": "interview_prep_planning 的输出被 time_budget_allocation 使用"
+    },
+    {
+      "from": "node_007",
+      "to": "node_008",
+      "relation": "time_budget_allocation 的输出被 feasibility_check 使用"
+    },
+    {
+      "from": "node_008",
+      "to": "node_009",
+      "relation": "feasibility_check 的输出被 final_response 使用"
+    }
+  ],
+  "final_response": "# 架构师面试复习计划（8周 / 每周≤15小时）\n\n根据你的情况，系统设计不需要大量投入，重心放在 JVM 调优、分布式事务、中间件原理这些高频八股上，搭配少量系统设计题保持手感。\n\n---\n\n## 时间分配\n\n| 模块 | 每周时长 | 占比 |\n|------|---------|------|\n| JVM 与性能调优 | 5h | 33% |\n| 分布式事务与一致性 | 4h | 27% |\n| 中间件原理（Redis/MQ/MySQL） | 3h | 20% |\n| 系统设计题练习 | 2h | 13% |\n| 模拟面试/查漏补缺 | 1h | 7% |\n\n---\n\n## 周计划概览\n\n**第1-2周：JVM 核心**\n- GC 算法对比（G1/ZGC 调优参数、停顿时间控制）\n- 内存模型、逃逸分析、JIT 编译\n- 线上 OOM/CPU 飙高排查链路（arthas、MAT、async-profiler）\n\n**第3-4周：分布式事务**\n- 2PC/3PC、TCC、Saga、本地消息表的适用场景与取舍\n- Seata AT/TCC 模式实现细节\n- 最终一致性方案设计（幂等、补偿、对账）\n\n**第5-6周：中间件深水区**\n- Redis：集群脑裂、大 Key 治理、缓存一致性方案\n- MQ：消息不丢不重的全链路保障、顺序消息、延迟队列实现\n- MySQL：索引下推、MVCC、死锁排查、分库分表路由\n\n**第7-8周：综合冲刺**\n- 系统设计高频题（秒杀、IM、Feed流）限时30分钟口述\n- 薄弱点二刷，模拟面试至少2次\n\n---\n\n## 下一步建议\n\n1. 先花1小时快速过一遍 JVM GC 的知识图谱，标记出记忆模糊的点，第一周集中攻破这些。\n2. 每个知识点用\"能给面试官讲清楚\"作为验收标准，不是看懂就行，要能口述出结论+原因+场景。\n3. 如果需要，我可以按周给你出对应模块的高频面试题清单，带答题要点。\n\n需要我先给你出第1周 JVM 调优的题单吗？"
+}

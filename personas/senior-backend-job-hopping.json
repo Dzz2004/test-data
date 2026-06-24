@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "personaId": "senior-backend-job-hopping",
+    "archetype": "资深跳槽",
+    "careerStage": "senior",
+    "urgency": "active",
+    "expectedSkills": ["分布式系统", "云原生架构", "Kubernetes", "系统设计面试", "行为面试"],
+    "expectedPlanComplexity": "medium",
+    "testScenarios": ["mock-interview", "career-roadmap", "learning-plan"]
+  },
+  "profile": {
+    "displayName": "王立恒",
+    "locale": "zh-CN",
+    "timezone": "Asia/Shanghai",
+    "currentRole": "后端技术专家（P7）",
+    "employmentStatus": "在职，计划跳槽",
+    "experienceSummary": "七年后端开发经验，前三年在中厂写 Java 微服务（Spring Cloud 全家桶），后四年在某大厂基础架构组，负责内部 RPC 框架的开发和维护，峰值 QPS 百万级。主导过从 Dubbo 到自研框架的迁移，落地了全链路压测方案。目前带 3 个人的小组，但更多是技术 owner 角色而非管理岗。对当前工作的重复性感到厌倦，想去做更有业务挑战的事情。",
+    "educationSummary": "985 大学计算机科学硕士，2018 年毕业。研究方向是分布式系统，发过一篇中间件相关的 EI 论文。基础扎实，算法面试不是短板。",
+    "locationRegion": "北京（可接受远程或搬去上海/杭州）",
+    "targetRole": "后端架构师 / 技术总监",
+    "targetIndustries": ["出海独角兽", "AI 基础设施", "云服务", "金融科技"],
+    "shortTermGoal": "两个月内拿到目标公司的面试，三个月内完成跳槽。目标薪资涨幅 30%+",
+    "longTermGoal": "五年内做到技术 VP 或者合伙人级别，或者在技术深度上成为领域专家（分布式/云原生方向）",
+    "weeklyTimeBudget": "15 小时（工作日晚间 + 周末集中准备）",
+    "constraints": ["在职跳槽，面试时间需要协调请假", "家庭因素，996 公司不考虑", "当前公司有竞业协议，部分同行业公司不能去", "技术栈以 Java/Go 为主，不想跳去纯 Python 的公司"],
+    "workPreferences": ["希望有实际业务价值，不想再做纯基础设施", "喜欢技术驱动的公司文化", "团队规模 50-200 人为佳", "有明确技术晋升通道"],
+    "learningPreferences": ["通过系统设计 Mock 面试练习", "研究目标公司的技术博客和开源项目", "整理自己的项目经验为 STAR 格式"],
+    "keyStrengths": ["分布式系统设计经验丰富", "性能优化和稳定性治理是强项", "有从 0 到 1 搭建中间件的完整经验", "沟通表达清晰，技术方案评审能力强"],
+    "riskSignals": ["业务 sense 相对弱，一直做基础设施", "行为面试准备不足，STAR 故事没整理", "对新领域（AI infra、LLM serving）了解不深", "跳槽动机需要包装，不能说'觉得无聊'"],
+    "portfolioLinks": []
+  }
+}
