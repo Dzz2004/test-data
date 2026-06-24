@@ -1,13 +1,16 @@
 """
-Trajectory Generator - 根据计划生成完整轨迹内容
+Trajectory Generator - 生成完整多轮轨迹内容
 
-使用 LLM 生成每个节点的具体内容（input/output/rationale）。
+generate_multi_turn_trajectory: 多轮主入口
+generate_trajectory:            原有单轮接口（向后兼容）
 """
 import json
 from typing import Any
 from .domain import Domain
 from .llm_client import chat, chat_json
 from .mock_tools import mock_tool_call
+from .schema import ConversationTurn, MultiTurnTrajectory
+from .conversation_state import ConversationState
 
 
 def generate_trajectory(
@@ -328,3 +331,333 @@ def _generate_edge_relation(from_node: dict, to_node: dict) -> str:
     from_name = from_node.get("name", from_node.get("node_type", ""))
     to_name = to_node.get("name", to_node.get("node_type", ""))
     return f"{from_name} 的输出被 {to_name} 使用"
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Multi-turn Generator
+# ══════════════════════════════════════════════════════════════════════════════
+
+def generate_multi_turn_trajectory(
+    multi_turn_plan: dict,
+    domain: Domain,
+    use_llm: bool = True,
+) -> MultiTurnTrajectory:
+    """
+    Generate a complete multi-turn trajectory from a multi-turn plan.
+
+    For each turn:
+      1. Determine user_message (turn 1 = initial_query; turns 2+ = generated/stub)
+      2. Execute processing nodes (skill_call, tool_call) in sequence
+      3. Generate agent_response from accumulated node outputs
+      4. Update ConversationState with this turn's exchange
+    """
+    blueprint   = multi_turn_plan["blueprint"]
+    user_profile= multi_turn_plan["user_profile"]
+    turns_plan  = multi_turn_plan["turns_plan"]
+
+    skill_map = {s.skill_id: s for s in domain.skills}
+    tool_map  = {t.tool_id:  t for t in domain.tools}
+    state     = ConversationState()
+
+    completed_turns: list[ConversationTurn] = []
+
+    for turn_plan in turns_plan:
+        turn_id    = turn_plan["turn_id"]
+        trigger    = turn_plan["trigger"]
+        arc_desc   = turn_plan.get("arc_description", "")
+        planned    = turn_plan["planned_nodes"]
+
+        # ── 1. Determine user message ──────────────────────────────────────
+        if turn_id == 1:
+            user_message = blueprint.initial_user_query
+        else:
+            user_message = _generate_followup_message(
+                trigger, arc_desc, state, user_profile, use_llm
+            )
+            state.update_fact(f"turn{turn_id}_trigger", trigger)
+
+        # ── 2. Execute processing nodes ────────────────────────────────────
+        processing_nodes: list[dict] = []
+        node_context: list[dict] = []  # running context within this turn
+
+        for node_plan in planned:
+            node_type = node_plan.get("node_type")
+            node_name = node_plan.get("node_name", node_type)
+
+            if node_type == "agent_response":
+                continue  # generated separately in step 3
+
+            if node_type == "tool_call":
+                tool_id  = node_plan.get("tool_id", node_name)
+                tool_spec = tool_map.get(tool_id)
+                node = _exec_tool_node(
+                    tool_id, tool_spec, user_profile, blueprint.task_type,
+                    state, node_context, use_llm
+                )
+
+            elif node_type == "skill_call":
+                skill_id  = node_plan.get("skill_id", node_name)
+                skill_spec = skill_map.get(skill_id)
+                node = _exec_skill_node(
+                    skill_id, skill_spec, user_profile, blueprint,
+                    state, node_context, use_llm
+                )
+
+            elif node_type == "agent_reasoning":
+                node = _exec_reasoning_node(node_name, blueprint, user_profile, state, use_llm)
+
+            else:
+                node = {"node_type": node_type, "name": node_name}
+
+            processing_nodes.append(node)
+            node_context.append({
+                "name": node_name,
+                "type": node_type,
+                "summary": _summarize_node(node),
+            })
+
+        # ── 3. Generate agent response ─────────────────────────────────────
+        agent_response = _generate_turn_response(
+            turn_id, trigger, blueprint, user_profile,
+            user_message, node_context, state, use_llm
+        )
+
+        # ── 4. Update state ────────────────────────────────────────────────
+        state.add_turn(user_message, agent_response)
+
+        completed_turns.append(ConversationTurn(
+            turn_id          = turn_id,
+            trigger          = trigger,
+            user_message     = user_message,
+            processing_nodes = processing_nodes,
+            agent_response   = agent_response,
+        ))
+
+    return MultiTurnTrajectory(
+        trajectory_id = multi_turn_plan["trajectory_id"],
+        domain        = domain.spec.domain_id,
+        template_used = "multi_turn_llm" if use_llm else "multi_turn_template",
+        user_profile  = user_profile,
+        task          = blueprint,
+        turns         = completed_turns,
+    )
+
+
+# ── 内部节点执行函数 ───────────────────────────────────────────────────────────
+
+def _exec_tool_node(
+    tool_id: str, tool_spec: Any,
+    profile: dict, task_type: str,
+    state: ConversationState, node_context: list, use_llm: bool,
+) -> dict:
+    tool_input = _infer_tool_input_from_context(tool_id, profile, state, node_context)
+    tool_output = mock_tool_call(tool_id, tool_input)
+    tool_name = tool_spec.name if tool_spec else tool_id
+    return {
+        "node_type": "tool_call",
+        "name":      tool_id,
+        "tool_id":   tool_id,
+        "input":     tool_input,
+        "output":    tool_output,
+        "rationale": f"调用 {tool_name} 获取 {profile.get('targetRole', '')} 相关信息",
+    }
+
+
+def _exec_skill_node(
+    skill_id: str, skill_spec: Any,
+    profile: dict, blueprint: Any,
+    state: ConversationState, node_context: list, use_llm: bool,
+) -> dict:
+    skill_name = skill_spec.name        if skill_spec else skill_id
+    skill_desc = skill_spec.description if skill_spec else ""
+    skill_outputs = skill_spec.outputs  if skill_spec else ["result"]
+
+    if not use_llm:
+        output = {field: f"[{skill_name}的{field}结果]" for field in skill_outputs}
+        rationale = f"执行 {skill_name} 以推进分析。"
+        return {
+            "node_type": "skill_call",
+            "name":       skill_id,
+            "skill_id":   skill_id,
+            "input":      {"context": state.get_context_summary(2)},
+            "output":     output,
+            "rationale":  rationale,
+        }
+
+    context_summary = state.get_context_summary(3)
+    prior_nodes = "\n".join(f"- {c['name']}: {c['summary']}" for c in node_context[-3:])
+
+    prompt = f"""你是职业发展 AI Agent 的内部推理模块，正在执行 "{skill_name}" 技能。
+
+技能说明: {skill_desc}
+期望输出字段: {', '.join(skill_outputs)}
+
+用户: {profile.get('currentRole', '')} → {profile.get('targetRole', '')}
+任务: {blueprint.task_description}
+用户本轮消息: {state.history[-1]['user'] if state.history else blueprint.initial_user_query}
+
+对话历史摘要:
+{context_summary}
+
+本轮前序节点:
+{prior_nodes or "（本轮第一个节点）"}
+
+请生成此技能节点的输出，JSON 格式:
+{{
+  "output": {{ ...具体输出... }},
+  "rationale": "执行此技能的理由（一句话，说明依赖了哪些前序信息）"
+}}"""
+
+    try:
+        result = chat_json([{"role": "user", "content": prompt}], temperature=0.5)
+        output    = result.get("output", result)
+        rationale = result.get("rationale", f"执行 {skill_name}。")
+    except Exception:
+        output    = {field: f"[{skill_name} output]" for field in skill_outputs}
+        rationale = f"执行 {skill_name}。"
+
+    return {
+        "node_type": "skill_call",
+        "name":       skill_id,
+        "skill_id":   skill_id,
+        "input":      {"context": state.get_context_summary(2)},
+        "output":     output,
+        "rationale":  rationale,
+    }
+
+
+def _exec_reasoning_node(
+    node_name: str, blueprint: Any, profile: dict,
+    state: ConversationState, use_llm: bool,
+) -> dict:
+    if not use_llm:
+        return {"node_type": "agent_reasoning", "name": node_name,
+                "content": f"[{node_name} 推理内容]"}
+    last_user = state.history[-1]["user"] if state.history else blueprint.initial_user_query
+    prompt = f"""Agent 需要向用户追问以获取更多信息。
+用户当前消息: {last_user}
+用户画像: {profile.get('currentRole', '')}，目标: {profile.get('targetRole', '')}
+请生成 1-2 个具体追问（帮助明确需求），直接输出追问内容，不加标记。"""
+    content = chat([{"role": "user", "content": prompt}], temperature=0.7, max_tokens=150).strip()
+    return {"node_type": "agent_reasoning", "name": node_name, "content": content}
+
+
+def _generate_followup_message(
+    trigger: str, arc_description: str,
+    state: ConversationState, profile: dict, use_llm: bool,
+) -> str:
+    """Generate user follow-up message for turn N>1, reacting to last agent response."""
+    if not use_llm:
+        stubs = {
+            "constraint_update": f"补充一下，我的约束其实是：{arc_description}",
+            "clarification":     f"我想进一步了解：{arc_description}",
+            "plan_revision":     f"请根据新情况重新规划：{arc_description}",
+            "pushback":          f"我对这个建议有疑问：{arc_description}",
+        }
+        return stubs.get(trigger, arc_description)
+
+    prompt = f"""你正在模拟一个用户在多轮对话中的第 N 轮回复。
+
+用户画像:
+- 当前角色: {profile.get('currentRole', '')}
+- 目标角色: {profile.get('targetRole', '')}
+- 约束: {', '.join(profile.get('constraints', [])[:2])}
+
+AI 助手上一轮的回复:
+{state.last_agent_response[:300]}
+
+本轮触发类型: {trigger}
+本轮用户要做的事: {arc_description}
+
+请生成用户在此轮会说的话（20-80字，自然语言，直接输出不加引号）。
+要求：内容必须是对 AI 上一轮回复的直接反应，体现出 {trigger} 类型的特征。"""
+
+    try:
+        return chat([{"role": "user", "content": prompt}], temperature=0.8, max_tokens=150).strip().strip('"\'')
+    except Exception:
+        return arc_description
+
+
+def _generate_turn_response(
+    turn_id: int, trigger: str, blueprint: Any, profile: dict,
+    user_message: str, node_context: list,
+    state: ConversationState, use_llm: bool,
+) -> str:
+    """Generate agent response for the current turn."""
+    if not use_llm:
+        return f"[第{turn_id}轮回复] 针对您的 {trigger} 请求，基于分析结果给出以下建议..."
+
+    analysis_summary = "\n".join(f"- {c['name']}: {c['summary']}" for c in node_context)
+    history_summary  = state.get_context_summary(2)
+
+    prompt = f"""你是一个职业发展 AI 助手，请为用户生成本轮的回复。
+
+对话历史摘要:
+{history_summary or "（第一轮对话）"}
+
+用户本轮消息: {user_message}
+本轮触发类型: {trigger}
+
+本轮分析过程:
+{analysis_summary or "（已完成内部分析）"}
+
+用户背景: {profile.get('currentRole', '')} → {profile.get('targetRole', '')}
+
+请生成一个针对本轮的结构化回复（150-350字）:
+- 直接响应用户本轮的问题或修改
+- 引用本轮分析结果中的具体内容
+- 如有前序对话，保持一致性
+- 语言自然，避免重复上轮内容"""
+
+    try:
+        return chat([{"role": "user", "content": prompt}], temperature=0.6, max_tokens=600).strip()
+    except Exception:
+        return f"基于本轮分析，针对您的{trigger}，建议如下：{analysis_summary[:200]}"
+
+
+def _infer_tool_input_from_context(
+    tool_id: str, profile: dict,
+    state: ConversationState, node_context: list,
+) -> dict:
+    """
+    Infer tool input from profile + conversation state (context-aware, not hardcoded).
+    Uses established_facts to pick up any constraint updates from prior turns.
+    """
+    facts = state.established_facts
+
+    if tool_id == "job_requirement_search":
+        return {
+            "job_title": profile.get("targetRole", "开发工程师"),
+            "seniority": _infer_seniority(profile),
+            "region":    profile.get("locationRegion", facts.get("region", "")),
+        }
+    if tool_id == "interview_question_search":
+        # difficulty inferred from seniority
+        difficulty = "hard" if _infer_seniority(profile) == "senior" else "medium"
+        # category from last node context or default
+        category = "system_design"
+        for c in reversed(node_context):
+            if "behavioral" in c.get("summary", "").lower():
+                category = "behavioral"
+                break
+            if "algorithm" in c.get("summary", "").lower():
+                category = "algorithm"
+                break
+        return {"role": profile.get("targetRole", ""), "category": category, "difficulty": difficulty}
+    if tool_id == "salary_benchmark_search":
+        return {
+            "role":      profile.get("targetRole", ""),
+            "seniority": _infer_seniority(profile),
+            "region":    profile.get("locationRegion", facts.get("region", "北京")),
+        }
+    if tool_id == "tech_trend_search":
+        techs = profile.get("techStack", [profile.get("currentRole", "Java")])
+        tech  = techs[0] if techs else "Java"
+        return {"technology": tech, "aspect": "demand"}
+    if tool_id == "course_resource_search":
+        return {"skill_name": profile.get("targetRole", "开发"), "difficulty": "advanced"}
+    if tool_id == "project_repository_search":
+        return {"tech_stack": profile.get("techStack", [])[:3], "difficulty": "intermediate"}
+    if tool_id == "knowledge_graph_query":
+        return {"target_skill": profile.get("targetRole", ""), "depth": 2}
+    return {"query": profile.get("shortTermGoal", "")}
