@@ -1,8 +1,11 @@
 """
 Trajectory Generator - 生成完整多轮轨迹内容
 
-generate_multi_turn_trajectory: 多轮主入口
+generate_multi_turn_trajectory: 多轮主入口（动态规划版）
 generate_trajectory:            原有单轮接口（向后兼容）
+
+新版多轮生成链路（每个节点）：
+  小模型规划 ↔ 小模型评估（迭代，有上限）→ 大模型节点生成 → 状态更新
 """
 import json
 from typing import Any
@@ -11,6 +14,11 @@ from .llm_client import chat, chat_json
 from .mock_tools import mock_tool_call
 from .schema import ConversationTurn, MultiTurnTrajectory
 from .conversation_state import ConversationState
+from .node_planner import plan_next_node
+from .node_evaluator import evaluate_node_plan
+
+MAX_PLAN_ITER    = 3   # 单次规划最多迭代 3 轮（规划-评估循环上限）
+MAX_NODES_PER_TURN = 6  # 每轮最多处理节点数（安全上限）
 
 
 def generate_trajectory(
@@ -343,17 +351,20 @@ def generate_multi_turn_trajectory(
     use_llm: bool = True,
 ) -> MultiTurnTrajectory:
     """
-    Generate a complete multi-turn trajectory from a multi-turn plan.
+    Generate a complete multi-turn trajectory.
 
-    For each turn:
-      1. Determine user_message (turn 1 = initial_query; turns 2+ = generated/stub)
-      2. Execute processing nodes (skill_call, tool_call) in sequence
-      3. Generate agent_response from accumulated node outputs
-      4. Update ConversationState with this turn's exchange
+    新版每轮执行流程（动态规划）：
+      1. 确定 user_message
+      2. 重置本轮工具使用记录
+      3. 动态节点循环：
+           [小模型规划 ↔ 小模型评估（≤ MAX_PLAN_ITER 轮）] → 大模型节点执行 → 状态更新
+         直到规划器决定 is_terminal 或达到 MAX_NODES_PER_TURN
+      4. 生成 agent_response
+      5. 更新 ConversationState
     """
-    blueprint   = multi_turn_plan["blueprint"]
-    user_profile= multi_turn_plan["user_profile"]
-    turns_plan  = multi_turn_plan["turns_plan"]
+    blueprint    = multi_turn_plan["blueprint"]
+    user_profile = multi_turn_plan["user_profile"]
+    turns_plan   = multi_turn_plan["turns_plan"]
 
     skill_map = {s.skill_id: s for s in domain.skills}
     tool_map  = {t.tool_id:  t for t in domain.tools}
@@ -362,10 +373,9 @@ def generate_multi_turn_trajectory(
     completed_turns: list[ConversationTurn] = []
 
     for turn_plan in turns_plan:
-        turn_id    = turn_plan["turn_id"]
-        trigger    = turn_plan["trigger"]
-        arc_desc   = turn_plan.get("arc_description", "")
-        planned    = turn_plan["planned_nodes"]
+        turn_id  = turn_plan["turn_id"]
+        trigger  = turn_plan["trigger"]
+        arc_desc = turn_plan.get("arc_description", "")
 
         # ── 1. Determine user message ──────────────────────────────────────
         if turn_id == 1:
@@ -376,53 +386,108 @@ def generate_multi_turn_trajectory(
             )
             state.update_fact(f"turn{turn_id}_trigger", trigger)
 
-        # ── 2. Execute processing nodes ────────────────────────────────────
+        # ── 2. 重置本轮工具使用记录 ────────────────────────────────────────
+        state.reset_turn_tools()
+
+        # ── 3. 动态节点规划-执行循环 ────────────────────────────────────────
         processing_nodes: list[dict] = []
-        node_context: list[dict] = []  # running context within this turn
+        node_context: list[dict] = []
 
-        for node_plan in planned:
-            node_type = node_plan.get("node_type")
-            node_name = node_plan.get("node_name", node_type)
+        while len(processing_nodes) < MAX_NODES_PER_TURN:
+            # 3a. 规划-评估迭代（小模型，≤ MAX_PLAN_ITER 轮），收集 planning_trace
+            plan          = None
+            feedback      = ""
+            planning_trace: list[dict] = []
 
-            if node_type == "agent_response":
-                continue  # generated separately in step 3
+            for attempt in range(MAX_PLAN_ITER):
+                plan = plan_next_node(
+                    trigger         = trigger,
+                    task_type       = blueprint.task_type,
+                    state           = state,
+                    domain          = domain,
+                    node_context    = node_context,
+                    profile         = user_profile,
+                    feedback        = feedback,
+                    arc_description = arc_desc,
+                    use_llm         = use_llm,
+                )
+                eval_result = evaluate_node_plan(
+                    plan         = plan,
+                    trigger      = trigger,
+                    state        = state,
+                    domain       = domain,
+                    node_context = node_context,
+                    use_llm      = use_llm,
+                )
+                planning_trace.append({
+                    "attempt":  attempt + 1,
+                    "plan":     {k: v for k, v in plan.items() if k != "is_terminal"},
+                    "eval":     eval_result,
+                    "accepted": eval_result["pass"] or attempt == MAX_PLAN_ITER - 1,
+                })
+                if eval_result["pass"] or attempt == MAX_PLAN_ITER - 1:
+                    break
+                rejected_plan_summary = json.dumps(
+                    {k: v for k, v in plan.items() if k in ("node_type", "node_id", "inputs", "rationale")},
+                    ensure_ascii=False,
+                )
+                feedback = (
+                    f"你上一次提出的方案是：{rejected_plan_summary}\n"
+                    f"评估未通过的原因：{eval_result['rationale']}"
+                )
+                if eval_result["suggestions"]:
+                    feedback += "\n改进建议：" + "；".join(eval_result["suggestions"])
+
+            # 3b. 若规划器决定终止，退出节点循环
+            # 安全保底：本轮至少执行 1 个节点（防止 LLM 过早 is_terminal）
+            if plan["is_terminal"] and len(processing_nodes) >= 1:
+                break
+            elif plan["is_terminal"] and len(processing_nodes) == 0:
+                from .node_planner import _fallback_plan
+                plan = _fallback_plan(
+                    trigger, blueprint.task_type, state, domain, node_context, user_profile
+                )
+                plan["is_terminal"] = False
+                # 更新 trace 的最后一条，标记为 fallback 覆盖
+                if planning_trace:
+                    planning_trace[-1]["fallback_override"] = True
+
+            # 3c. 大模型执行节点（结构化 inputs 由规划器提供）
+            node_type = plan["node_type"]
+            node_id   = plan["node_id"]
 
             if node_type == "tool_call":
-                tool_id  = node_plan.get("tool_id", node_name)
-                tool_spec = tool_map.get(tool_id)
-                node = _exec_tool_node(
-                    tool_id, tool_spec, user_profile, blueprint.task_type,
-                    state, node_context, use_llm
-                )
+                tool_spec = tool_map.get(node_id)
+                node = _exec_tool_node_v2(plan, tool_spec, user_profile, state, use_llm)
 
             elif node_type == "skill_call":
-                skill_id  = node_plan.get("skill_id", node_name)
-                skill_spec = skill_map.get(skill_id)
-                node = _exec_skill_node(
-                    skill_id, skill_spec, user_profile, blueprint,
-                    state, node_context, use_llm
-                )
+                skill_spec = skill_map.get(node_id)
+                node = _exec_skill_node_v2(plan, skill_spec, user_profile, blueprint, state, use_llm)
 
             elif node_type == "agent_reasoning":
-                node = _exec_reasoning_node(node_name, blueprint, user_profile, state, use_llm)
+                node = _exec_reasoning_node(node_id, blueprint, user_profile, state, use_llm)
 
             else:
-                node = {"node_type": node_type, "name": node_name}
+                node = {"node_type": node_type, "name": node_id}
 
+            # 3d. 挂载 planning_trace，然后更新状态
+            node["planning_trace"] = planning_trace
+            state.add_node(node)
             processing_nodes.append(node)
             node_context.append({
-                "name": node_name,
-                "type": node_type,
+                "node_id": node_id,
+                "name":    node_id,
+                "type":    node_type,
                 "summary": _summarize_node(node),
             })
 
-        # ── 3. Generate agent response ─────────────────────────────────────
+        # ── 4. Generate agent response ─────────────────────────────────────
         agent_response = _generate_turn_response(
             turn_id, trigger, blueprint, user_profile,
             user_message, node_context, state, use_llm
         )
 
-        # ── 4. Update state ────────────────────────────────────────────────
+        # ── 5. Update state ────────────────────────────────────────────────
         state.add_turn(user_message, agent_response)
 
         completed_turns.append(ConversationTurn(
@@ -436,7 +501,7 @@ def generate_multi_turn_trajectory(
     return MultiTurnTrajectory(
         trajectory_id = multi_turn_plan["trajectory_id"],
         domain        = domain.spec.domain_id,
-        template_used = "multi_turn_llm" if use_llm else "multi_turn_template",
+        template_used = "dynamic_plan_llm" if use_llm else "dynamic_plan_template",
         user_profile  = user_profile,
         task          = blueprint,
         turns         = completed_turns,
@@ -661,3 +726,101 @@ def _infer_tool_input_from_context(
     if tool_id == "knowledge_graph_query":
         return {"target_skill": profile.get("targetRole", ""), "depth": 2}
     return {"query": profile.get("shortTermGoal", "")}
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# v2 节点执行函数（接受 plan dict，使用规划器提供的结构化 inputs）
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _exec_tool_node_v2(
+    plan: dict,
+    tool_spec: Any,
+    profile: dict,
+    state: ConversationState,
+    use_llm: bool,
+) -> dict:
+    """执行 tool_call 节点 v2：使用规划器提供的结构化 inputs。"""
+    tool_id    = plan["node_id"]
+    tool_input = plan.get("inputs") or {}
+    if not tool_input:
+        tool_input = _infer_tool_input_from_context(tool_id, profile, state, [])
+
+    tool_output = mock_tool_call(tool_id, tool_input)
+    tool_name   = tool_spec.name if tool_spec else tool_id
+
+    return {
+        "node_type": "tool_call",
+        "name":      tool_id,
+        "tool_id":   tool_id,
+        "input":     tool_input,
+        "output":    tool_output,
+        "rationale": plan.get("rationale", f"调用 {tool_name} 获取相关信息"),
+    }
+
+
+def _exec_skill_node_v2(
+    plan: dict,
+    skill_spec: Any,
+    profile: dict,
+    blueprint: Any,
+    state: ConversationState,
+    use_llm: bool,
+) -> dict:
+    """
+    执行 skill_call 节点 v2。
+
+    关键改进：直接使用规划器提炼的结构化 inputs，
+    而非通用 context_summary 文本，大模型生成质量更高。
+    """
+    skill_id      = plan["node_id"]
+    skill_name    = skill_spec.name        if skill_spec else skill_id
+    skill_desc    = skill_spec.description if skill_spec else ""
+    skill_outputs = skill_spec.outputs     if skill_spec else ["result"]
+    structured_inputs = plan.get("inputs", {})
+
+    if not use_llm:
+        output = {field: f"[{skill_name}的{field}结果]" for field in skill_outputs}
+        return {
+            "node_type": "skill_call",
+            "name":      skill_id,
+            "skill_id":  skill_id,
+            "input":     structured_inputs,
+            "output":    output,
+            "rationale": plan.get("rationale", f"执行 {skill_name}"),
+        }
+
+    prompt = f"""你是职业发展 AI Agent 的内部推理模块，正在执行 "{skill_name}" 技能。
+
+技能说明: {skill_desc}
+期望输出字段: {', '.join(skill_outputs)}
+
+规划器提供的结构化输入:
+{json.dumps(structured_inputs, ensure_ascii=False, indent=2)}
+
+执行依据: {plan.get('rationale', '')}
+
+对话上下文摘要:
+{state.get_context_summary(2) or '（第一轮）'}
+
+请基于上述结构化输入生成此技能的输出，JSON 格式:
+{{
+  "output": {{ ...具体输出，字段对应期望输出... }},
+  "rationale": "一句话：依赖了什么前序信息，输出了什么结论"
+}}"""
+
+    try:
+        result    = chat_json([{"role": "user", "content": prompt}], temperature=0.5)
+        output    = result.get("output", result)
+        rationale = result.get("rationale", f"执行 {skill_name}。")
+    except Exception:
+        output    = {field: f"[{skill_name} output]" for field in skill_outputs}
+        rationale = plan.get("rationale", f"执行 {skill_name}。")
+
+    return {
+        "node_type": "skill_call",
+        "name":      skill_id,
+        "skill_id":  skill_id,
+        "input":     structured_inputs,
+        "output":    output,
+        "rationale": rationale,
+    }
